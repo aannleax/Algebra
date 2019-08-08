@@ -17,9 +17,9 @@
 \usepackage{eufrak}
 \usepackage{upgreek}
 \usepackage{bm}
+\usepackage{fix-cm}
 
 \usepackage{mathtools}
-\newcommand\filledcirc{\mathop{{\color{black}\bullet}\mathllap{\circ}}}
 
 \usepackage{tikz}
 \usetikzlibrary{datavisualization}
@@ -33,8 +33,6 @@
 
 \usepackage{stackengine,scalerel,graphicx,amssymb,amsmath,wasysym}
 
-\newcommand\ostar{\stackMath\mathbin{\stackinset{c}{0ex}{c}{0ex}{\star}{\bigcirc}}}
-
 %New sum symbols
 \DeclareMathOperator*{\Sigmacirc}{%
   \ThisStyle{\mathop{\ensurestackMath{\stackinset{c}{-0.75\LMpt}{c}{}{%
@@ -46,6 +44,24 @@
   i}$}}{\SavedStyle\sum}}}}}
 
 \DeclareMathOperator*{\sumbar}{\overline{\sum}}
+
+\newcommand{\algebra}{\mathbin{
+  \mathchoice
+    {\mbox{\normalsize\textcircled{\scriptsize A}}}
+    {\mbox{\normalsize\textcircled{\scriptsize A}}}
+    {\mbox{\scriptsize\textcircled{\tiny A}}}
+    {\mbox{\tiny\textcircled{\fontsize{3.5}{3.5}\selectfont A}}}
+  }
+}
+
+\newcommand{\mink}{\mathbin{
+  \mathchoice
+    {\mbox{\normalsize\textcircled{\scriptsize M}}}
+    {\mbox{\normalsize\textcircled{\scriptsize M}}}
+    {\mbox{\scriptsize\textcircled{\tiny M}}}
+    {\mbox{\tiny\textcircled{\fontsize{3.5}{3.5}\selectfont M}}}
+  }
+}
 
 \begin{document}
 
@@ -2569,7 +2585,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   sowie $J$, $K$ und $N$ Mengen.
   Dann gilt für die Abbildungen $\alpha \in S^{J \times K}$ und $\beta \in S^{K \times N}$
   \begin{equation*}
-    f_{\text{row}(\alpha)} \filledcirc f_{\text{row}(\beta)} = f_{\text{row}(\alpha \otimes \beta)}.
+    f_{\text{row}(\alpha)} \bullet f_{\text{row}(\beta)} = f_{\text{row}(\alpha \otimes \beta)}.
   \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -2584,115 +2600,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= (u \otimes (\alpha \otimes\beta))(n).
   \end{align*}
 \end{proof}
-
-\newpage
-\section{$\mathcal{S}$-Algebren}
-
-\begin{definition}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summmoid.
-  Eine $\mathcal{S}$-Algebra ist definiert als das Tupel $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$
-  bestehend aus einem Summoid $\mathcal{A} = (A, \Sigmacirc, \circledast, a)$,
-  sodass $(\mathcal{A}_\text{Sum}, \mathcal{S}, \text{scal})$ ein Summoid-Modul bildet,
-  wobei für alle $s \in S$ und $x, y \in A$
-  \begin{equation*}
-    s \cdot (x \circledast y) = (s \cdot x) \circledast (s \cdot y).
-  \end{equation*}
-\end{definition}
-
-\begin{theorem}
-  Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk
-  und weiterhin $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid.
-  Dann bildet $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$
-  bestehend aus $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_G)$
-  und der Skalarmultiplikation aus $\text{Mod}(\mathcal{S}, E)$
-  eine $\mathcal{S}$-Algebra.
-\end{theorem}
-\begin{proof}
-  Da $\mathcal{S}[\mathbb{G}]$ ein Summoid
-  und $(\mathcal{S}[\mathbb{G}])_\text{Sum} = (\mathcal{S}_\text{Sum})^E$ ist,
-  ist $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$ ein Summoid-Modul.
-
-  Sei nun $s \in S$, $u, w \in S^E$ sowie $e \in E$.
-  Dann ist
-  \begin{align*}
-    (s \cdot (u \circledast w))(e)
-    &= s \cdot \sum_{c \star d = e} u(c) \ast w(d)\\
-    &= \sum_{c \star d = e} s \ast (u(c) \ast w(d)) \\
-    &= \sum_{c \star d = e} (s \ast u(c)) \ast w(d) \\
-    &= ((s \cdot u) \circledast w)(e) \\
-    &= (u \circledast (s \cdot w))(e)
-    ???
-  \end{align*}
-\end{proof}
-
-\begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid,
-  $\mathbb{M} = (M, +, 0)$ ein Monoid und 
-  $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$ mit
-  $\mathcal{A} = (A, \Sigmacirc, \circledast^A, a)$ eine $\mathcal{S}$-Algebra.
-  Dann induziert jeder Homomorphismus $\kappa$ von $\mathbb{M}$ auf $\mathcal{A}_\text{Mult}$
-  durch $f_\kappa$ einen Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)]$ nach $\mathcal{A}$.
-\end{theorem}
-\begin{proof}
-  \begin{align*}
-    (u \circledast w) \odot \kappa
-    &= \sumcirc_{m \in M} \bigg(\sum_{c + d = m} u(c) \ast w(d) \bigg) \cdot\kappa(m) \\
-    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot \kappa(c + d) \\
-    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot (\kappa(c) \circledast^\mathcal{A} \kappa(d)) \\
-    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \cdot \kappa(c)) \circledast^\mathcal{A} (w(d) \cdot \kappa(d)) \\
-    &= \sumcirc_{(c, d) \in M \times M} (u(c) \cdot \kappa(c)) \circledast^\mathcal{A} (w(d) \cdot \kappa(d)) \\
-    &= \sumcirc_{c \in M} u(c) \cdot \kappa(c) \circledast^\mathcal{A} \sumcirc_{d \in M}w(d) \cdot \kappa(d) \\
-    &= (u \odot \kappa) \circledast^\mathcal{A} (w \odot\kappa).
-  \end{align*}
-
-  ???
-\end{proof}
-
-\begin{example}
-  Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
-  $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid
-  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal})$
-  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).
-  Für jedes $r \in S$ ist $\kappa_r \colon \mathbb{N} \to S, n \mapsto r^n$
-  ein Monoid-Homomorphismus von $\mathbb{N}$ nach $\mathcal{S}_\text{Mult}$.
-  Dann ist 
-  \begin{equation*}
-    f_\kappa \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot \kappa(n)
-  \end{equation*}
-  ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{N}_\text{add}]$ nach $\mathbb{S}$.
-  Das heißt folgendes: Für $u \in S^\mathbb{N}$, welcher als Polynom
-  \begin{equation*}
-    u[x] = \sum_{n \in \mathbb{N}} u(n) \cdot x^n
-  \end{equation*}
-  aufgefasst wird, ist
-  \begin{equation*}
-    (f_\kappa(u))(r) = \sum_{n \in \mathbb{N}} u(n)\cdot r^n.
-  \end{equation*}
-  Die Abbildung $f_\kappa$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
-\end{example}
-
-\begin{example}
-  Sei $\Omega$ eine endliche Menge
-  und $(\mathcal{S}, \Sigma, \ast, \varepsilon)$ ein Summoid.
-  Weiterhin ist $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.
-  Für $r \in S^\Omega$ ist 
-  \begin{equation*}
-    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod_{i \in \Omega}r_i^{\alpha_i}
-  \end{equation*}
-  ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$.
-  Für $i \in \Omega$ setze $x_i = \delta^{\mathbb{N}^\Omega}_{\delta^\Omega_i}$
-  und für $\alpha \in \mathbb{N}^\Omega$ sei $x^\alpha = \delta^{\mathbb{N}^\Omega}_\alpha$.
-  Dann ist
-  \begin{equation*}
-    x^\alpha = \prod_{i \in \Omega}x_i^{\alpha(i)}.
-  \end{equation*}
-  Dann ist für $u \in \mathcal{S}^{\mathbb{N}^\Omega}$
-  \begin{equation*}
-    f_\kappa(n) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot x^\alpha = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot \prod_{i \in \Omega}x_i^{\alpha(i)}
-  \end{equation*}
-  das Einsetzen von $r$ in jede multivariable formale Potenzreihe.
-  ???
-\end{example}
 
 \newpage
 \section{Netzwerke und Aktionsnetzwerke}
@@ -3057,24 +2964,42 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk.
   Dann ist
   \begin{equation*}
-    \ostar \colon \mathcal{P}(E) \times \mathcal{P}(E), (A, B) \mapsto \{a \star b \mid (a, b) \in E^{\langle 2 \rangle} \cap A \times B\}
+    \mink \colon \mathcal{P}(E) \times \mathcal{P}(E), (A, B) \mapsto \{a \star b \mid (a, b) \in E^{\langle 2 \rangle} \cap A \times B\}
   \end{equation*}
   das Minkowski-Produkt in $\mathbb{G}$.
 \end{definition}
 
 \begin{definition}
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk.
-  Dann ist $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \ostar, \text{id}(V))$
+  Dann ist $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
   ein Join-Summoid, welches wir das Minkowski-Summoid zu $\mathbb{G}$ nennen.
 \end{definition}
 
 \begin{theorem}
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk.
-  Dann ist das Minkowski-Summoid $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \ostar, \text{id}(V))$
+  Dann ist das Minkowski-Summoid $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
   ein Join-Summmoid.
 \end{theorem}
 \begin{proof}
-  ???
+  $(\mathcal{P}(E), \bigcup)$ ist eine idempotente Summationsstruktur.
+  
+  $\mink$ ist assoziativ, da $\star$ assoziativ ist und es gilt
+  \begin{equation*}
+    A \mink \text{id}(V) 
+    = \{a \star e \mid (a, e) \in E^{\langle 2 \rangle} \cap A \times \text{id}(V)\}
+    = A
+    = \text{id}(V) \mink A.
+  \end{equation*}
+  Also ist $\text{Minsk}(\mathbb{G})_\text{Mult}$ ein Monoid.
+
+  Und schließlich ist für $A \in \mathcal{P}(E)$ und $\beta \colon I \to \mathcal{P}(E)$
+  \begin{align*}
+    A \mink \bigcup_{i \in I} \beta(i)
+    &= \{a \star b \mid (a, b) \in E^{\langle 2 \rangle} \cap A \times \bigcup_{i \in I} \beta(i)\} \\
+    &= \bigcup_{i \in I} \{a \star b \mid (a, b) \in E^{\langle 2 \rangle} \cap A \times \beta(i)\} \\
+    &= \bigcup_{i \in I} A \mink \beta(i).
+  \end{align*}
+  Das Argument kann auch analog für die Rechtsdistributivität verwendet werden.
 \end{proof}
 
 \begin{example}
@@ -3082,7 +3007,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   In $\mathbb{G}(\mathbb{M})$ ist das Minkowski-Produkt gerade die Minkowski-Summe,
   d.h.
   \begin{equation*}
-    A \ostar B = \{a + b \mid a \in A, b \in B\}.
+    A \mink B = \{a + b \mid a \in A, b \in B\}.
   \end{equation*}
 \end{example}
 
@@ -3092,7 +3017,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{itemize}
     \item $A^{(0)} = \text{id}(V)$
     \item $A^{(1)} = A$
-    \item $A^{(n + 1)} = A^{(n)} \ostar A$ für alle $n \in \mathbb{N}_{\geq 1}$
+    \item $A^{(n + 1)} = A^{(n)} \mink A$ für alle $n \in \mathbb{N}_{\geq 1}$
   \end{itemize}
   Der Kleenestern von $A$ bzgl. $\mathbb{G}$ ist dann definiert als
   \begin{equation*}
@@ -3106,7 +3031,27 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist $A^{(\ast)}$ die kleinste Unterstruktur von $\mathbb{G}$, die $A$ enthält.
 \end{theorem}
 \begin{proof}
-  \dots
+  Es gilt $\text{id}(V) = A^{(0)} \subseteq A^{(\ast)}$ und $A = A^{(1)} \subseteq A^{(\ast)}$.
+  Seien $(e_1, e_2) \in E^{\langle 2 \rangle}$ mit $e_1, e_2 \in A^{(\ast)}$, d.h. es existieren $m, n \in \mathbb{N}$,
+  sodass $e_1 \in A^{(m)}$ und $e_2 \in A^{(n)}$.
+  Dann ist 
+  \begin{equation*}
+    e_1 \star e_2 \in A^{(m)} \mink A^{(n)} \subseteq A^{(\ast)}.
+  \end{equation*}
+  Also ist $A^{(\ast)}$ eine Unterstruktur von $\mathbb{G}$,
+  die $A$ ennthält.
+
+  Sei nun $D \subseteq E$ eine Unterstruktur von $\mathbb{G}$ mit $A \subseteq D$.
+  Wir zeigen, dass $A^{(n)} \subseteq D$ für alle $n \in \mathbb{N}$
+  per Induktion über $n$.
+  Es gilt $A^{(0)} \subseteq D$ und $A^{(1)} \subseteq D$.
+  Sei also die Aussage für $n \in \mathbb{N}_{\geq 1}$ bereits erfüllt
+  und sei $a \in A^{(n+1)}$.
+  Das heißt $a \in A^{(n)} \mink A$,
+  also $a = e_1 \star e_2$ mit $(e_1, e_2) \in E^{\langle 2 \rangle}$
+  sowie $e_1 \in A^{(n)}$ und $e_2 \in A$.
+  Da laut Voraussetzung sowohl $A \subseteq D$ also auch $A^{(n)} \subseteq D$,
+  ist $a = e_1 \star e_2 \in D$, da $D$ eine Unterstruktur ist.
 \end{proof}
 
 \begin{example}
@@ -3116,8 +3061,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{align*}
     A^{(0)} &= \{0\} \\
     A^{(1)} &= A = \{2, 5\} \\
-    A^{(2)} &= A \ostar A = \{2+2, 5+2, 2+5, 5+5\} = \{4, 7, 10\} \\
-    A^{(3)} &= A^{(2)} \ostar A = \{4+2, 4+5, 7+2, 7+5, 10+2, 10+5\} = \{6, 9, 12, 15\} \\
+    A^{(2)} &= A \mink A = \{2+2, 5+2, 2+5, 5+5\} = \{4, 7, 10\} \\
+    A^{(3)} &= A^{(2)} \mink A = \{4+2, 4+5, 7+2, 7+5, 10+2, 10+5\} = \{6, 9, 12, 15\} \\
     \dots \\
     A^{(\ast)} &= \bigcup_{n \in \mathbb{N}} A^{(n)} = \mathbb{N} \setminus \{1, 3\}.
   \end{align*}
@@ -3206,7 +3151,31 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_\mathbb{G})$ ebenfalls ein Summoid.
 \end{theorem}
 \begin{proof}
-  \dots
+  $(S^E, \bar\Sigma)$ ist eine Summationsstruktur nach Satz \ref{Theorem_OmegaPotenzSumStruktur}.
+  
+  Weiterhin wissen wir bereits, dass $\circledast$ assoziativ ist.
+  Sei also $u \in S^E$.
+  Dann ist für $e \in E$
+  \begin{equation*}
+    (u \circledast I_\mathbb{G})(e) 
+    = \sum_{c \star d = e} u(c) \ast I_\mathbb{G}(d)
+    = u(c)
+    = \sum_{c \star d = e} I_\mathbb{G}(c) \ast u(d)
+    = (I_\mathbb{G} \circledast u)(e),
+  \end{equation*}
+  da $c \star d = e$ für $d \in \text{id}(V)$ nur gilt, wenn $c = e$.
+
+  Sei nun $(u_i)_{i \in I} \in (S^E)^I$ sowie $w \in S^E$ und $e \in E$.
+  Dann ist
+  \begin{align*}
+    \bigg( w \circledast \sumbar_{i \in I} u_i \bigg)(e)
+    &= \sum_{c \star d = e} w(c) \ast \bigg( \sumbar_{i \in I} u_i \bigg)(d) \\
+    &= \sum_{c \star d = e} w(c) \ast \sum_{i \in I} u_i(d) \\
+    &= \sum_{c \star d = e} \sum_{i \in I} w(c) \ast u_i(d) \\
+    &= \sum_{i \in I} \sum_{c \star d = e} w(c) \ast u_i(d) \\
+    &= \bigg( \sumbar_{i \in I} w \circledast u_i \bigg)(e)
+  \end{align*}
+  und analog für die Rechtsdistributivität.
 \end{proof}
 
 \begin{definition}
@@ -3229,6 +3198,113 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
   die Einheitsmatrix und $\bar\Sigma$ die punktweise Summation von $\mathcal{S}$-Matrizen.
 \end{remark}
+
+\subsection{$\mathcal{S}$-Algebren}
+
+\begin{definition}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summmoid.
+  Eine $\mathcal{S}$-Algebra ist definiert als das Tupel $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$
+  bestehend aus einem Summoid $\mathcal{A} = (A, \Sigmacirc, \algebra, a)$,
+  sodass $(\mathcal{A}_\text{Sum}, \mathcal{S}, \text{scal})$ ein Summoid-Modul bildet,
+  wobei für alle $s \in S$ und $x, y \in A$
+  \begin{equation*}
+    s \cdot (x \algebra y) = (s \cdot x) \algebra y = x \algebra (s \cdot y).
+  \end{equation*}
+\end{definition}
+
+\begin{theorem}
+  Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk
+  und weiterhin $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid.
+  Dann bildet $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$
+  bestehend aus $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_G)$
+  und der Skalarmultiplikation aus $\text{Mod}(\mathcal{S}, E)$
+  eine $\mathcal{S}$-Algebra.
+\end{theorem}
+\begin{proof}
+  Da $\mathcal{S}[\mathbb{G}]$ ein Summoid
+  und $(\mathcal{S}[\mathbb{G}])_\text{Sum} = (\mathcal{S}_\text{Sum})^E$ ist,
+  ist $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$ ein Summoid-Modul.
+
+  Sei nun $s \in S$, $u, w \in S^E$ sowie $e \in E$.
+  Dann ist
+  \begin{align*}
+    (s \cdot (u \circledast w))(e)
+    &= s \cdot \sum_{c \star d = e} u(c) \ast w(d)\\
+    &= \sum_{c \star d = e} s \ast (u(c) \ast w(d)) \\
+    &= \sum_{c \star d = e} (s \ast u(c)) \ast w(d) \\
+    &= ((s \cdot u) \circledast w)(e) \\
+    &= (u \circledast (s \cdot w))(e)
+  \end{align*}
+\end{proof}
+
+\begin{theorem}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid,
+  $\mathbb{M} = (M, +, 0)$ ein Monoid und 
+  $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$ mit
+  $\mathcal{A} = (A, \Sigmacirc, \algebra, a)$ eine $\mathcal{S}$-Algebra.
+  Dann induziert jeder Homomorphismus $\kappa$ von $\mathbb{M}$ auf $\mathcal{A}_\text{Mult}$
+  durch $f_\kappa$ einen Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)]$ nach $\mathcal{A}$.
+\end{theorem}
+\begin{proof}
+  \begin{align*}
+    (u \circledast w) \odot \kappa
+    &= \sumcirc_{m \in M} \bigg(\sum_{c + d = m} u(c) \ast w(d) \bigg) \cdot\kappa(m) \\
+    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot \kappa(c + d) \\
+    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot (\kappa(c) \algebra \kappa(d)) \\
+    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \cdot \kappa(c)) \algebra (w(d) \cdot \kappa(d)) \\
+    &= \sumcirc_{(c, d) \in M \times M} (u(c) \cdot \kappa(c)) \algebra (w(d) \cdot \kappa(d)) \\
+    &= \sumcirc_{c \in M} u(c) \cdot \kappa(c) \algebra \sumcirc_{d \in M}w(d) \cdot \kappa(d) \\
+    &= (u \odot \kappa) \algebra (w \odot\kappa).
+  \end{align*}
+
+  ???
+\end{proof}
+
+\begin{example}
+  Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
+  $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid
+  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal})$
+  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).
+  Für jedes $r \in S$ ist $\kappa_r \colon \mathbb{N} \to S, n \mapsto r^n$
+  ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$.
+  Dann ist 
+  \begin{equation*}
+    f_\kappa \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot \kappa(n)
+  \end{equation*}
+  ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathbb{S}$.
+  Das heißt folgendes: Für $u \in S^\mathbb{N}$, welches als Polynom
+  \begin{equation*}
+    u[x] = \sum_{n \in \mathbb{N}} u(n) \cdot x^n
+  \end{equation*}
+  aufgefasst wird, ist
+  \begin{equation*}
+    (f_\kappa(u))(r) = \sum_{n \in \mathbb{N}} u(n)\cdot r^n.
+  \end{equation*}
+  Die Abbildung $f_\kappa$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
+\end{example}
+
+\begin{example}
+  Sei $\Omega$ eine endliche Menge
+  und $(\mathcal{S}, \Sigma, \ast, \varepsilon)$ ein Summoid.
+  Weiterhin ist $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.
+  Für $r \in S^\Omega$ ist 
+  \begin{equation*}
+    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod_{i \in \Omega}r_i^{\alpha_i}
+  \end{equation*}
+  ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$.
+  Für $i \in \Omega$ setze $x_i = \delta^{\mathbb{N}^\Omega}_{\delta^\Omega_i}$
+  und für $\alpha \in \mathbb{N}^\Omega$ sei $x^\alpha = \delta^{\mathbb{N}^\Omega}_\alpha$.
+  Dann ist
+  \begin{equation*}
+    x^\alpha = \prod_{i \in \Omega}x_i^{\alpha(i)}.
+  \end{equation*}
+  Dann ist für $u \in \mathcal{S}^{\mathbb{N}^\Omega}$
+  \begin{equation*}
+    f_\kappa(n) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot x^\alpha = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot \prod_{i \in \Omega}x_i^{\alpha(i)}
+  \end{equation*}
+  das Einsetzen von $r$ in jede multivariable formale Potenzreihe.
+  ???
+\end{example}
 
 \subsection{Automaten}
 
@@ -3346,9 +3422,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   wobei $p$ den Startzustand und $q$ den Endzustand darstellen.
 
   Ein Wort $w \in B^{\langle \ast \rangle}$ wird durch $\mathbb{D}$ erkannnt,
-  falls $\delta^P_p \circledast \kappa(w) = \delta^P_q$,
-  d.h. $(\kappa(w))(p, q) = 1$
-  ???
+  falls $\delta^P_p \circledast \kappa(w) = \delta^P_q \circledast \kappa(w)$,
+  d.h. $(\kappa(w))(p, q) = 1$.
 \end{definition}
 
 \begin{definition}
