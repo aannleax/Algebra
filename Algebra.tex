@@ -397,40 +397,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Also ist $(\varphi, \psi)$ reflektierend und somit ein Isomorphismus.
 \end{proof}
 
-\begin{definition}
-  Gegeben seien drei natürliche Zahlen $i, j, k$ mit $i \leq j \leq n$.
-  Dann ist ${\mathcal{I}^n_{i, j} = (\binom{[n]}{i}, \binom{[n]}{j}, \subseteq)}$ eine kombinatorische taktische Konfiguration
-  mit den Parametern $(\binom{n}{i}, \binom{n - i}{j - i}, \binom{n}{j}, \binom{j}{i})$.
-\end{definition}
-
-\begin{definition}
-  Sei $\mathcal{I}$ eine Inzidenzstruktur.
-  $\mathcal{I}$ heißt selbstdual falls $\mathcal{I} \cong \mathcal{I}^{-1}$.
-\end{definition}
-
-\begin{sloppypar}
-  \begin{example}[Tetraeder]
-    Kombinatorische Beschreibung eines Tetraeders: ${\mathcal{I} =  (\binom{[4]}{1}, \binom{[4]}{3}, \subseteq)}$.
-    Die dazu duale Inzidenzstruktur lautet dann: ${\mathcal{I}^{-1} = (\binom{[4]}{3}, \binom{[4]}{1}, \supseteq)}$.
-    Der Isomorphismus  $(\varphi, \psi)$ ist gegeben durch
-    ${\varphi \colon \binom{[4]}{1} \to \binom{[4]}{3}, x \mapsto \overline{x}}$ und
-    ${\psi \colon \binom{[4]}{3} \to \binom{[4]}{1}, x \mapsto \overline{x}}$.
-  \end{example}
-\end{sloppypar}
-
-\begin{example}[Desargues-Konfiguration]
-  \begin{figure}
-    \centering {\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{DesarguesConfiguration.png}}
-    \caption{Desargues-Konfiguration}
-    \label{fig:Desargues}
-  \end{figure}
-
-  Analog zum Tetraeder, nur das die Inzidenzstruktur durch ${\mathcal{I}^5_{2, 3} = (\binom{[5]}{2}, \binom{[5]}{3}, \subseteq)}$ gegeben ist.
-  Die Desargues-Konfi-guration ist selbstdual und hat 10 Punkte (Die Punkte $A, B, C, a, b, c$, das Zentrum der Perspektive und die drei Punkte, die auf der roten Linie liegen)
-  und 10 Blöcke (Die 6 Linien der zwei Dreiecke, die 3 Linien, die sich im Zentrum der Perspektive treffen und die Achse der Perspektive).
-  In der dazu dualen Konfiguration sind Achse und Zentrum der Perspektive getauscht.
-\end{example}
-
 \begin{theorem}
   Seien $\mathcal{I}, \mathcal{I}', \mathcal{I}''$ Inzidenzstrukturen.
   Sei weiterhin $(\varphi, \psi)$ ein Homomorphismus zwischen $\mathcal{I}$ und $\mathcal{I}'$
@@ -455,16 +421,84 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   zwischen $\mathcal{I}$ und $\mathcal{I}''$.
 \end{proof}
 
+\begin{definition}
+  Sei $\mathcal{I}$ eine Inzidenzstruktur.
+  $\mathcal{I}$ heißt selbstdual falls $\mathcal{I} \cong \mathcal{I}^{-1}$.
+\end{definition}
+
+\begin{definition}
+  Gegeben seien drei natürliche Zahlen $i, j, k$ mit $i \leq j \leq n$.
+  Dann ist ${\mathcal{I}^n_{i, j} = (\binom{[n]}{i}, \binom{[n]}{j}, \subseteq)}$ die sogenannte kombinatorische taktische Konfiguration
+  mit den Parametern $(\binom{n}{i}, \binom{n - i}{j - i}, \binom{n}{j}, \binom{j}{i})$.
+\end{definition}
+
+\begin{theorem}
+  Seien $i, j, k \in \mathbb{N}$ mit $i \leq j \leq n$.
+  Dann ist $\mathcal{I}^n_{i, j}$ eine taktische Konfiguration
+  mit den Parametern $(\binom{n}{i}, \binom{n - i}{j - i}, \binom{n}{j}, \binom{j}{i})$
+\end{theorem}
+
+\begin{proof}
+  Sei $I \in \binom{[n]}{i}$ und $J \in \binom{[n]}{j}$.
+  Dann ist $I \subseteq J$ genau dann wenn $J$ alle Elemente von $I$ enthält
+  und zusätzlich $|J| - |I|$ weitere aus $[n] \setminus I$.
+  Das heißt $I$ steht mit $|\binom{[n] \setminus I}{j - i}| = \binom{n - i}{j - i}$ Mengen in Beziehung.
+
+  Umgekehrt steht $J$ genau mit jeder $i$-elementigen Teilmenge von $J$ in Beziehung.
+\end{proof}
+
 \begin{theorem}
   Sei $\mathcal{I}^n_{i, n - i}$ mit $i \leq \frac{n}{2}$ eine kombinatorische taktische Konfiguration.
   Dann ist $\mathcal{I}^n_{i, n - i}$ selbstdual.
 \end{theorem}
 \begin{proof}
-  $\varphi \colon \binom{[n]}{i} \to \binom{[n]}{n - i}, X \mapsto [n] \backslash X$ ist eine bijektive Abbildung.
-  Die zu $\varphi$ inverse Abbildung $\varphi^{-1}$ ist gegeben durch 
-  $\varphi^{-1} \colon \binom{[n]}{n - i} \to \binom{[n]}{i}, Y \mapsto [n] \backslash Y$.
-  Das Paar $(\varphi, \varphi^{-1})$ ist dann ein Isomorphismus zwischen $\mathcal{I}^n_{i, n - i}$ und $(\mathcal{I}^n_{i, n - i})^{-1}$.
+  Sei $\varphi \colon \binom{[n]}{i} \to \binom{[n]}{n - i}, X \mapsto [n] \backslash X$ eine bijektive Abbildung.
+  Seien weterhin $I \in \binom{[n]}{i}$ und $J \in \binom{[n]}{n - i}$ Mengen
+  mit $I \subseteq J$.
+  Das heißt für alle $i \in I$ gilt
+  \begin{equation*}
+    i \in I \implies i \in J.
+  \end{equation*}
+  Der Kontrapositiv lautet
+  \begin{equation*}
+    i \notin J \implies i \notin I,
+  \end{equation*}
+  was äquivalent ist zu
+  \begin{equation*}
+    i \in [n] \setminus J \implies i \in [n] \setminus I
+    \iff i \in \varphi(J) \implies i \in \varphi(I),
+  \end{equation*}
+  also $\varphi(I) \supseteq \varphi(J)$.
+  Das selbe Argument kann auch für $\varphi^{-1}$ verwendet werden,
+  womit gezeigt ist,
+  dass das Abbildungspaar $(\varphi, \varphi^{-1})$ ein Isomorphismus
+  zwischen $\mathcal{I}^n_{i, n - i}$ und $(\mathcal{I}^n_{i, n - i})^{-1}$ ist.
 \end{proof}
+
+\begin{example}[Tetraeder]
+  Kombinatorische Beschreibung eines Tetraeders lautet: ${\mathcal{I} =  (\binom{[4]}{1}, \binom{[4]}{3}, \subseteq)}$.
+  Die duale Inzidenzstruktur ist: ${\mathcal{I}^{-1} = (\binom{[4]}{3}, \binom{[4]}{1}, \supseteq)}$.
+  Der Isomorphismus  $(\varphi, \psi)$ ist gegeben durch
+  ${\varphi \colon \binom{[4]}{1} \to \binom{[4]}{3}, x \mapsto \overline{x}}$
+  und weiterhin ${\psi \colon \binom{[4]}{3} \to \binom{[4]}{1}, x \mapsto \overline{x}}$.
+\end{example}
+
+\newpage
+
+\begin{example}[Desargues-Konfiguration]
+  \begin{figure}
+    \centering {\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{DesarguesConfiguration.png}}
+    \caption{Desargues-Konfiguration}
+    \label{fig:Desargues}
+  \end{figure}
+
+  Analog zum Tetraeder, nur das die Inzidenzstruktur durch ${\mathcal{I}^5_{2, 3} = (\binom{[5]}{2}, \binom{[5]}{3}, \subseteq)}$ gegeben ist.
+  Die Desargues-Konfi-guration ist selbstdual und hat 10 Punkte (Die Punkte $A, B, C, a, b, c$, das Zentrum der Perspektive und die drei Punkte, die auf der roten Linie liegen)
+  und 10 Blöcke (Die 6 Linien der zwei Dreiecke, die 3 Linien, die sich im Zentrum der Perspektive treffen und die Achse der Perspektive).
+  In der dazu dualen Konfiguration sind Achse und Zentrum der Perspektive getauscht.
+\end{example}
+
+
 
 \newpage
 
