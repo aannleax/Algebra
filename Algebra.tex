@@ -776,7 +776,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{theorem}
 \begin{proof}
   Zunächst sei angenommen, dass $(S, \Sigma)$ idempotent ist.
-  Setze $\eta = \tau$. Dann ist $\beta \colon I \to M, i \mapsto \Sigma((\alpha \circ \tau)_{\mid \tau^{-1}(i)})$
+  Setze $\eta = \tau$. Dann ist $\beta \colon I \to S, i \mapsto \Sigma((\alpha \circ \tau)_{\mid \tau^{-1}(i)})$
   und es gilt $\Sigma(\alpha \circ \tau) = \Sigma(\beta)$ laut dem Teilsummenaxiom.
   $(\alpha \circ \tau)_{\mid \tau^{-1}(i)}$ ist eine konstante Abbildung,
   weshalb wegen der Idempotenz von $(S, \Sigma)$ für alle $h \in \tau^{-1}(i)$ gilt: 
@@ -785,14 +785,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
   Das heißt $\alpha = \beta$ und somit $\Sigma(\alpha \circ \tau) = \Sigma(\beta) = \Sigma(\alpha)$.
 
-  Gilt nun umgekehrt $\Sigma(\alpha \circ \tau) = \Sigma(\alpha)$ für jede Abbildung $\alpha \colon I \to M$ und jede surjektive Abbildung $\tau \colon H \to I$.
-  Sei weiterhin für ein beliebiges $c \in M$ $\gamma \colon H \to M, h \mapsto c$ eine konstante Abbildung.
-  Für ein festes $j \in H$ seien außerdem $\tau \colon H \to \{j\}, h \mapsto j$ und $\alpha \colon \{j\} \to M, j \mapsto c$ Abbildungen.
-  Da $\gamma = \alpha \circ \tau$ und $\tau$ eine surjektive Abbildung ist gilt laut Voraussetzung:
+  Gilt nun umgekehrt $\Sigma(\alpha \circ \tau) = \Sigma(\alpha)$ für jede Abbildung $\alpha \colon I \to S$ und jede surjektive Abbildung $\tau \colon H \to I$.
+  Sei weiterhin für ein beliebiges $c \in S$ $\gamma \colon H \to S, h \mapsto c$ eine konstante Abbildung.
+  Für ein festes $j \in H$ seien außerdem $\tau \colon H \to \{j\}, h \mapsto j$ und $\alpha \colon \{j\} \to S, j \mapsto c$ Abbildungen.
+  Da $\gamma = \alpha \circ \tau$ und $\tau$ eine surjektive Abbildung ist gilt laut Voraussetzung
+  für alle $h \in H$:
   \begin{equation*}
-    \Sigma(\gamma) = \Sigma(\alpha \circ \tau) = \Sigma(\alpha) = \alpha(j),
+    \Sigma(\gamma) = \Sigma(\alpha \circ \tau) = \Sigma(\alpha) = c = \gamma(h),
   \end{equation*}
-  wobei die letzte Gleichung aus dem Fundierungsaxiom folgt.
+  wobei die vorletzte Gleichung aus dem Fundierungsaxiom folgt.
 \end{proof}
 
 \subsection{Summationsstrukturen und Monoide}
