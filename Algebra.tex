@@ -761,6 +761,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   $\text{End}_\mathbb{S}$ bezeichnet die Menge aller Endomorphismen auf $\mathbb{S}$.
 \end{definition}
 
+\begin{definition}
+  Eine [finitäre] Summationsstruktur $(S, \Sigma)$ heißt idempotent, falls für jede konstante Abbildung
+  $\alpha \colon I \to S$ [wobei $I$ endlich] gilt:
+  \begin{equation*}
+    \forall i \in I \colon \Sigma(\alpha) = \alpha(i).
+  \end{equation*}
+\end{definition}
+
 \begin{theorem}
   Sei $(S, \Sigma)$ eine Summationsstruktur. Dann ist $(S, \Sigma)$ genau dann idempotent, 
   wenn für jede Abbildung $\alpha \colon I \to S$ und jede surjektive Abbildung $\tau \colon H \to I$ gilt:
@@ -984,14 +992,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
   Ein Gegenbeispiel ist $(\mathbb{Z}, +, 0)$, da $0 \leq 1$ und $1 \leq 0$ gilt.
 \end{example}
-
-\begin{definition}
-  Eine [finitäre] Summationsstruktur $(S, \Sigma)$ heißt idempotent, falls für jede konstante Abbildung
-  $\alpha \colon I \to M$ [wobei $I$ endlich] gilt:
-  \begin{equation*}
-    \forall i \in I \colon \Sigma(\alpha) = \alpha(i).
-  \end{equation*}
-\end{definition}
 
 \begin{definition}
   Sei $(M, +, \varepsilon)$ ein Monoid. 
