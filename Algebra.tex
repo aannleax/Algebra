@@ -948,13 +948,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Seien weiterhin $\alpha \colon I \to M$,
   $\eta \colon I \to A$ und $\beta \colon A \to M, a \mapsto \Sigma^\text{fin}(\alpha_{\mid \eta^{-1}(a)})$
   Abbildungen, wobei $I = \{i_1, i_2, \dots, i_n\}$ und $A = \{a_1, a_2, \dots, a_m\}$ endliche Mengen sind.
-  Außerdem sei $n_j = |\{ i_{kl} \mid i_{kl} \in \eta^{-1}(a_k) \subseteq I \}|$
+  Außerdem sei $n_k = |\{ i_{k,l} \mid i_{k,l} \in \eta^{-1}(a_k) \subseteq I \}|$
   Dann ist 
   \begin{align*}
     \Sigma^\text{fin}(\beta)
     &= \beta(a_1) + \dots + \beta(a_m) \\
-    &= (\alpha(i_{11}) + \dots + \alpha(i_{1n_1})) + \dots + (\alpha(i_{m1}) + \dots + \alpha(i_{mn_m})) \\
-    &= \alpha(i_1) + \dots \alpha(i_n) \\
+    &= (\alpha(i_{1,1}) + \dots + \alpha(i_{1,n_1})) + \dots + (\alpha(i_{m,1}) + \dots + \alpha(i_{m,n_m})) \\
+    &= \alpha(i_1) + \dots + \alpha(i_n) \\
     &= \Sigma^\text{fin}(\alpha).
   \end{align*}
   Also gilt auch das Teilsummenaxiom.
@@ -1105,7 +1105,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathcal{I} = (P, B, I)$ eine Inzidenzstruktur.
   Sei weiterhin
   \begin{equation*}
-    \alpha_{\mathcal{I}} \colon P \times B \to \mathbb{N}, (p, b) \mapsto
+    \alpha_{\mathcal{I}} \colon P \times B \to \mathbb{N} \cup \{\infty\}, (p, b) \mapsto
     \begin{cases}
       1 & p \mathrel{I} b \\
       0 & sonst
@@ -1117,7 +1117,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}
   Eine endliche Inzidenzstruktur $\mathcal{I} = (P, B, I)$ ist genau dann eine taktische Konfiguration mit den Parametern $(|P|, r, |B|, k)$,
-  wenn $\mathcal{I'} = (P, B, \alpha_{\mathcal{I}})$ eine taktische Fuzzy-Konfiguration mit den Parametern$(|P|, r_\mathcal{I}, |B|, k_\mathcal{I})$
+  wenn $\mathcal{I'} = (P, B, \alpha_{\mathcal{I}})$ eine taktische Fuzzy-Konfiguration mit den Parametern $(|P|, r_\mathcal{I}, |B|, k_\mathcal{I})$
   über der natürlichen Summationsstruktur $(\mathbb{N} \cup \{\infty\}, \Sigma)$ ist.
   Insbesondere ist $r = r_\mathcal {I}$ und $k = k_\mathcal{I}$.
 \end{theorem}
