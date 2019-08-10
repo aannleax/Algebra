@@ -1502,6 +1502,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann heißt eine Abbildung $\varphi$ Homomorphismus von $\mathcal{S}$ nach $\mathcal{S}'$, falls
   $\varphi$ ein Homomorphismus von $\mathcal{S}_\text{Sum}$ nach $\mathcal{S}'_\text{Sum}$ und 
   ein Homomorphismus von $\mathcal{S}_\text{Mult}$ nach $\mathcal{S}'_\text{Mult}$ ist.
+
+  Ist $\varphi$ zudem bijektiv, so heißt $\varphi$ Isomorphismus.
 \end{definition}
 
 \begin{theorem}
@@ -1511,9 +1513,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\varphi \colon [0, \infty] \to [0, 1], x \mapsto 2^{-x}$, wobei $2^{-\infty} = 0$.
   $\varphi$ ist bijektiv und es gilt für jede Abbildung $\alpha \colon I \to [0, \infty]$:
   \begin{equation*}
-    \varphi(\sup \alpha) = \inf(\varphi \circ \alpha).
+    \varphi(\sup(\alpha))= \inf(\varphi \circ \alpha).
   \end{equation*}
-  Außerdem $\varphi(0) = 1$ und es gilt für alle $a, b \in [0, \infty]$:
+  Außerdem gilt für alle $a, b \in [0, \infty]$:
   \begin{equation*}
     \varphi(a + b) = 2^{-(a+b)} = \varphi(a) \cdot \varphi(b).
   \end{equation*}
