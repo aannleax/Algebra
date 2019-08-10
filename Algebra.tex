@@ -507,7 +507,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{definition}
   Ein Paar $(S, \Sigma)$ heißt [finitäre] Summationsstruktur, falls $\Sigma$ eine Abbildungsvorschrift
   (Klassenabbildung) ist, die jeder Abbildung $\alpha \colon I \to S$ mit beliebiger [endlicher] Definitionsmenge $I$ 
-  genau ein Element $\Sigma(\alpha)$ aus $S$ zuorndet, sodass gilt:
+  genau ein Element $\Sigma(\alpha)$ aus $S$ zuordnet, sodass gilt:
   \begin{itemize}
     \item Fundierungsaxiom: Ist $\alpha \colon \{ i \} \to S$, so gilt $\Sigma(\alpha) = \alpha(i)$.
     \item Teilsummenaxiom: Sind $\alpha \colon I \to S$ und $\eta \colon I \to A$ Abbildungen [$A$ und $I$ endlich],
@@ -1306,11 +1306,16 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{figure}
 
 \begin{definition}
-  Ist $\mathbb{P} = (P, R)$ ein vollständiger Verband und  $\alpha \colon I \to P$ eine Abbildung,
-  so bezeichnet man das essentielle Target von $\alpha$ in $(P, R)$ auch 
-  als Supremum von $\alpha$ (schreibe $\sup_{\mathbb{P}}(\alpha)$)
-  
-  Eine essentielle Source von $\alpha$ wird analog dazu als Infimum von $\alpha$ (schreibe $\inf_{\mathbb{P}}(\alpha)$) bezeichnet.
+  Sei $\mathbb{P} = (P, R)$ ein vollständiger Verband.
+  Dann ist $\text{sup}_\mathbb{P}$ eine Klassenabbildung,
+  die jeder Abbildung $\alpha \colon I \to P$
+  das essentielle Target von $\alpha$ in $\mathbb{P}$ zuordnet.
+  $\text{sup}_\mathbb{P}(\alpha)$ wird auch als das Supremum von $\alpha$ bezeichet.
+
+  Analog ist die Klassenabbildung $\text{inf}_\mathbb{P}$ definiert,
+  die jeder Abbildung $\alpha \colon I \to P$
+  die essentielle Source von $\alpha$ in $\mathbb{P}$ zuordnet.
+  $\text{inf}_\mathbb{P}(\alpha)$ wird auch als das Infimum von $\alpha$ bezeichet.
 \end{definition}
 
 \begin{theorem}\label{Theorem_VerbandSummationsstruktur}
