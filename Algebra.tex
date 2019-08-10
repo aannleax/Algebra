@@ -1484,14 +1484,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann gilt für alle $s \in S$
   \begin{align*}
     \psi((\bar\Sigma(\varphi))(s))
-    = \psi(\sum_{\lambda \in \Lambda}\varphi_\lambda(s))
+    = \psi \bigg(\sum_{\lambda \in \Lambda}\varphi_\lambda(s) \bigg)
     = \sum_{\lambda \in \Lambda}(\psi \circ \varphi_\lambda)(s)
     = (\bar\Sigma(\psi \circ \varphi))(s)
   \end{align*}
   und
   \begin{align*}
-    (\bar\Sigma(\varphi)(\psi(s))
-    = (\sum_{\lambda \in \Lambda}\varphi_\lambda(\psi(s)))
+    (\bar\Sigma(\varphi))(\psi(s))
+    = \sum_{\lambda \in \Lambda}\varphi_\lambda(\psi(s))
     = \sum_{\lambda \in \Lambda}(\varphi_\lambda \circ \psi)(s)
     = (\bar\Sigma(\varphi\circ \psi))(s).
   \end{align*}
