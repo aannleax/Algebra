@@ -1151,16 +1151,16 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathbb{P} = (P, R)$ ein binäres Relat.
-  Zu einer Teilmenge $X \subseteq P$ heiße $t \in P$ Target von $X$ falls
+  Zu einer Teilmenge $X \subseteq P$ heiße $t \in P$ Target von $X$ bzgl. $\mathbb{P}$ falls
   $\forall x \in X \colon x \mathrel{R} t$.
 
-  Analog heißt $s \in X$ Source von $X$ falls
+  Analog heißt $s \in X$ Source von $X$ bzgl. $\mathbb{P}$ falls
   $\forall x \in X \colon s \mathrel{R} x$.
 \end{definition}
 
 \begin{definition}
   Sei $\mathbb{P} = (P, R)$ ein binäres Relat und $X \subseteq P$.
-  Dann ist $t$ ein essentielles Target von $X$ falls es ein Target von $X$ ist
+  Dann ist $t$ ein essentielles Target von $X$ bzgl. $\mathbb{P}$, falls es ein Target von $X$ ist
   und weiterhin gilt: 
   \begin{equation*}
     \forall u \in P \colon ((\forall x \in X \colon x \mathrel{R} u) \implies t \mathrel{R} u),
@@ -1190,16 +1190,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{theorem}
 \begin{proof}
   Sei $\mathbb{P} = (P, R)$ ein Targoid und $X \subseteq P$ eine beliebige Teilmenge.
-  Laut Voraussetzung existiert ein Target $t$ von $X$, d.h. für jedes Element $x \in X$
-  gilt $x \mathrel{R} t$, was aber äquivalent ist zu der Aussage
-  $t \mathrel{R^{-1}} x$, d.h. $t$ ist Source von $X$ in $\mathbb{P}^{-1}$.
+  Ist $t \in P$ ein Target von $X$ bzgl. $\mathbb{P}$,
+  dann gilt $x \mathrel{R} t$ für alle $x \in X$
+  also auch $t \mathrel{R}^{-1} x$.
+  Das heißt die Targets von $X$ bzgl. $\mathbb{P}$
+  sind genau die Sources von $X$ bzgl. $\mathbb{P}^{-1}$.
 
-  Sei nun $t$ ein essentielles Target von $X$, d.h. für jedes weitere Target $u$ von $X$
-  gilt $t \mathrel{R} u$.
-  Aus dem ersten Teil des Beweises wissen wir bereits,
-  dass $t$ und $u$ Source von $X$ in $\mathbb{P}^{-1}$ sind.
-  Außerdem ist $t \mathrel{R} u$ äquivalent zu $u \mathrel{R^{-1}} t$,
-  d.h. $t$ ist eine essentielle Source in $\mathbb{P}^{-1}$.
+  Sei nun $t \in P$ ein essentielles Target von $X$ bzgl. $\mathbb{P}$.
+  Das heißt für alle weiteren Targets $u \in P$ bzgl. $\mathbb{P}$ gilt $t \mathrel{R} u$,
+  also $u \mathrel{R}^{-1} t$.
+  Da alle Targets von $X$ bzgl. $\mathbb{P}$ Sources von $X$ bzgl. $\mathbb{P}^{-1}$ sind,
+  ist $t$ eine essentielle Source von $X$ bzgl. $\mathbb{P}^{-1}$.
 \end{proof}
 
 \begin{lemma}\label{Lemma_SuperSource}
