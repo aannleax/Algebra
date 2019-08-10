@@ -1305,45 +1305,38 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \label{fig:TransitivesRelat}
 \end{figure}
 
+\begin{definition}
+  Ist $\mathbb{P} = (P, R)$ ein vollständiger Verband und  $\alpha \colon I \to P$ eine Abbildung,
+  so bezeichnet man das essentielle Target von $\alpha$ in $(P, R)$ auch 
+  als Supremum von $\alpha$ (schreibe $\sup_{\mathbb{P}}(\alpha)$)
+  
+  Eine essentielle Source von $\alpha$ wird analog dazu als Infimum von $\alpha$ (schreibe $\inf_{\mathbb{P}}(\alpha)$) bezeichnet.
+\end{definition}
+
 \begin{theorem}\label{Theorem_VerbandSummationsstruktur}
-  Ist $(P, R)$ ein vollständiger Verband, so ist $(P, \Sigma)$ derart, 
-  das $\Sigma$ jeder Abbildung $\alpha \colon I \to P$ durch $\Sigma(\alpha)$ das essentielle Target von $\alpha$ zuweist,
-  eine Summationsstruktur.
+  Ist $\mathbb{P} = (P, R)$ ein vollständiger Verband, 
+  so ist $(P, \text{sup}_\mathbb{P})$
+  eine idempotente Summationsstruktur.
 \end{theorem}
 \begin{proof}
   Sei $\alpha \colon \{i\} \to P$ eine Abbildung.
   Wegen der Reflexivität von $(P, R)$ besitzt $\alpha$ laut Satz \ref{Theorem_AntisymmetrischesRelat} genau ein essentielles Target,
   welches laut Satz \ref{Theorem_ReflexivesRelat} $\alpha(i)$ ist.
-  Damit ist $\Sigma(\alpha) = \alpha(i)$ und das Fundierungsaxiom gilt.
+  Also ist $\text{sup}_\mathbb{P}(\alpha) = \alpha(i)$ und das Fundierungsaxiom gilt.
 
-  Seien weiterhin $\alpha \colon I \to P$, $\eta \colon I \to A$ und  $\beta \colon A \to P, a \mapsto \Sigma(\alpha_{\mid \eta^{-1}(a)})$  Abbildungen.
-  Aufgrund der Antisymmetrie besitzt $\alpha$ genau ein essentielles Target $\Sigma(\alpha)$ in $(P, R)$ (Satz \ref{Theorem_AntisymmetrischesRelat}).
-  Aus dem selben Grund besitzt $\alpha_{\mid \eta^{-1}(a)}$ für alle $a \in A$ ein essentielles Target $\Sigma(\alpha_{\mid \eta^{-1}(a)}) = \beta(a)$.
+  Seien weiterhin $\alpha \colon I \to P$, $\eta \colon I \to A$
+  und  $\beta \colon A \to P, a \mapsto \text{sup}_\mathbb{P}(\alpha_{\mid \eta^{-1}(a)})$ Abbildungen.
+  Aufgrund der Antisymmetrie besitzt $\alpha$ genau ein essentielles Target $\text{sup}_\mathbb{P}(\alpha)$ in $(P, R)$ (Satz \ref{Theorem_AntisymmetrischesRelat}).
+  Aus dem selben Grund besitzt $\alpha_{\mid \eta^{-1}(a)}$ für alle $a \in A$ ein essentielles Target $\text{sup}_\mathbb{P}(\alpha_{\mid \eta^{-1}(a)}) = \beta(a)$.
   Durch das soeben bewiesenen Lemma \ref{Lemma_TransitivesRelat} ergibt sich somit, 
   dass das essentielle Target von $\beta$ gleich dem essentiellen Target von $\alpha$ ist.
-  Damit ist $\Sigma(\alpha) = \Sigma(\beta)$, womit gezeigt ist, dass auch das Teilsummenaxiom erfüllt ist.
-\end{proof}
+  Damit ist $\text{sup}_\mathbb{P}(\alpha) = \text{sup}_\mathbb{P}(\beta)$, womit gezeigt ist, dass auch das Teilsummenaxiom erfüllt ist.
 
-\newpage
-
-\begin{definition}
-  Ist $\mathbb{P} = (P, R)$ ein vollständiger Verband und  $\alpha \colon I \to P$ eine Abbildung,
-  so bezeichnet man das essentielle Target von $\alpha$ in $(P, R)$ auch 
-  als Supremum von $\alpha$ (schreibe $\sup_{\mathbb{P}} \alpha$)
-  
-  Eine essentielle Source von $\alpha$ wird analog dazu als Infimum von $\alpha$ (schreibe $\inf_{\mathbb{P}} \alpha$) bezeichnet.
-\end{definition}
-
-\begin{theorem}
-  Sei $\mathbb{P} = (P, R)$ ein vollständiger Verband.
-  Dann ist $(P, \sup_{\mathbb{P}})$ eine idempotente Summationsstruktur.
-\end{theorem}
-\begin{proof}
-  Laut Satz \ref{Theorem_VerbandSummationsstruktur} ist $(P, \sup_{\mathbb{P}})$ eine vollständige Summationsstruktur.
   Zu zeigen bleibt also noch die Idempotenz.
   Dazu sei $\alpha \colon I \to P, i \mapsto p$ eine konstante Abbildung.
   $\sup_\mathbb{P}(\alpha)$ ist das (eindeutig bestimmte) essentielle Target von $\alpha(I) = \{p\}$.
   Dies entspricht laut Satz \ref{Theorem_ReflexivesRelat} $p$ selbst, also gilt für alle $i \in I$: $\sup_\mathbb{P}(\alpha) = p = \alpha(i)$.
+
 \end{proof}
 
 \begin{theorem}
