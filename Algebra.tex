@@ -769,7 +769,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{Theorem_IdempotentSurjektion}
   Sei $(S, \Sigma)$ eine Summationsstruktur. Dann ist $(S, \Sigma)$ genau dann idempotent, 
   wenn für jede Abbildung $\alpha \colon I \to S$ und jede surjektive Abbildung $\tau \colon H \to I$ gilt:
   $\Sigma(\alpha \circ \tau) = \Sigma(\alpha)$.
@@ -799,7 +799,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \subsection{Summationsstrukturen und Monoide}
 
 \begin{theorem}\label{Theorem_SummationMonoid}
-  Sei $(M, \Sigma)$ eine (finitäre) Summationsstruktur.
+  Sei $(M, \Sigma)$ eine [finitäre] Summationsstruktur.
   Dann lässt sich wie folgt das zu $(M, \Sigma)$ zugehörige kommutative Monoid $\mathbb{M} = (M, +, 0)$ konstruieren:
   Setze $0 = \Sigma(\emptyset \to M)$ und
   $+ \colon M \times M \to M, (a, b) \mapsto \Sigma(\alpha)$, wobei
@@ -1596,7 +1596,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $(S, \Pi)$ die zu $\mathcal{S}_\text{Mult}$ gehörige finitäre Summationsstruktur.
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid 
+  und $(S, \Pi)$ die zu $\mathcal{S}_\text{Mult}$ gehörige finitäre Summationsstruktur.
   Für jede Abbildung $\alpha \colon I \to S$ ist die Produktsumme von $\alpha$ definiert als
   \begin{equation*}
     \text{SOP}_\mathcal{S}(\alpha) = \sum_{J \subseteq_\text{fin} I}\Pi(\alpha_{\mid J}),
@@ -1667,11 +1668,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \Pi(\beta_{\mid B}) 
     &= \prod_{b \in B}\beta(b) \\
     &= \prod_{b \in B}\text{SOP}_\mathcal{S}(\alpha_{\mid \eta^{-1}(b)}) \\
-    &= \prod_{b \in B}\sum_{J \subseteq_\text{fin}\eta^{-1}(b)}\Pi(\alpha_{\mid J}) \\
+    &= \prod_{b \in B}\sum_{J_b \subseteq_\text{fin}\eta^{-1}(b)}\Pi(\alpha_{\mid J_b}) \\
     &= \sum_{(J_b)_{b \in B} \in \bigtimes_{b \in B}\mathcal{P}_\text{fin}(\eta^{-1}(b))}\prod_{b \in B}\Pi(\alpha_{\mid J_b}),
   \end{align*}
   wobei sich die letzte Gleichung aus Satz \ref {Theroem_Ausmultiplitzieren} ergibt.
-  Für alle $a, c \in B$ ist $J_a \cap J_c = \emptyset$, weshalb gilt
+  Für alle $a, c \in B$ mit $a \neq c$ ist $J_a \cap J_c = \emptyset$, 
+  da $\eta^{-1}(a) \cap \eta^{-1}(c) = \emptyset$,
+  weshalb laut dem Teilsummenaxiom für $(S, \Pi)$ gilt
   \begin{equation*}
     \prod_{b \in B}\prod_{j_b \in J_b}\alpha(j_b) = \prod_{i \in \bigcup_{b \in B}J_b}\alpha(i).
   \end{equation*}
@@ -1686,7 +1689,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{theorem}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Join-Summoid,
   $(S, \Pi)$ die zu $\mathcal{S}_\text{Mult}$ gehörige finitäre Summationsstruktur
-  und $(S, +, \varepsilon)$ das zu $\mathcal{S}_\text{Sum}$ gehörige kommutative Monoid.
+  und $(S, +, \varepsilon)$ das zu $\mathcal{S}_\text{Sum}$ gehörige kommutative Monoid,
+  sodass $0_\mathcal{S} = \varepsilon$.
   Dann ist $(S, \text{SOP}_\mathcal{S})$ eine Summationsstruktur.
 \end{theorem}
 \begin{proof}
@@ -1696,31 +1700,53 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \text{SOP}_\mathcal{S}(\alpha) &= \sum_{J \subseteq_{\text{fin}} \{i\}}\Pi(\alpha_{\mid J}) \\
     &= \Pi(\alpha_{\mid \{i\}}) + \Pi(\alpha_{\mid \emptyset}) \\
     &= \alpha(i) + \varepsilon \\
+    &= \alpha(i) + 0_\mathcal{S} \\
     &= \alpha(i).
   \end{align*}
   Damit ist das Fundierungsaxiom gezeigt. 
   
-  Laut Lemma \ref{Lemma_SOPTeilsumme} gilt
+  Seien nun $\alpha \colon I \to S$,
+  $\eta \colon I \to A$
+  sowie $\beta \colon A \to S, a \mapsto \text{SOP}_\mathcal{S}(\alpha_{\mid \eta^{-1}(a)})$ Abbildungen.
+  Ferner sei $H = \{(B, J) \in \mathcal{P}_\text{fin}(A) \times \mathcal{P}_\text{fin}(I) \mid J \subseteq \eta^{-1}(B)\}$ eine Menge.
+  Es gilt laut Lemma \ref{Lemma_SOPTeilsumme}
   \begin{equation*}
-    \text{SOP}_\mathcal{S}(\beta) = \sum_{B \subseteq_\text{fin} A}\sum_{J \subseteq_\text{fin} \eta^{-1}(B)}\Pi(\alpha_{\mid J}).
+    \text{SOP}_\mathcal{S}(\beta) 
+    = \sum_{B \subseteq_\text{fin} A}\sum_{J \subseteq_\text{fin} \eta^{-1}(B)}\Pi(\alpha_{\mid J})
+    = \sum_{(B, J) \in H} \Pi(\alpha_{\mid J}).
   \end{equation*}
-  In $\text{SOP}_\mathcal{S}(\alpha)$ tritt jeder Summand $\Pi(\alpha_{\mid J})$ nur ein mal auf.
-  Da $\mathcal{S}$ aber idempotent ist, gilt $\text{SOP}_\mathcal{S}(\alpha)$ = $\text{SOP}_\mathcal{S}(\beta)$,
+  Seien weiterhin $\varphi \colon \mathcal{P}_\text{fin}(I) \to S, j \mapsto \Pi(\alpha_{\mid J})$
+  und $\tau \colon H \to \mathcal{P}_\text{fin}(I), (J, B) \mapsto J$ Abbildungen,
+  wobei $\tau$ surjektiv ist.
+  Es gilt
+  \begin{equation*}
+    \Sigma(\varphi).
+    = \sum_{J \in \mathcal{P}_\text{fin}(I)} \varphi(J)
+    = \sum_{J \subseteq_\text{fin} I} \Pi(\alpha_{\mid J})
+    = \text{SOP}_\mathcal{S}(\alpha)
+  \end{equation*}
+  und außerdem
+  \begin{equation*}
+    \Sigma(\varphi \circ \tau)
+    = \sum_{(B, J) \in H} \varphi(\tau(B, J))
+    = \sum_{(B, J) \in H} \varphi(J)
+    = \sum_{(B, J) \in H} \Pi_{\alpha_{\mid J}}
+    = \text{SOP}_\mathcal{S}(\beta).
+  \end{equation*}
+  Da $\mathcal{S}_\text{Sum}$ idempotent ist gilt laut Satz \ref{Theorem_IdempotentSurjektion} $\Sigma(\varphi) = \Sigma(\varphi \circ \tau)$
+  und damit schließlich $\text{SOP}_\mathcal{S}(\alpha) = \text{SOP}_\mathcal{S}(\beta)$,
   womit auch das Teilsummenaxiom bewiesen wäre.
 \end{proof}
 
-\begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Join-Summoid.
-  Dann bildet $(S, \text{SOP}_\mathcal{S})$ eine Summationsstruktur genau dann
-  wenn $\varepsilon$ kleinstes Element in $S$ bzgl. der natürlichen Ordnung von $\mathcal{S}$ ist.
-  D.h. $\mathcal{S}$ ist kommutatives Summoid mit $\Sigma(\emptyset \to S) = \varepsilon$.
-\end{theorem}
-\begin{proof}
-  ???
-\end{proof}
-
 \begin{example}
-  $([0, \infty], \sup, +, 0)$
+  Es ist $([0, \infty], \sup, +, 0)$ ein Summoid.
+  Nach dem soeben bewiesenen Satz, ist also auch $([0, \infty], \Sigma, \cdot, 1)$ ein Summoid,
+  wobei für $\alpha \colon I \to S$
+  \begin{equation*}
+    \sum_{i \in I} \alpha(i)
+    = \sup_{J \subseteq_\text{fin} I} \bigg( {\sum_{i \in J}}^\text{fin} \alpha(i) \bigg),
+  \end{equation*}
+  wobei $(S, \Sigma^\text{fin})$ die zu $[0, \infty], +, 0)$ gehörige finitäre Summationsstruktur ist.
 \end{example}
 
 \newpage
