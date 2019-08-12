@@ -1940,21 +1940,21 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathbb{M} = (M, \Sigmacirc)$ eine Summationsstruktur, $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
   und $\text{scal} \colon S \to \text{End}_\mathbb{M}$ ein Homomorphismus von $\mathcal{S}$ nach $\text{End}(\mathbb{M})$
   mit $\text{End}(\mathbb{M}) = (\text{End}_\mathbb{M}, \bar\Sigma, \circ, \text{id}_M)$.
-  Dann ist $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein (linksseitiges) Summoid-Modul.
+  Dann ist $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein (linksseitiges) Summoid-Modul.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein Summoid-Modul mit
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul mit
   $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$.
   Dann heißt eine Abbildung 
   \begin{equation*}
     \cdot \colon S \times M \to M, (s, m) \mapsto s \cdot m = (\text{scal}(s))(m)
   \end{equation*}
-  (linksseitiges) Scaling bzgl. $(\mathcal{S}, \mathbb{M})$.
+  (linksseitiges) Scaling bzgl. $(\mathbb{M}, \mathcal{S})$.
 \end{definition}
 
 \begin{remark}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein Summoid-Modul wie oben.
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul wie oben.
   Dann gelten folgende Eigenschaften:
   \begin{enumerate}
     \item Da $\text{scal}$ ein Homomorphismus ist, gilt für alle $(s_i)_{i \in I} \in S^I$
@@ -2012,7 +2012,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{remark}
 
 \begin{remark}
-  Für ein Summoid-Modul $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$
+  Für ein Summoid-Modul $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$
   ist daher $(M, \mathcal{S}_\text{Mult}, \text{scal})$ eine Monoid-Wirkung
   mit zugehöriger Wirkung von $\mathcal{S}_\text{Mult}$ auf $M$,
   welche der skalaren Multiplikation entspricht.
@@ -2036,26 +2036,26 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{theorem}
 \begin{proof}
   Es ist zu zeigen, dass $\text{scal}$ ein Homomorphismus 
-  zwischen $\mathcal{S}$ und dem Endomorphismen-Summoid $\text{End}({\mathcal{S}_\text{Sum}}^N) = (\text{End}_{{\mathcal{S}_\text{Sum}}^N}, \bar\Sigma, \circ, \text{id}_S)$ ist.
+  zwischen $\mathcal{S}$ und dem Endomorphismen-Summoid $\text{End}({\mathcal{S}_\text{Sum}}^N) = (\text{End}_{{\mathcal{S}_\text{Sum}}^N}, \bar\Sigma, \circ, \text{id}_{S^N})$ ist.
 
-  Es sei $\varphi \in S^N$ und $n \in N$ sowie $(s_i)_{i \in I} \in S^I$ für eine Menge $I$. 
+  Es sei $v \in S^N$ und $n \in N$ sowie $(s_i)_{i \in I} \in S^I$ für eine Menge $I$. 
   Dann ist
   \begin{align*}
-    \Bigg(\Bigg(\text{scal}\bigg(\sum_{i \in I}s_i\bigg)\Bigg)(\varphi)\Bigg)(n) 
-    &= \bigg(\sum_{i \in I} s_i \bigg) \ast \varphi(n) \\
-    &= \sum_{i \in I} \big(s_i \ast \varphi(n)\big) \\
-    &= \sum_{i \in I} ((\text{scal}(s_i))(\varphi))(n) \\
-    &= \bigg(\sumcirc_{i \in I} (\text{scal}(s_i))(\varphi)\bigg)(n) \\
-    &= \Bigg(\bigg(\sumbar_{i \in I}\text{scal}(s_i)\bigg)(\varphi)\Bigg)(n).
+    \Bigg(\Bigg(\text{scal}\bigg(\sum_{i \in I}s_i\bigg)\Bigg)(v)\Bigg)(n) 
+    &= \bigg(\sum_{i \in I} s_i \bigg) \ast v(n) \\
+    &= \sum_{i \in I} \big(s_i \ast v(n)\big) \\
+    &= \sum_{i \in I} ((\text{scal}(s_i))(v))(n) \\
+    &= \bigg(\sumcirc_{i \in I} (\text{scal}(s_i))(v)\bigg)(n) \\
+    &= \Bigg(\bigg(\sumbar_{i \in I}\text{scal}(s_i)\bigg)(v)\Bigg)(n).
   \end{align*}
 
   Außerdem ist für $s, t \in S$
   \begin{align*}
-    ((\text{scal}(s \ast t))(\varphi))(n)
-    &= (s \ast t) \ast \varphi(n) \\
-    &= s \ast (t \ast \varphi(n)) \\
-    &= s \ast (\text{scal}(t)(\varphi))(n) \\
-    &= (\text{scal}(s)(\text{scal}(t)(\varphi)))(n) \\
+    ((\text{scal}(s \ast t))(v))(n)
+    &= (s \ast t) \ast v(n) \\
+    &= s \ast (t \ast v(n)) \\
+    &= s \ast (\text{scal}(t)(v))(n) \\
+    &= (\text{scal}(s)(\text{scal}(t)(v)))(n) \\
     &= (\text{scal}(s) \circ \text{scal}(t))(n).
   \end{align*}
 \end{proof}
@@ -2074,17 +2074,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul und $N$ eine Menge.
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul und $N$ eine Menge.
   Eine Abbildung $\gamma \colon N \to M$ heißt $N$-fache Vektorenfamilie von $\mathfrak{M}$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ mit $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid-Modul und $N$ eine Menge.
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ mit $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid-Modul und $N$ eine Menge.
   Eine Abbildung $u \colon N \to S$ heißt $N$-fache Familie von Skalaren von $\mathfrak{M}$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein Summoid-Modul mit
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul mit
   $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$.
   Weiterhin seien $N$ eine Menge und $u \in S^N$ und $\gamma \in M^N$ Abbildungen.
   Dann ist die Linearkombination von $u$ und $\gamma$ gegeben durch
@@ -2103,7 +2103,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Seien $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$
+  Seien $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$
   mit $\mathbb{M} = (M, \Sigmacirc)$
   und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$
   sowie $\mathfrak{M}' = (\mathbb{M}', \mathcal{S}, \text{scal}')$
@@ -2121,7 +2121,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
   Sei weiterhin $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
   mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
-  sowie $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal'})$
+  sowie $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal'})$
   mit $\mathbb{M} = (M, \Sigmacirc')$ ein Summoid-Modul.
   Ist außerdem $\gamma \in M^N$ eine $N$-fache Vektorenfamilie von $\mathfrak{M}$.
   Dann ist $f_\gamma$ eine $\mathcal{S}$-lineare Abbildung von $\text{Mod}(\mathcal{S}, N)$ nach $\mathfrak{M}$.
@@ -2132,10 +2132,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{align*}
     f_\gamma\bigg(\sumcirc_{i \in I} u_i\bigg)
     &= \bigg(\sumcirc_{i \in I} u_i\bigg) \odot \gamma \\
-    &= {\sumcirc_{n \in N}}' \bigg(\sumcirc_{i \in I} u_i\bigg)(n) \cdot \gamma(n) \\
-    &= {\sumcirc_{n \in N}}' \bigg(\sum_{i \in I} u_i(n)\bigg) \cdot \gamma(n) \\
-    &= {\sumcirc_{n \in N}}' {\sumcirc_{i \in I}}' u_i(n) \cdot \gamma(n) \\
-    &= {\sumcirc_{i \in I}}' {\sumcirc_{n \in N}}' u_i(n) \cdot \gamma(n) \\
+    &= {\sumcirc_{n \in N}}' \bigg(\sumcirc_{i \in I} u_i\bigg)(n) \cdot' \gamma(n) \\
+    &= {\sumcirc_{n \in N}}' \bigg(\sum_{i \in I} u_i(n)\bigg) \cdot' \gamma(n) \\
+    &= {\sumcirc_{n \in N}}' {\sumcirc_{i \in I}}' u_i(n) \cdot' \gamma(n) \\
+    &= {\sumcirc_{i \in I}}' {\sumcirc_{n \in N}}' u_i(n) \cdot' \gamma(n) \\
     &= {\sumcirc_{i \in I}}' f_\gamma(u_i).
   \end{align*}
   Also ist $f_\gamma$ ein Homomorphismus von ${\mathcal{S}_\text{Sum}}^N$ nach $\mathbb{M}$.
@@ -2144,10 +2144,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist
   \begin{align*}
     s \cdot ' f_\gamma(v)
-    &= s \cdot' \sumcirc_{n \in N} v(n) \cdot \gamma(n) \\
-    &= \sumcirc_{n \in N} s \cdot (v(n) \cdot \gamma(n)) \\
-    &= \sumcirc_{n \in N} (s \cdot v(n)) \cdot \gamma(n) \\
-    &= \sumcirc_{n \in N} (s \cdot v)(n) \cdot \gamma(n) \\
+    &= s \cdot' \sumcirc_{n \in N} v(n) \cdot' \gamma(n) \\
+    &= \sumcirc_{n \in N} s \cdot' (v(n) \cdot' \gamma(n)) \\
+    &= \sumcirc_{n \in N} (s \ast v(n)) \cdot' \gamma(n) \\
+    &= \sumcirc_{n \in N} (s \cdot v)(n) \cdot' \gamma(n) \\
     &= f_\gamma(s \cdot v).
   \end{align*}
 \end{proof}
@@ -2161,17 +2161,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
 \end{theorem}
 \begin{proof}
-  Sei $v \in S^N$. Dann ist
+  Sei $u \in S^N$. Dann ist
   \begin{align*}
-    f_{\delta^N}(v)
-    = v \odot \delta^N
-    = \sumcirc_{n \in N} v(n) \cdot \delta^N_n
-    = v.
+    f_{\delta^N}(u)
+    = u \odot \delta^N
+    = \sumcirc_{n \in N} u(n) \cdot \delta^N_n
+    = u.
   \end{align*}
 \end{proof}
 
 \begin{theorem}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul, $N$ eine Menge,
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul, $N$ eine Menge,
   $\delta^N$ die Standardbasis von $\text{Mod}(\mathcal{S}, N)$,
   $\gamma \in M^N$ eine Vektorenfamilie und
   $f_\gamma$ die lineare Fortsetzung von $\gamma$.
@@ -2192,7 +2192,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul, $N$ eine Menge
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ mit $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul, $N$ eine Menge
   und $\gamma \colon N \to M$ eine Vektorenfamilie.
   \begin{itemize}
     \item $\gamma$ heißt erzeugend in $\mathfrak{M}$ falls $f_\gamma$ surjektiv ist.
@@ -2213,7 +2213,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{lemma}\label{Lemma_UnabhEinschr}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$
   mit $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid-Modul
   und $N'$, $N$ mit $N' \subseteq N$ Mengen.
   Sei zudem $\gamma \in M^N$ eine linear unabhängige Vektorenfamilie.
@@ -2238,7 +2238,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{theorem}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ 
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ 
   mit $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$
   und $\mathbb{M} = (M, \Sigmacirc)$ ein Summoid-Modul.
   Seien weiterhin $K, N$ Mengen sowie $\kappa \colon K \to N$ eine Abbildung und $\gamma \in M^N$ eine Vektorenfamilie.
@@ -2375,7 +2375,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{theorem}
-  Seien $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein Summoid-Modul
+  Seien $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul
   mit $\mathbb{M} = (M, \Sigmacirc)$,
   $K$ und $N$ Mengen, $\gamma \in M^N$ und $\lambda \in M^K$
   Vektorenfamilien von $\mathfrak{M}$ sowie eine Abbildung $\kappa \colon K \to N$ gegeben,
@@ -2425,7 +2425,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
   Sei weiterhin $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
   mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
-  sowie $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal'})$
+  sowie $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal'})$
   mit $\mathbb{M} = (M, \Sigmacirc')$ ein Summoid-Modul.
   Seien zudem $f$ und $g$ $\mathcal{S}$-lineare Abbildungen von $\text{Mod}(S, N)$ nach $\mathfrak{M}$.
   Dann gilt
@@ -2439,8 +2439,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     f(v) 
     &= f(v \odot \delta^N) \\
     &= f\bigg(\sumcirc_{n \in N}v(n) \cdot \delta^N_n\bigg) \\
-    &= {\sumcirc_{n \in N}}' v(n) \cdot f(\delta^N_n) \\
-    &= {\sumcirc_{n \in N}}' v(n) \cdot g(\delta^N_n) \\
+    &= {\sumcirc_{n \in N}}' v(n) \cdot' f(\delta^N_n) \\
+    &= {\sumcirc_{n \in N}}' v(n) \cdot' g(\delta^N_n) \\
     &= g(\sumcirc_{n \in N} v(n) \cdot \delta^N_n) \\
     &= g(v \odot \delta^N) \\
     &= g(v). 
@@ -2487,7 +2487,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{remark}
-  Das heißt, dass $\alpha_\kappa$ in jeder Zeile $k$ genau an den Stellen $\kappa(k)$
+  Das heißt, dass $\alpha_\kappa$ in jeder Zeile $k$ genau an der Stelle $\kappa(k)$
   den Eintrag $\varepsilon$ und ansonsten $0_\mathcal{S}$ hat.
 
   Ist $\kappa$ eine Permutation, so steht in jeder Zeile und jeder Spalte genau ein $\varepsilon$.
@@ -2541,7 +2541,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Seien $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ und $\mathfrak{M}' = (\mathcal{S}, \mathbb{M}', \text{scal}')$ Summoid-Module.
+  Seien $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ und $\mathfrak{M}' = (\mathbb{M}, \mathcal{S}', \text{scal}')$ Summoid-Module.
   Sei weiterhin $\lambda$ eine $K$-Basis von $\mathfrak{M}$
   und $\gamma$ eine $N$-Basis von $\mathfrak{M}'$
   sowie eine $\mathcal{S}$-lineare Abbildung $g$ von $\mathfrak{M}$ nach $\mathfrak{M}'$ gegeben.
@@ -2581,7 +2581,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid, $K$ und $N$ Mengen und
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid,
+  $K$ und $N$ Mengen und
   $\alpha \colon K \times N \to S$ eine Abbildung.
   Sei nun $u \in S^K$. Dann ist
   \begin{equation*}
@@ -2591,17 +2592,18 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid, $J$, $K$ und $N$ Mengen und
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid,
+  $J$, $K$ und $N$ Mengen und
   $\alpha \colon J \times K \to S$ und $\beta \colon K \to N$ Abbildungen.
   Dann ist
   \begin{equation*}
-    \alpha \otimes \beta = \Bigg(\sumcirc_{k \in K} \alpha(j, k) \ast \beta(k, n) \Bigg)_{j, n \in J \times N}
+    \alpha \otimes \beta = \Bigg(\sum_{k \in K} \alpha(j, k) \ast \beta(k, n) \Bigg)_{j, n \in J \times N}
   \end{equation*}
   das Matrix-Matrix-Produkt von $\alpha$ und $\beta$.
 \end{definition}
 
 \begin{theorem}\label{Theorem_ModSKMSPhiSLinear}
-  Sei $\mathfrak{M} = (\mathcal{S}, \mathbb{M}, \text{scal})$ ein Summoid-Modul
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul
   mit $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$
   sowie $K$ eine Menge.
   Eine Abbildung $\varphi \colon S^K \to M$ ist genau dann $\mathcal{S}$-linear von
@@ -2658,7 +2660,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist
   \begin{align*}
     ((u \otimes \alpha) \otimes \beta)(n)
-    &= \sum_{k \in K}(u \ast \alpha)(k) \ast \beta(k, n) \\
+    &= \sum_{k \in K}(u \otimes \alpha)(k) \ast \beta(k, n) \\
     &= \sum_{k \in K}\bigg(\sum_{j \in J} u(j) \ast \alpha(j, k)\bigg) \ast \beta(k, n) \\
     &= \sum_{k \in K}\sum_{j \in J} u(j) \ast (\alpha(j, k) \ast \beta(k, n)) \\
     &= \sum_{j \in J}u(j)\sum_{k \in K}\alpha(j, k) \ast \beta(k, n) \\
