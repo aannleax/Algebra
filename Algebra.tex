@@ -2703,7 +2703,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{example}
 
 \begin{example}
-  Sei $P$ Menge. Dann ist $G(P) = (P, P \times P, \text{id}_{P \times P})$ das zu $P$ gehörige logistische Netzwerk.
+  Sei $P$ Menge. Dann ist $G_P = (P, P \times P, \text{id}_{P \times P})$ das zu $P$ gehörige logistische Netzwerk.
 \end{example}
 
 \begin{example}
@@ -2840,7 +2840,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $G = (V, E, \varrho)$ ein Netzwerk und $n \in \mathbb{N}_{\geq 1}$.
   Dann ist
   \begin{equation*}
-    E^{\langle n \rangle} = \{(e_1, \dots, e_n) \in E^n \mid \forall i \in [n] \colon \tau(e_i) = \sigma(e_{i+1})\}
+    E^{\langle n \rangle} = \{(e_1, \dots, e_n) \in E^n \mid \forall i \in [n - 1] \colon \tau(e_i) = \sigma(e_{i+1})\}
   \end{equation*}
   die Menge der Pfade der Länge $n$ in $G$.
 
@@ -2853,7 +2853,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $G = (V, E, \varrho)$ ein Netzwerk.
-  Dann sind für einen Knoten $v \in V$ und eine Zahl $n \in \mathbb{N}$ die Mengen
+  Dann sind für einen Knoten $v \in V$ und eine Zahl $n \in \mathbb{N}_{\geq 1}$ die Mengen
   \begin{equation*}
     \text{In}^{\langle n \rangle}_G(v) = \{(e_1, \dots, e_n) \in E^{\langle n \rangle} \mid \tau(e_n) = v\}
   \end{equation*}
@@ -2892,7 +2892,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     ((\dots (m \curlyvee u_1) \dots) \curlyvee u_k)(v) = \sum_{(e_1, \dots e_k) \in \text{In}_G^{\langle k \rangle}(v)}m(\sigma(e_1)) \prod_{i = 1}^k u_i(e_i),
   \end{equation*}
-  wobei $(S, \Pi)$ die zu $\mathcal{S}_\text{Mult}$ gehörige finitäre Summationsstruktur ist.
+  wobei
+  \begin{equation*}
+    \prod_{i = i}^k u_i(e_i) = u_1(e_1) \ast \dots \ast u_k(e_k).
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Der Beweis erfolgt per vollständiger Induktion über $k$.
@@ -2930,7 +2933,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Ein partielles Aktionsnetzwerk ist ein Tripel $\mathbb{G} = (G, \star, \text{id})$
-  bestehend aus einem Netzwerk $G = (V, E, \varrho)$ spwie den Abbildungen 
+  bestehend aus einem Netzwerk $G = (V, E, \varrho)$ sowie den Abbildungen 
   $\text{id} \colon V  \to E$ und $\star \colon R \to E$, wobei $R \subseteq E^{\langle 2 \rangle}$,
   sodass folgende Bedingungen gelten:
   \begin{itemize}
@@ -2957,7 +2960,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{example}
 
 \begin{example}
-  Sei $P$ eine Menge. Dann ist $\mathbb{G}((P, P \times P))$
+  Sei $P$ eine Menge. Dann ist $\mathbb{G}_P = \mathbb{G}((P, P \times P))$
   das sogenannte logistische Aktionsnetzwerk zu $P$.
 
   Beachte: $(P, P \times P)$ ist eine Präordnung.
@@ -3005,7 +3008,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \item $\text{id}(V) \subseteq D$
   \end{itemize}
   In diesem Fall ist $\mathbb{G}_{\mid D} = (G_{\mid D}, \star^D, \text{id}^D)$
-  bestehend aus $G_D = (V, E, \varrho_{\mid D})$,
+  bestehend aus $G_{\mid D} = (V, E, \varrho_{\mid D})$,
   $\star^D \colon D^{\langle 2 \rangle}, (d_1, d_2) \mapsto d_1 \star d_2$
   und $\text{id}^D \colon V \to D, v \mapsto \text{id}(v)$
   die Einschränkung von $\mathbb{G}$ auf $D$.
@@ -3013,8 +3016,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}
   Ist $P$ eine Menge und $R \subseteq P \times P$.
-  Dann bildet R genau dann eine Unterstruktur von $\mathbb{G}_P = (G_P, \star, \text{id}_{P \times P})$
-  mit $G_P = (P, P \times P, \text{id})$
+  Dann bildet R genau dann eine Unterstruktur von $\mathbb{G}_P = (G_P, \star, \text{id})$
+  mit $G_P = (P, P \times P, \text{id}_{P \times P})$
   wenn $(P, R)$ eine Präordnung ist.
 \end{theorem}
 \begin{proof}
@@ -3070,8 +3073,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{example}
-  Sei $\mathbb{M} = (M, +, \varepsilon)$ ein kommutatives Monoid.
-  In $\mathbb{G}(\mathbb{M})$ ist das Minkowski-Produkt gerade die Minkowski-Summe,
+  Sei $\mathbb{M} = (M, +, 0)$ ein kommutatives Monoid
+  und $\bot$ ein Symbol.
+  In $\mathbb{G}(\mathbb{M}, \bot)$ ist das Minkowski-Produkt gerade die Minkowski-Summe,
   d.h.
   \begin{equation*}
     A \mink B = \{a + b \mid a \in A, b \in B\}.
@@ -3198,9 +3202,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
   Dann ist $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_\mathbb{G})$ mit
   \begin{equation*}
-    \overline{\sum_{\nu \in N}} u_\nu \colon E \to S, e \mapsto \sum_{\nu \in N}u_\nu(e)
+    \overline{\sum_{i \in I}} u_i \colon E \to S, e \mapsto \sum_{i \in I}u_i(e)
   \end{equation*}
-  für beliebige $(u_\nu)_{\nu \in N} \in (S^E)^N$
+  für beliebige $(u_i)_{i \in I} \in (S^E)^I$
   und
   \begin{equation*}
     I_G \colon E \to S, e \mapsto
@@ -3226,7 +3230,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     (u \circledast I_\mathbb{G})(e) 
     = \sum_{c \star d = e} u(c) \ast I_\mathbb{G}(d)
-    = u(c)
+    = u(e)
     = \sum_{c \star d = e} I_\mathbb{G}(c) \ast u(d)
     = (I_\mathbb{G} \circledast u)(e),
   \end{equation*}
@@ -3255,7 +3259,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     u \circledast w \colon P \times P \to S, (p, q) \mapsto \sum_{t \in P} u(p, t) \ast w(t, q).
   \end{equation*}
-  Außerdem ist
+  und entspricht damit der Matrizenmultiplikation. Außerdem ist
   \begin{equation*}
     I_{\mathbb{G}_P} \colon P \times P \to S, (p, q) \mapsto
     \begin{cases}
