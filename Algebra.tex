@@ -3270,6 +3270,19 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   die Einheitsmatrix und $\bar\Sigma$ die punktweise Summation von $\mathcal{S}$-Matrizen.
 \end{remark}
 
+\begin{example}
+  Sei $\mathbb{M} = (M, +, 0)$ ein Monoid,
+  $\mathcal{S} = (S, \Sigma, \ast , \varepsilon)$ ein Summoid
+  und $\bot$ ein Symbol
+  sowie $\mathbb{G} = \mathbb{G}(\mathbb{M}, \bot)$ das Aktionsnetzwerk zu $(\mathbb{M}, \bot)$.
+  Dann ist $\mathcal{S}[\mathbb{G}] = (S^M, \bar\Sigma, \circledast, I_\mathbb{G})$ ein Summoid,
+  wobei für $(u_i)_{i \in I} \in (S^M)^I$
+  \begin{equation*}
+    \sumbar_{i \in I} u_i \colon M \to S, m \mapsto \sum_{i \in I} u_i(m)
+  \end{equation*}
+  und $I_\mathbb{G} \colon \{\bot\} \to M, \bot \mapsto \varepsilon$.
+\end{example}
+
 \subsection{$\mathcal{S}$-Algebren}
 
 \begin{definition}
@@ -3287,29 +3300,27 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk
   und weiterhin $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid.
   Dann bildet $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$
-  bestehend aus $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_G)$
+  bestehend aus $\mathcal{S}[\mathbb{G}] = (S^E, \bar\Sigma, \circledast, I_\mathbb{G})$
   und der Skalarmultiplikation aus $\text{Mod}(\mathcal{S}, E)$
   eine $\mathcal{S}$-Algebra.
 \end{theorem}
 \begin{proof}
-  Da $\mathcal{S}[\mathbb{G}]$ ein Summoid
-  und $(\mathcal{S}[\mathbb{G}])_\text{Sum} = (\mathcal{S}_\text{Sum})^E$ ist,
-  ist $(\mathcal{S}[\mathbb{G}], \mathcal{S}, \text{scal})$ ein Summoid-Modul.
+  $\mathcal{S}[\mathbb{G}]$ ist ein Summoid
+  und daher $(\mathcal{S}[\mathbb{G}]_\text{Sum}, \mathcal{S}, \text{scal})$ ein Summoid-Modul.
 
   Sei nun $s \in S$, $u, w \in S^E$ sowie $e \in E$.
   Dann ist
   \begin{align*}
     (s \cdot (u \circledast w))(e)
-    &= s \cdot \sum_{c \star d = e} u(c) \ast w(d)\\
-    &= \sum_{c \star d = e} s \ast (u(c) \ast w(d)) \\
-    &= \sum_{c \star d = e} (s \ast u(c)) \ast w(d) \\
-    &= ((s \cdot u) \circledast w)(e) \\
-    &= (u \circledast (s \cdot w))(e)
+    &= s \ast (u \circledast w)(e) \\
+    &= s \ast \sum_{c \star d = e} (u(c) \ast w(d)) \\
+    &= \sum_{c \star d = e} (s \ast u(c)) \ast w(d) = ((s \cdot u) \circledast w)(e) \\
+    &= \sum_{c \star d = e} u(c) \ast (s \ast w(d)) = (u \circledast (s \cdot w))(e).
   \end{align*}
 \end{proof}
 
 \begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid,
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid,
   $\mathbb{M} = (M, +, 0)$ ein Monoid und 
   $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$ mit
   $\mathcal{A} = (A, \Sigmacirc, \algebra, a)$ eine $\mathcal{S}$-Algebra.
@@ -3317,19 +3328,34 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   durch $f_\kappa$ einen Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)]$ nach $\mathcal{A}$.
 \end{theorem}
 \begin{proof}
+  Sei $(v_i)_{i \in I} \in (S^M)^I$.
+  Dann ist
+  \begin{align*}
+    \bigg( \sumbar_{i \in I} u_i \bigg) \odot \kappa
+    &= \sumcirc_{m \in M} \bigg(\sumbar_{i \in I} v_i \bigg)(m) \cdot \kappa(m) \\
+    &= \sumcirc_{m \in M} \bigg( \sum_{i \in I} v_i(m) \bigg) \cdot \kappa(m) \\
+    &= \sumcirc_{m \in M} \sumcirc_{i \in I} v_i(m) \cdot \kappa(m) \\
+    &= \sumcirc_{i \in I} \sumcirc_{m \in M} v_i(m) \cdot \kappa(m) \\
+    &= \sumcirc_{i \in I} v_i \odot \kappa.
+  \end{align*} 
+
+  Seien nun $u, w \in S^M$. 
+  Dann ist
   \begin{align*}
     (u \circledast w) \odot \kappa
     &= \sumcirc_{m \in M} \bigg(\sum_{c + d = m} u(c) \ast w(d) \bigg) \cdot\kappa(m) \\
     &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot \kappa(c + d) \\
     &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \ast w(d)) \cdot (\kappa(c) \algebra \kappa(d)) \\
+    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} u(c) \cdot (w(d) \cdot (\kappa(c) \algebra \kappa(d))) \\
+    &= \sumcirc_{m \in M} \sumcirc_{c + d = m} u(c) \cdot (\kappa(c) \algebra w(d) \cdot \kappa(d))) \\
     &= \sumcirc_{m \in M} \sumcirc_{c + d = m} (u(c) \cdot \kappa(c)) \algebra (w(d) \cdot \kappa(d)) \\
     &= \sumcirc_{(c, d) \in M \times M} (u(c) \cdot \kappa(c)) \algebra (w(d) \cdot \kappa(d)) \\
     &= \sumcirc_{c \in M} u(c) \cdot \kappa(c) \algebra \sumcirc_{d \in M}w(d) \cdot \kappa(d) \\
     &= (u \odot \kappa) \algebra (w \odot\kappa).
   \end{align*}
-
-  ???
 \end{proof}
+
+\newpage
 
 \begin{example}
   Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
