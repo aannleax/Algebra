@@ -3276,9 +3276,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und $\bot$ ein Symbol
   sowie $\mathbb{G} = \mathbb{G}(\mathbb{M}, \bot)$ das Aktionsnetzwerk zu $(\mathbb{M}, \bot)$.
   Dann ist $\mathcal{S}[\mathbb{G}] = (S^M, \bar\Sigma, \circledast, I_\mathbb{G})$ ein Summoid,
-  wobei für $(u_i)_{i \in I} \in (S^M)^I$
+  wobei für $u, w \in S^M$
   \begin{equation*}
-    \sumbar_{i \in I} u_i \colon M \to S, m \mapsto \sum_{i \in I} u_i(m)
+    u \circledast w \colon M \to S, m \mapsto \sum_{c + d = m} u(c) \ast w(d)
   \end{equation*}
   und $I_\mathbb{G} \colon \{\bot\} \to M, \bot \mapsto \varepsilon$.
 \end{example}
@@ -3366,16 +3366,16 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$.
   Dann ist 
   \begin{equation*}
-    f_\kappa \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot \kappa(n)
+    f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \ast \kappa_r(n)
   \end{equation*}
   ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathbb{S}$.
   Das heißt folgendes: Für $u \in S^\mathbb{N}$, welches als Polynom
   \begin{equation*}
-    u[x] = \sum_{n \in \mathbb{N}} u(n) \cdot x^n
+    u[x] = \sum_{n \in \mathbb{N}} u(n) \ast x^n
   \end{equation*}
   aufgefasst wird, ist
   \begin{equation*}
-    (f_\kappa(u))(r) = \sum_{n \in \mathbb{N}} u(n)\cdot r^n.
+    f_{\kappa_r}(u) = \sum_{n \in \mathbb{N}} u(n) \ast r^n.
   \end{equation*}
   Die Abbildung $f_\kappa$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
 \end{example}
@@ -3411,11 +3411,11 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     \sum_{i \in I}\alpha(i) = 
     \begin{cases}
-      1 & \text{falls } \alpha \neq 0^I \\
-      0 & \text{sonst.}
+      1 & \text{falls } \alpha \neq \{0\}^I \\
+      0 & \text{sonst}
     \end{cases}
   \end{equation*}
-  und $s \ast t = \min \{s, t\}$ für $s, t \in \mathbbm{2}$.
+  und $s \ast t = \min(s, t)$ für $s, t \in \mathbbm{2}$.
   Sei weiterhin $P$ eine Menge von Zuständen 
   und $\mathbb{M} = (M, \circ, \varepsilon)$ ein Monoid (Wortmonoid)
   sowie $\mathcal{B}[\mathbb{G}_P]$ das Faltungssumoid zu $\mathbb{G}$ über $\mathcal{B}$.
