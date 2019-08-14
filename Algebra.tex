@@ -466,10 +466,11 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   was äquivalent ist zu
   \begin{equation*}
     i \in [n] \setminus J \implies i \in [n] \setminus I
-    \iff i \in \varphi(J) \implies i \in \varphi(I),
+    \iff i \in \varphi^{-1}(J) \implies i \in \varphi(I),
   \end{equation*}
-  also $\varphi(I) \supseteq \varphi(J)$.
-  Das selbe Argument kann auch für $\varphi^{-1}$ verwendet werden,
+  also $\varphi(I) \supseteq \varphi^{-1}(J)$.
+  Das selbe Argument kann auch verwendet werden, um zu zeigen,
+  dass aus $J \supseteq I$ folgt, dass $\varphi^{-1}(J) \subseteq \varphi(I)$,
   womit gezeigt ist,
   dass das Abbildungspaar $(\varphi, \varphi^{-1})$ ein Isomorphismus
   zwischen $\mathcal{I}^n_{i, n - i}$ und $(\mathcal{I}^n_{i, n - i})^{-1}$ ist.
