@@ -1716,7 +1716,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     = \sum_{B \subseteq_\text{fin} A}\sum_{J \subseteq_\text{fin} \eta^{-1}(B)}\Pi(\alpha_{\mid J})
     = \sum_{(B, J) \in H} \Pi(\alpha_{\mid J}).
   \end{equation*}
-  Seien weiterhin $\varphi \colon \mathcal{P}_\text{fin}(I) \to S, j \mapsto \Pi(\alpha_{\mid J})$
+  Seien weiterhin $\varphi \colon \mathcal{P}_\text{fin}(I) \to S, J \mapsto \Pi(\alpha_{\mid J})$
   und $\tau \colon H \to \mathcal{P}_\text{fin}(I), (J, B) \mapsto J$ Abbildungen,
   wobei $\tau$ surjektiv ist.
   Es gilt
@@ -2033,10 +2033,23 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Dann ist $\text{Mod}(\mathcal{S}, N)$ ein Summoid-Modul.
+  Dann ist $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
+  mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ ein Summoid-Modul.
 \end{theorem}
 \begin{proof}
-  Es ist zu zeigen, dass $\text{scal}$ ein Homomorphismus 
+  Zunächst muss gezeigt werden, dass $\text{scal}(s) \in \text{End}_{{\mathcal{S}_\text{Sum}}^N}$.
+  Dazu sei $(v_i)_{i \in I} \in (S^N)^I$ und $s \in S$.
+  Dann ist
+  \begin{align*}
+    \bigg( \text{scal}(s) \bigg(\sumcirc_{i \in I} v_i \bigg) \bigg)(n)
+    &= s \ast \bigg( \sumcirc_{i \in I} v_i \bigg)(n) \\
+    &= s \ast \sum_{i \in I} v_i(n) \\
+    &= \sum_{i \in I} s \ast v_i(n) \\
+    &= \sum_{i \in I} ((\text{scal}(s))(v_i))(n) \\
+    &= \bigg( \sumcirc_{i \in I} (\text{scal}(s))(v_i) \bigg)(n).
+  \end{align*}
+
+  Weiterhin ist zu zeigen, dass $\text{scal}$ ein Homomorphismus 
   zwischen $\mathcal{S}$ und dem Endomorphismen-Summoid $\text{End}({\mathcal{S}_\text{Sum}}^N) = (\text{End}_{{\mathcal{S}_\text{Sum}}^N}, \bar\Sigma, \circ, \text{id}_{S^N})$ ist.
 
   Es sei $v \in S^N$ und $n \in N$ sowie $(s_i)_{i \in I} \in S^I$ für eine Menge $I$. 
