@@ -2774,8 +2774,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und $u \in S^E$ eine Kantenbewertung.
   Dann ist
   \begin{align*}
-    n \curlyvee u &\colon V \to S, v \mapsto \sum_{\text{In}_G(v)} n(\sigma(e)) \ast u(e) \\
-    u \curlywedge n &\colon V \to S, v \mapsto \sum_{\text{Out}_G(v)} u(e) \ast n(\tau(e)).
+    n \curlyvee u &\colon V \to S, v \mapsto \sum_{e \in \text{In}_G(v)} n(\sigma(e)) \ast u(e) \\
+    u \curlywedge n &\colon V \to S, v \mapsto \sum_{e \in \text{Out}_G(v)} u(e) \ast n(\tau(e)).
   \end{align*}
 \end{definition}
 
