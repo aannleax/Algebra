@@ -1443,6 +1443,25 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Wir setzen $0_\mathcal{S} = 0_{\mathcal{S}_\text{Sum}}$.
 \end{definition}
 
+\begin{theorem}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
+  Dann gilt für alle $s \in S$
+  \begin{equation*}
+    s \ast 0_\mathcal{S} = 0_\mathcal{S} = 0_\mathcal{S} \ast s.
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Für $\alpha \colon \emptyset \to S$ und $s \in S$ ist
+  \begin{equation*}
+    s \ast 0_\mathcal{S}
+    = s \ast \sum_{i \in \emptyset} \alpha(i)
+    = \sum_{i \in \emptyset} s \ast \alpha(i)
+    = 0_\mathcal{S}
+    = \sum_{i \in \emptyset} \alpha(i) \ast s
+    = 0_\mathcal{S} \ast s.
+  \end{equation*}
+\end{proof}
+
 \begin{definition}
   Ein Summoid $\mathcal{S}$ heißt kommutativ falls $\mathcal{S}_\text{Mult}$ kommutativ ist.
 \end{definition}
