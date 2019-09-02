@@ -3440,31 +3440,31 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \subsection{Automaten}
 
 \begin{definition}\label{Definition_Preautomat}
-  Sei $\mathcal{B} = (\mathbbm{2}, \Sigma, \ast, 1)$ ein Summoid,
+  Sei $\mathcal{B} = (\mathbbm{2}, \bigvee, \wedge, 1)$ ein Summoid,
   wobei für $\alpha \colon I \to \mathbbm{2}$
   \begin{equation*}
-    \sum_{i \in I}\alpha(i) = 
+    \bigvee_{i \in I}\alpha(i) = 
     \begin{cases}
-      1 & \text{falls } \alpha \neq \{0\}^I \\
+      1 & \exists i \in I \colon \alpha(i) \neq 0\\
       0 & \text{sonst}
     \end{cases}
   \end{equation*}
-  und $s \ast t = \min(s, t)$ für $s, t \in \mathbbm{2}$.
+  und $s \wedge t = \min(s, t)$ für $s, t \in \mathbbm{2}$.
   Sei weiterhin $P$ eine Menge von Zuständen 
-  und $\mathbb{M} = (M, \circ, \varepsilon)$ ein Monoid (Wortmonoid)
-  sowie $\mathcal{B}[\mathbb{G}_P]$ das Faltungssumoid zu $\mathbb{G}$ über $\mathcal{B}$.
-  Dann wird ein Homomorphismus $\kappa$ von $\mathbb{M}$ nach $\mathcal{B}[\mathbb{G}_P]_\text{Mult}$ Präautomat genannt.
+  und $\mathbb{M} = (M, \circ, \varepsilon)$ ein Monoid
+  sowie $\text{Mat}_P(\mathcal{B})$ das Summoid der $(P \times P)$-Matrix über $\mathcal{B}$.
+  Dann wird ein Homomorphismus $\kappa$ von $\mathbb{M}$ nach $(\text{Mat}_P(\mathcal{B}))_\text{Mult}$ Präautomat genannt.
 
   Der Homomorphismus $\kappa$ ordnet jedem Wort ein Element aus $\mathbbm{2}^{P \times P}$ zu
   und kann deshalb als Übergangsmatrix aufgefasst werden.
 \end{definition}
 
 \begin{remark}
-  Ist $\mathcal{B} = (\mathbbm{2}, \Sigma, \ast, 1)$ wie in Definition \ref{Definition_Preautomat} gegeben.
-  Dann ist $\mathcal{B}[\mathbb{G}_P]_\text{Mult} = (\mathbbm{2}^{P \times P}, \circledast, I_{\mathbb{G}_P})$
+  Ist $\mathcal{B} = (\mathbbm{2}, \bigvee, \wedge, 1)$ wie in Definition \ref{Definition_Preautomat} gegeben.
+  Dann ist $(\text{Mat}_P(\mathcal{B}))_\text{Mult} = (\mathbbm{2}^{P \times P}, \circledast, I)$
   ein Monoid mit
   \begin{equation*}
-    I_{\mathbb{G}_P} \colon P \times P \to \mathbbm{2}, (p, q) \mapsto
+    I \colon P \times P \to \mathbbm{2}, (p, q) \mapsto
     \begin{cases}
       1 & p = q \\
       0 & \text{sonst}
@@ -3473,7 +3473,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und für $u, w \in \mathbbm{2}^{P \times P}$
   \begin{equation*}
     u \circledast w \colon P \times P \to \mathbbm{2}, (p, q) \mapsto
-    \sum_{c \star d = (p, q)} u(c) \ast w(d).
+    \bigvee_{c \star d = (p, q)} u(c) \wedge w(d).
   \end{equation*}
   Das heißt es gilt
   \begin{equation*}
@@ -3543,17 +3543,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Sei $\mathcal{B} = (\mathbbm{2}, \Sigma, \ast, 1)$ ein Summoid wie in Definition \ref{Definition_Preautomat},
+  Sei $\mathcal{B} = (\mathbbm{2}, \bigvee, \wedge, 1)$ ein Summoid wie in Definition \ref{Definition_Preautomat},
   $\mathbb{M}$ ein Monoid
   sowie $\kappa$ ein Präautomat.
   Sei weiterhin $P$ eine Menge von Zuständen
   und $p, q \in P$.
-  Dann ist das Tupel $\mathbb{D} = (\mathbb{M}, \mathcal{B}[\mathbb{G}_P]_\text{Mult}, \kappa, \delta^P_p, \delta^P_q)$
+  Dann ist das Tupel $\mathbb{D} = (\mathbb{M}, (\text{Mat}_P(\mathcal{B}))_\text{Mult}, \kappa, \delta^P_p, \delta^P_q)$
   ein klassischer Automat,
   wobei $p$ den Startzustand und $q$ den Endzustand darstellen.
 
   Ein Wort $w \in B^{\langle \ast \rangle}$ wird durch $\mathbb{D}$ erkannnt,
-  falls $\delta^P_p \circledast \kappa(w) = \delta^P_q \circledast \kappa(w)$,
+  falls $\delta^P_p \otimes \kappa(w) = \delta^P_q$ ???,
   d.h. $(\kappa(w))(p, q) = 1$.
 \end{definition}
 
