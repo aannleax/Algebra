@@ -3394,47 +3394,61 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{example}
   Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
   $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid
-  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal})$
-  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).
+  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal}_\mathcal{S})$
+  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).\\
+  Sei darüber hinaus $\text{Mod}(\mathcal{S}, \mathbb{N}) = (\mathcal{S}^\mathbb{N}_\text{Sum}, \mathcal{S}, \text{scal}_{S^\mathbb{N}})$
+  mit $\mathcal{S}^\mathbb{N}_\text{Sum} = (S^\mathbb{N}, \sumcirc)$ gegeben.
+  Beachte: $\text{scal}_\mathcal{S} \colon S \to \text{End}_{\mathcal{S}_\text{Sum}}$ mit 
+  $\text{scal}(s): S \to S, s' \mapsto s \ast s'$.\\
+  Das heißt: $\cdot_\mathcal{S} \colon S^2 \to S, (s,x) \mapsto s \ast x$.\\
   Für jedes $r \in S$ ist $\kappa_r \colon \mathbb{N} \to S, n \mapsto r^n$
-  ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$.
+  ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$. \\
+  Sei außerdem $x \coloneqq \delta^\mathbb{N}_1$ und $x^n \coloneqq \underbrace{x \circledast ... \circledast x}_{n-fach}$
+  also ist $x^n = \delta^\mathbb{N}_n$, wobei $\circledast$ die Faltung aus $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ ist.\\
   Dann ist 
   \begin{equation*}
-    f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \ast \kappa_r(n)
+    f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot_\mathcal{S} \kappa_r(n)
   \end{equation*}
-  ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathbb{S}$.
+  ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathcal{S}$.
   Das heißt folgendes: Für $u \in S^\mathbb{N}$, welches als Polynom
   \begin{equation*}
-    u[x] = \sum_{n \in \mathbb{N}} u(n) \ast x^n
+    u[x] \coloneqq u = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} \delta^\mathbb{N}_n = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} x^n
   \end{equation*}
-  aufgefasst wird, ist
+  aufgefasst wird, wobei $\cdot_{S^\mathbb{N}}$ die Skalarmultiplikation aus 
+  $\text{Mod}(\mathcal{S}, \mathbb{N})$ sei, ist
   \begin{equation*}
-    f_{\kappa_r}(u) = \sum_{n \in \mathbb{N}} u(n) \ast r^n.
+    f_{\kappa_r}(u) = \sum_{n \in \mathbb{N}} u(n) \cdot_\mathcal{S} r^n.
   \end{equation*}
-  Die Abbildung $f_\kappa$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
+  Die Abbildung $f_{\kappa_r}$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
 \end{example}
 
 \begin{example}
   Sei $\Omega$ eine endliche Menge
   und $(\mathcal{S}, \Sigma, \ast, \varepsilon)$ ein Summoid.
-  Weiterhin ist $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.
+  Weiterhin ist $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.\\
+  Beachte: Hier werden $\text{Mod}(\mathcal{S}, \mathbb{N}^\Omega) = (\mathcal{S}^{\mathbb{N}^\Omega}_\text{Sum}, \mathcal{S}, \text{scal}_{S^{\mathbb{N}^\Omega}})$
+  mit $\mathcal{S}^{\mathbb{N}^\Omega}_\text{Sum} = (S^{\mathbb{N}^\Omega}, \sumcirc)$ und die Faltung $\circledast$
+  aus $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ betrachtet.\\
   Für $r \in S^\Omega$ ist 
   \begin{equation*}
-    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod_{i \in \Omega}r_i^{\alpha_i}
+    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod^\ast_{i \in \Omega}r_i^{\alpha_i}
   \end{equation*}
   ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$.
   Für $i \in \Omega$ setze $x_i = \delta^{\mathbb{N}^\Omega}_{\delta^\Omega_i}$
   und für $\alpha \in \mathbb{N}^\Omega$ sei $x^\alpha = \delta^{\mathbb{N}^\Omega}_\alpha$.
   Dann ist
   \begin{equation*}
-    x^\alpha = \prod_{i \in \Omega}x_i^{\alpha(i)}.
+    x^\alpha = \prod^\circledast_{i \in \Omega}x_i^{\alpha(i)}.
   \end{equation*}
-  Dann ist für $u \in \mathcal{S}^{\mathbb{N}^\Omega}$
+  Interpretiere $u \in \mathcal{S}^{\mathbb{N}^\Omega}$ wie folgt:
   \begin{equation*}
-    f_\kappa(n) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot x^\alpha = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot \prod_{i \in \Omega}x_i^{\alpha(i)}
+    u = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} \delta^{\mathbb{N}^\Omega}_\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} x^\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} \prod^\circledast_{i \in \Omega}x_i^{\alpha(i)}
+  \end{equation*}
+  Dann ist $f_{\kappa_r}$ ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ nach $\mathcal{S}$ und für $u \in \mathcal{S}^{\mathbb{N}^\Omega}$ ist
+  \begin{equation*}
+    f_{\kappa_r}(u) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot_\mathcal{S} \kappa_r(\alpha) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot_\mathcal{S} \prod^\ast_{i \in \Omega}r_i^{\alpha(i)}
   \end{equation*}
   das Einsetzen von $r$ in jede multivariable formale Potenzreihe.
-  ???
 \end{example}
 
 \subsection{Automaten}
