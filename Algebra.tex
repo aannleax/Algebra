@@ -534,7 +534,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{theorem}
   Sei $\Omega$ eine Menge. Dann ist $(\mathcal{P}(\Omega), \bigcup)$ eine Summationsstruktur,
   wobei für jede Abbildung $\alpha \colon I \to \mathcal{P}(\Omega)$ die Summation über $\alpha$ wie folgt
-  definitert ist:
+  definiert ist:
   \begin{equation*}
     \bigcup \alpha = \{ x \in \Omega \mid \exists i \in I \colon x \in \alpha(i) \}.
   \end{equation*}
@@ -1029,7 +1029,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \subsection{Summation und Inzidenzstrukturen}
 
 \begin{definition}
-  Eine Matrix über einer Menge $M$ (auch $M$-wertige Matrix) ist definitert als Tripel $(P, B, \alpha)$
+  Eine Matrix über einer Menge $M$ (auch $M$-wertige Matrix) ist definiert als Tripel $(P, B, \alpha)$
   bestehend aus den Mengen $P$, $B$ und einer Abbildung $\alpha \colon P \times B \to M$.
   
   Wir sagen auch, dass $\alpha$ eine $(P \times B)$-Matrix über M ist. 
@@ -3395,17 +3395,19 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
   $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid
   und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal}_\mathcal{S})$
-  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).\\
-  Sei darüber hinaus $\text{Mod}(\mathcal{S}, \mathbb{N}) = (\mathcal{S}^\mathbb{N}_\text{Sum}, \mathcal{S}, \text{scal}_{S^\mathbb{N}})$
-  mit $\mathcal{S}^\mathbb{N}_\text{Sum} = (S^\mathbb{N}, \sumcirc)$ gegeben.
-  Beachte: $\text{scal}_\mathcal{S} \colon S \to \text{End}_{\mathcal{S}_\text{Sum}}$ mit 
-  $\text{scal}(s): S \to S, s' \mapsto s \ast s'$.\\
-  Das heißt: $\cdot_\mathcal{S} \colon S^2 \to S, (s,x) \mapsto s \ast x$.\\
+  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).
+  Darüber hinaus sei $\text{Mod}(\mathcal{S}, \mathbb{N}) = ((\mathcal{S}_\text{Sum})^\mathbb{N}, \mathcal{S}, \text{scal}_{S^\mathbb{N}})$
+  mit $(\mathcal{S}_\text{Sum})^\mathbb{N} = (S^\mathbb{N}, \Sigmacirc)$ gegeben.
+  Damit ist $\text{scal}_\mathcal{S} \colon S \to \text{End}_{\mathcal{S}_\text{Sum}}$ mit 
+  $\text{scal}(s): S \to S, s' \mapsto s \ast s'$,
+  wordurch die Operation $\cdot_\mathcal{S} \colon S^2 \to S, (s,x) \mapsto s \ast x$ definiert ist.
+
   Für jedes $r \in S$ ist $\kappa_r \colon \mathbb{N} \to S, n \mapsto r^n$
-  ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$. \\
-  Sei außerdem $x \coloneqq \delta^\mathbb{N}_1$ und $x^n \coloneqq \underbrace{x \circledast ... \circledast x}_{n-fach}$
-  also ist $x^n = \delta^\mathbb{N}_n$, wobei $\circledast$ die Faltung aus $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ ist.\\
-  Dann ist 
+  ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$.
+
+  Wir definieren weiterhin $x \coloneqq \delta^\mathbb{N}_1$ und $x^n \coloneqq \underbrace{x \circledast ... \circledast x}_{n-fach}$,
+  wobei $\circledast$ die Faltung aus $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ ist.
+  Also ist $x^n = \delta^\mathbb{N}_n$ und
   \begin{equation*}
     f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot_\mathcal{S} \kappa_r(n)
   \end{equation*}
@@ -3424,11 +3426,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{example}
   Sei $\Omega$ eine endliche Menge
-  und $(\mathcal{S}, \Sigma, \ast, \varepsilon)$ ein Summoid.
-  Weiterhin ist $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.\\
-  Beachte: Hier werden $\text{Mod}(\mathcal{S}, \mathbb{N}^\Omega) = (\mathcal{S}^{\mathbb{N}^\Omega}_\text{Sum}, \mathcal{S}, \text{scal}_{S^{\mathbb{N}^\Omega}})$
-  mit $\mathcal{S}^{\mathbb{N}^\Omega}_\text{Sum} = (S^{\mathbb{N}^\Omega}, \sumcirc)$ und die Faltung $\circledast$
-  aus $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ betrachtet.\\
+  und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
+  Weiterhin sei $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.
+  Beachte: Hier werden $\text{Mod}(\mathcal{S}, \mathbb{N}^\Omega) = ((\mathcal{S}_\text{Sum})^{\mathbb{N}^\Omega}, \mathcal{S}, \text{scal}_{S^{\mathbb{N}^\Omega}})$
+  mit $(\mathcal{S}_\text{Sum})^{\mathbb{N}^\Omega} = (S^{\mathbb{N}^\Omega}, \Sigmacirc)$ 
+  und außerdem die Faltung $\circledast$
+  aus $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ betrachtet.
+  
   Für $r \in S^\Omega$ ist 
   \begin{equation*}
     \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod^\ast_{i \in \Omega}r_i^{\alpha_i}
