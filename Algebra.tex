@@ -18,6 +18,8 @@
 \usepackage{upgreek}
 \usepackage{bm}
 \usepackage{fix-cm}
+\usepackage{capt-of}
+\usepackage{float}
 
 \usepackage{mathtools}
 
@@ -134,15 +136,17 @@
 \end{definition}
 
 \begin{definition}
-  Sei $f \colon X \to Y$ eine Abbildung zwischen zwei Mengen.
-  Sei weiterhin $y \in Y$ ein Element aus der Zielmenge.
+  Sei $f \colon A \to B$ eine Abbildung zwischen zwei Mengen $A$ und $B$.
+  Sei weiterhin $b \in B$ ein Element aus der Zielmenge.
   Dann ist 
   \begin{equation*}
-    f^{-1}(y) = \{ x \in X \mid f(x) = y \}.
+    f^{-1}(b) = \{ a \in A \mid f(a) = b \}.
   \end{equation*}
+\end{definition}
 
-  Ist $f$ eine bijektive Abbildung, so bezeichet $f^{-1}(y)$
-  den Funktionswert von $y$ der Umkehrabbildung von $f$.
+\begin{definition}
+  Sei $f \colon A \to B$ eine Abbildung zwischen zwei Mengen $A$ und $B$.
+  Dann bezeichet $f^{\langle -1 \rangle}$ die Umkehrabbildung von $f$.
 \end{definition}
 
 \begin{definition}
@@ -151,6 +155,14 @@
   \begin{equation*}
     f(A) = \{b \in B \mid \exists a \in A \colon f(a) = b\}.
   \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Eine Abbildung $f \colon A \to B$ heißt konstant, falls
+  \begin{equation*}
+    \forall a \in A \colon f(a) = b
+  \end{equation*}
+  für ein Element $b \in B$.
 \end{definition}
 
 \begin{definition}
@@ -169,19 +181,19 @@
 \end{definition}
 
 \begin{definition}
-  Eine Abbildung $f \colon A \to B$ heißt konstant falls
-  \begin{equation*}
-    \forall a \in A \colon f(a) = b
-  \end{equation*}
-  für ein Element $b \in B$.
+  Seien $f \colon A \to B$ und $g \colon B \to C$ Abbildungen.
+  Dann ist ${g \circ f \colon A \to C, a \mapsto g(f(a))}$ die kontravariante Verkettung von $(f, g)$. 
+  Dagegen bezeichnet man $f \bullet g \colon A \to C, a \mapsto g(f(a))$ als die kovariante Verkettung von $(f, g)$.
+
+  Es gilt also $g \circ f = f \bullet g$.
 \end{definition}
 
 \begin{definition}
-  Seien $f \colon A \to B$ und $g \colon B \to C$ Abbildungen.
-  Dann ist ${g \circ f \colon A \to C, a \mapsto g(f(a))}$ die kontravariante Verkettung von $(f, g)$. 
-  Dagegen bezeichnet man $f \bullet g \colon A \to C, a \mapsto ((a)f)g$ als die kovariante Verkettung von $(f, g)$.
-
-  Es gilt also $g \circ f = f \bullet g$.
+  Ist $\alpha \colon I \to S$ eine Funktion zwischen zwei Mengen $I$ und $S$,
+  so ist
+  \begin{equation*}
+    \alpha_i = \alpha(i).
+  \end{equation*}
 \end{definition}
 
 \begin{definition}
@@ -197,28 +209,37 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \item Reflexivität: $\forall p \in P \colon p \mathrel{R} p$
     \item Transitivität: $\forall p, t, q \in P \colon p \mathrel{R} t \wedge t \mathrel{R} q \implies p \mathrel{R} q$
   \end{itemize}
-  $\mathbb{P}$ heißt Ordnung (partiell geordnete Menge), falls zusätzlich folgende Eigenschaften gilt:
+  $\mathbb{P}$ heißt Ordnung (partiell geordnete Menge), 
+  falls zusätzlich folgende Eigenschaft gilt:
   \begin{itemize}
     \item Antisymmetrie: $\forall p, q \in P \colon p \mathrel{R} q \wedge q \mathrel{R} p \implies p = q$
   \end{itemize}
 \end{definition}
 
-  \begin{example}
-    Sei $\Omega$ eine Menge. Dann ist $\mathbb{P} = (P, R)$ mit $P = \mathcal{P}(\Omega)$ und 
-    $R = \{ (X, Y) \in (\mathcal{P}(\Omega))^2 \mid X \subseteq Y \}$ eine Ordnung.
-    Diese Ordnung soll mit $R^\Omega = (\mathcal{P}(\Omega), \subseteq)$ bezeichnet werden.
-  \end{example}
+\begin{example}
+  Sei $\Omega$ eine Menge. Dann ist $\mathbb{P} = (P, R)$ mit $P = \mathcal{P}(\Omega)$ und 
+  $R = \{ (X, Y) \in (\mathcal{P}(\Omega))^2 \mid X \subseteq Y \}$ eine Ordnung.
+  Diese Ordnung soll mit $R^\Omega = (\mathcal{P}(\Omega), \subseteq)$ bezeichnet werden.
+\end{example}
+
+\begin{definition}
+  Es sei $M$ eine Menge von disjunkten Mengen.
+  Dann ist
+  \begin{equation*}
+    \mathop{\dot{\bigcup}} M = \bigcup M.
+  \end{equation*}
+\end{definition}
 
 \newpage
 
 \section{Inzidenzstrukturen}
 
 \begin{definition}
- Seien $P$, $B$ und $I$ Mengen, wobei $I \subseteq P \times B$.
+ Es seien $P$, $B$ und $I$ Mengen, wobei $I \subseteq P \times B$.
  Das Tripel $\mathcal{I} = (P, B, I)$ heißt Inzidenzstruktur.
  
  Die Menge $P$ wird als Menge von Punkten interpretiert und $B$ als Menge von Blöcken.
- Für ein $p \in P$ und ein $b \in B$ $(p, b) \in I$, so schreibe $p \mathrel{I} b$.
+ Gilt $(p, b) \in I$ für ein $p \in P$ und ein $b \in B$, so schreibe $p \mathrel{I} b$.
 \end{definition}
 
 \begin{example}[Würfel]\label{Example_InzidenzstrukturWuerfel}
@@ -240,7 +261,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Eine Inzidenzstruktur $\mathcal{I} = (P, B, I)$ heißt taktische Konfiguration mit den Parametern $(v, r, b, k) \in \mathbb{N}^4$
+  Eine Inzidenzstruktur $\mathcal{I} = (P, B, I)$ heißt taktische Konfiguration mit den Parametern $(v, r, b, k) \in \mathbb{N}^4$,
   falls folgende Bedingungen gelten:
   \begin{itemize}
     \item $|P| = v$ und $|B| = b$
@@ -264,7 +285,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{proof}
   Es gilt
   \begin{equation*}
-    \dot{\bigcup} \{\{p\} \times pI \mid p \in P\} = I = \dot{\bigcup} \{ Ib \times \{b\} \mid b \in B\}
+    \mathop{\dot{\bigcup}} \{\{p\} \times pI \mid p \in P\} = I = \mathop{\dot{\bigcup}} \{ Ib \times \{b\} \mid b \in B\}
   \end{equation*}
   und daher
   \begin{equation*}
@@ -309,8 +330,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Für $\mathcal{I}^{-1}$ ergeben sich folgende Parameter:
   \begin{itemize}
     \item $|P^{-1}| = |B| = b$ und $|B^{-1}| = |P| = v$
-    \item $\forall p^{-1} \in P^{-1} \colon |p^{-1}I^{-1}| = k$
-    \item $\forall b^{-1} \in B^{-1} \colon |I^{-1}b^{-1}| = b$
+    \item $\forall p^{-1} \in P^{-1} \colon |p^{-1}I^{-1}| = |Ib| = k$
+    \item $\forall b^{-1} \in B^{-1} \colon |I^{-1}b^{-1}| = |pI| = b$
   \end{itemize}
   Also ist $\mathcal{I}^{-1}$ eine taktische Konfiguration mit den Parametern $(b, k, v, r)$.
 \end{proof}
@@ -364,7 +385,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Weiterhin seien ${\varphi \colon P \to P'}$ und ${\psi \colon B \to B'}$ bijektive Abbildungen.
   Dann gilt: $(\varphi, \psi)$ ist ein Isomorphismus zwischen $\mathcal{I}$ und $\mathcal{I}'$ genau dann wenn
   $(\varphi, \psi)$ ein Homomorphismus zwischen $\mathcal{I}$ und $\mathcal{I}'$ ist und
-  $(\varphi^{-1}, \psi^{-1})$ ein Homomorphismus zwischen $\mathcal{I}'$ und $\mathcal{I}$ ist.
+  $(\varphi^{\langle -1 \rangle}, \psi^{\langle -1 \rangle})$ ein Homomorphismus zwischen $\mathcal{I}'$ und $\mathcal{I}$ ist.
 \end{theorem}
 \begin{proof}
   Angenommen $(\varphi, \psi)$ ist ein Isomorphismus zwischen  $\mathcal{I}$ und $\mathcal{I}'$.
@@ -374,25 +395,25 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
   und daher auch
   \begin{equation*}
-    \forall p \in P \forall b \in B \colon (\varphi(p) \mathrel{I'} \psi(b) \implies \varphi^{-1}(\varphi(p)) \mathrel{I} \psi^{-1}(\psi(b))).
+    \forall p \in P \forall b \in B \colon (\varphi(p) \mathrel{I'} \psi(b) \implies \varphi^{\langle -1 \rangle}(\varphi(p)) \mathrel{I} \psi^{\langle -1 \rangle}(\psi(b))).
   \end{equation*}
   Zu jedem Punkt $p' \in P'$ und jedem Block $b' \in B'$ lässt sich 
   wegen der Bijektivität von $\varphi$ und $\psi$ jeweils genau ein Element $p \in P$
   und $b \in B$ finden, sodass $\varphi(p) = p'$ bzw. $\psi(b) = b'$.
   Die obige Aussage kann also wie folgt umgeschrieben werden:
    \begin{equation*}
-    \forall p' \in P' \forall b' \in B' \colon (p' \mathrel{I'} b' \implies \varphi^{-1}(p') \mathrel{I} \psi^{-1}(b')).
+    \forall p' \in P' \forall b' \in B' \colon (p' \mathrel{I'} b' \implies \varphi^{\langle -1 \rangle}(p') \mathrel{I} \psi^{\langle -1 \rangle}(b')).
   \end{equation*}
-  Somit ist $(\varphi^{-1}, \psi^{-1})$ ein Homomorphismus zwischen $\mathcal{I}'$ und $\mathcal{I}$.
+  Somit ist $(\varphi^{\langle -1 \rangle}, \psi^{\langle -1 \rangle})$ ein Homomorphismus zwischen $\mathcal{I}'$ und $\mathcal{I}$.
   
-  Nun sei angenommen, dass $(\varphi, \psi)$ und $(\varphi^{-1}, \psi^{-1})$ Homomorphismen sind.
+  Nun sei angenommen, dass $(\varphi, \psi)$ und $(\varphi^{\langle -1 \rangle}, \psi^{\langle -1 \rangle})$ Homomorphismen sind.
   Das heißt es gilt
   \begin{equation*}
-    \forall p' \in P' \forall b' \in B' \colon (p' \mathrel{I}' b' \implies \varphi^{-1}(p') \mathrel{I} \psi^{-1}(b')).
+    \forall p' \in P' \forall b' \in B' \colon (p' \mathrel{I}' b' \implies \varphi^{\langle -1 \rangle}(p') \mathrel{I} \psi^{\langle -1 \rangle}(b')).
   \end{equation*}
   Analog zum ersten Teil des Beweises lässt sich die Aussage wie folgt umschreiben:
   \begin{equation*}
-    \forall p \in P \forall b \in B \colon (\varphi(p) \mathrel{I}' \psi(b) \implies \varphi^{-1}(\varphi(p)) \mathrel{I} \psi^{-1}(\psi(b))).
+    \forall p \in P \forall b \in B \colon (\varphi(p) \mathrel{I}' \psi(b) \implies \varphi^{\langle -1 \rangle}(\varphi(p)) \mathrel{I} \psi^{\langle -1 \rangle}(\psi(b))).
   \end{equation*}
   Also ist $(\varphi, \psi)$ reflektierend und somit ein Isomorphismus.
 \end{proof}
@@ -423,7 +444,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathcal{I}$ eine Inzidenzstruktur.
-  $\mathcal{I}$ heißt selbstdual falls $\mathcal{I} \cong \mathcal{I}^{-1}$.
+  $\mathcal{I}$ heißt selbstdual, falls $\mathcal{I} \cong \mathcal{I}^{-1}$.
 \end{definition}
 
 \begin{definition}
@@ -442,9 +463,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $I \in \binom{[n]}{i}$ und $J \in \binom{[n]}{j}$.
   Dann ist $I \subseteq J$ genau dann wenn $J$ alle Elemente von $I$ enthält
   und zusätzlich $|J| - |I|$ weitere aus $[n] \setminus I$.
-  Das heißt $I$ steht mit $|\binom{[n] \setminus I}{j - i}| = \binom{n - i}{j - i}$ Mengen in Beziehung.
+  Das heißt $I$ ist Teilmenge von $|\binom{[n] \setminus I}{j - i}| = \binom{n - i}{j - i}$ Mengen.
 
-  Umgekehrt steht $J$ genau mit jeder $i$-elementigen Teilmenge von $J$ in Beziehung.
+  Umgekehrt ist $J$ Obermenge von allen $i$-elementigen Teilmengen von $J$,
+  von denen es $|\binom{J}{i}| = \binom{j}{i}$ viele gibt.
 \end{proof}
 
 \begin{theorem}
@@ -459,26 +481,27 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     i \in I \implies i \in J.
   \end{equation*}
-  Der Kontrapositiv lautet
+  Die Kontraposition lautet
   \begin{equation*}
     i \notin J \implies i \notin I,
   \end{equation*}
   was äquivalent ist zu
   \begin{equation*}
     i \in [n] \setminus J \implies i \in [n] \setminus I
-    \iff i \in \varphi^{-1}(J) \implies i \in \varphi(I),
+    \iff i \in \varphi^{\langle -1 \rangle}(J) \implies i \in \varphi(I),
   \end{equation*}
-  also $\varphi(I) \supseteq \varphi^{-1}(J)$.
+  also $\varphi(I) \supseteq \varphi^{\langle -1 \rangle}(J)$.
   Das selbe Argument kann auch verwendet werden, um zu zeigen,
-  dass aus $J \supseteq I$ folgt, dass $\varphi^{-1}(J) \subseteq \varphi(I)$,
+  dass aus $J \supseteq I$ folgt, dass $\varphi^{\langle -1 \rangle}(J) \subseteq \varphi(I)$,
   womit gezeigt ist,
-  dass das Abbildungspaar $(\varphi, \varphi^{-1})$ ein Isomorphismus
+  dass das Abbildungspaar $(\varphi, \varphi^{\langle -1 \rangle})$ ein Isomorphismus
   zwischen $\mathcal{I}^n_{i, n - i}$ und $(\mathcal{I}^n_{i, n - i})^{-1}$ ist.
 \end{proof}
 
 \begin{example}[Tetraeder]
-  Kombinatorische Beschreibung eines Tetraeders lautet: ${\mathcal{I} =  (\binom{[4]}{1}, \binom{[4]}{3}, \subseteq)}$.
-  Die duale Inzidenzstruktur ist: ${\mathcal{I}^{-1} = (\binom{[4]}{3}, \binom{[4]}{1}, \supseteq)}$.
+  Kombinatorische Beschreibung eines Tetraeders lautet: 
+  ${\mathcal{I}^4_{1, 3} =  (\binom{[4]}{1}, \binom{[4]}{3}, \subseteq)}$.
+  Die duale Inzidenzstruktur ist: $(\binom{[4]}{3}, \binom{[4]}{1}, \supseteq)$.
   Der Isomorphismus  $(\varphi, \psi)$ ist gegeben durch
   ${\varphi \colon \binom{[4]}{1} \to \binom{[4]}{3}, x \mapsto \overline{x}}$
   und weiterhin ${\psi \colon \binom{[4]}{3} \to \binom{[4]}{1}, x \mapsto \overline{x}}$.
@@ -493,20 +516,18 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \label{fig:Desargues}
   \end{figure}
 
-  Analog zum Tetraeder, nur das die Inzidenzstruktur durch ${\mathcal{I}^5_{2, 3} = (\binom{[5]}{2}, \binom{[5]}{3}, \subseteq)}$ gegeben ist.
+  Die Inzidenzstruktur ist gegeben durch ${\mathcal{I}^5_{2, 3} = (\binom{[5]}{2}, \binom{[5]}{3}, \subseteq)}$.
   Die Desargues-Konfi-guration ist selbstdual und hat 10 Punkte (Die Punkte $A, B, C, a, b, c$, das Zentrum der Perspektive und die drei Punkte, die auf der roten Linie liegen)
   und 10 Blöcke (Die 6 Linien der zwei Dreiecke, die 3 Linien, die sich im Zentrum der Perspektive treffen und die Achse der Perspektive).
   In der dazu dualen Konfiguration sind Achse und Zentrum der Perspektive getauscht.
 \end{example}
-
-
 
 \newpage
 
 \section{Summation}
 
 \begin{definition}
-  Ein Paar $(S, \Sigma)$ heißt [finitäre] Summationsstruktur, falls $\Sigma$ eine Abbildungsvorschrift
+  Das Paar $(S, \Sigma)$ heißt [finitäre] Summationsstruktur, falls $\Sigma$ eine Abbildungsvorschrift
   (Klassenabbildung) ist, die jeder Abbildung $\alpha \colon I \to S$ mit beliebiger [endlicher] Definitionsmenge $I$ 
   genau ein Element $\Sigma(\alpha)$ aus $S$ zuordnet, sodass gilt:
   \begin{itemize}
@@ -518,17 +539,16 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
             \Sigma(\beta) = \Sigma(\alpha).
           \end{equation*}
   \end{itemize}
-  Die Menge $S$ wird Grundmenge genannt.
+  Die Menge $S$ wird Grundmenge der Summationsstruktur genannt.
 \end{definition}
 
 \begin{definition}
   Sei $(S, \Sigma)$ eine [finitäre] Summationsstruktur und ${\alpha \colon I \to S}$
   eine beliebige Abbildung [$I$ endlich]. 
-  Dann gelten folgende Schreibweisen:
-  \begin{itemize}
-    \item $(\alpha(i))_{i \in I} = (\alpha(i) \mid i \in I) = \alpha$
-    \item $\sum_{i \in I} \alpha(i) = \Sigma(\alpha)$
-  \end{itemize}
+  So ist folgende Schreibweise definiert
+  \begin{equation*}
+    \sum_{i \in I} \alpha(i) = \Sigma(\alpha).
+  \end{equation*}
 \end{definition}
 
 \begin{theorem}
@@ -583,33 +603,11 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathbb{S} = (S, \Sigma)$ eine Summationsstruktur.
-  Dann definieren wir $0_\mathbb{S} = \Sigma(\emptyset \to S)$.
+  Dann ist
+  \begin{equation*}
+    0_\mathbb{S} = \Sigma(\emptyset \to S).
+  \end{equation*}
 \end{definition}
-
-\begin{theorem}\label{Theorem_SumStrukturNeutral}
-  Sei $\mathbb{S} = (S, \Sigma)$ eine Summationsstruktur
-  und $f \colon A \to S, a \mapsto 0_\mathbb{S}$ eine konstante Abbildung.
-  Dann gilt
-  \begin{equation*}
-    \Sigma(f) = 0_\mathbb{S}.
-  \end{equation*}
-\end{theorem}
-\begin{proof}
-  Sei $\alpha = \emptyset \to S$ eine Abbildung.
-  Seien weiterhin die Abbildungen
-  $\eta \colon \emptyset \to A$
-  und $\beta \colon A \to S, a \mapsto \Sigma(\alpha_{\mid \eta^{-1}(a)})$ gegeben.
-  Dann gilt laut dem Teilsummenaxiom
-  \begin{equation*}
-    0_\mathbb{S}
-    = \Sigma(\alpha)
-    = \Sigma(\beta)
-    = \sum_{a \in A} \Sigma(\alpha_{\mid \eta^{-1}(a)})
-    = \sum_{a \in A} \Sigma(\alpha_{\mid \emptyset})
-    = \sum_{a \in A} 0_\mathbb{S}
-    = \Sigma(f).
-  \end{equation*}
-\end{proof}
 
 \begin{definition}
   Sei $\mathbb{S} = (S, \Sigma)$ eine Summationsstruktur.
@@ -624,29 +622,44 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathbb{S} = (S, \Sigma)$ eine Summationsstruktur.
   Dann gilt für alle Abbildungen $\alpha \colon I \to S$
   \begin{equation*}
-    \Sigma(\alpha) = \Sigma(\alpha_{\mid \text{supp}_\mathbb{S}(\alpha)}).
+    \Sigma(\alpha_{\mid \text{supp}_\mathbb{S}(\alpha)}) = \Sigma(\alpha).
   \end{equation*}
 \end{theorem}
 \begin{proof}
-  Es seien 
+  Es seien die Abbildungen $\alpha' = \alpha_{\mid \text{supp}(\alpha)}$,  
   $\eta \colon \text{supp}_\mathbb{S}(\alpha) \to I, i \mapsto i$
-  sowie $\beta \colon I \to S, i \mapsto \Sigma(\alpha'_{\mid \eta^{-1}(i)})$ Abbildungen,
-  wobei $\alpha' = \alpha_{\mid \text{supp}_\mathbb{S}(\alpha)}$.
-  Dann gilt laut dem Teilsummenaxiom
+  sowie $\beta \colon I \to S, i \mapsto \Sigma(\alpha'_{\mid \eta^{-1}(i)})$ gegeben.
+  Dann ist für ein $i \in I$
+  \begin{align*}
+    \beta(i) &= \begin{cases}
+      \alpha'(i) = \alpha(i) & \text{falls } i \in \text{supp}(\alpha) \\
+      0_\mathbb{S} & \text{sonst}
+    \end{cases} \\
+    &= \alpha(i).
+  \end{align*}
+  Aus dem Teilsummenaxiom folgt nun
   \begin{equation*}
-    \Sigma(\alpha_{\mid \text{supp}_\mathbb{S}(\alpha)})
+    \Sigma(\alpha_{\mid \text{supp}(\alpha)})
     = \Sigma(\alpha')
     = \Sigma(\beta)
-    = \sum_{i \in I} \sum_{j \in \eta^{-1}(i)} \alpha'(j)
     = \Sigma(\alpha).
   \end{equation*}
-  Die letzte Gleichung gilt, weil für alle $i \in I$
+\end{proof}
+
+\begin{corollary}\label{Korollar_SumStrukturNeutral}
+  Ist $\alpha \colon I \to S, i \mapsto 0_\mathbb{S}$ eine konstante Funktion.
+  So gilt
   \begin{equation*}
-    \alpha(i) = 
-    \begin{cases}
-      \sum_{j \in \eta^{-1}(i)} \alpha'(j) = \alpha(i) & i \in \text{supp}_\mathbb{S}(\alpha) \\
-      \sum_{j \in \eta^{-1}(i)} \alpha'(j = \sum_{j \in \emptyset} \alpha(j) = 0_\mathbb{S} & i \notin \text{supp}_\mathbb{S}(\alpha).
-    \end{cases}
+    \Sigma(\alpha) = 0_\mathbb{S}.
+  \end{equation*}
+\end{corollary}
+\begin{proof}
+  Wie soeben gezeigt gilt
+  \begin{equation*}
+    \Sigma(\alpha)
+    = \Sigma(\alpha_{\mid \text{supp}(\alpha)})
+    = \Sigma(\alpha_{\mid \emptyset})
+    = 0_\mathbb{S}.
   \end{equation*}
 \end{proof}
 
@@ -700,8 +713,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{theorem}\label{Theorem_OmegaKopotenzSumStruktur}
-  Ist $\mathbb{S} = (S, \Sigma)$ eine finitäre Summationsstruktur und $N$ eine Menge.
-  So ist auch $\mathbb{S}^{(N)} = (S^{(N)}, \bar\Sigma)$ eine finitäre Summationsstruktur.
+  Ist $\mathbb{S} = (S, \Sigma)$ eine Summationsstruktur und $N$ eine Menge.
+  So ist $\mathbb{S}^{(N)} = (S^{(N)}, \bar\Sigma)$ eine finitäre Summationsstruktur.
 \end{theorem}
 \begin{proof}
   Das Gelten von Fundierungs- und Teilsummenaxiom lassen sich analog zu Satz \ref{Theorem_OmegaPotenzSumStruktur} beweisen.
@@ -718,7 +731,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*} 
   Ist $N$ endlich folgt die Aussage daher sofort.
   Sei $N$ also eine unendliche Menge.
-  Aus Satz \ref{Theorem_SumStrukturNeutral} folgt,
+  Aus Korollar \ref{Korollar_SumStrukturNeutral} folgt,
   dass für alle $n \in \text{supp}_\mathbb{S}(\bar\Sigma(\alpha))$
   ein $i \in I$ existieren muss, sodass $\alpha_i(n) \neq 0_\mathbb{S}$.
   Für einen Widerspruch sei angenommen 
@@ -732,7 +745,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Seien $\mathbb{S} = (S, \Sigma)$ und $\mathbb{S}' = (S', \Sigma')$ Summationsstrukturen.
-  Dann ist eine Abbildung $\varphi \colon S \to S'$ ein Homomorphismus von $\mathbb{S}$ nach $\mathbb{S}'$
+  Dann heißt eine Abbildung $\varphi \colon S \to S'$ Homomorphismus von $\mathbb{S}$ nach $\mathbb{S}'$,
   falls für jede Abbildung $\alpha \colon I \to S$ stets gilt:
   \begin{equation*}
     \varphi(\Sigma(\alpha)) = \Sigma'(\varphi \circ \alpha).
@@ -743,7 +756,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}
   Seien $\mathbb{S} = (S, \Sigma)$, $\mathbb{S}' = (S', \Sigma')$ und $\mathbb{S}'' = (S'', \Sigma'')$ Summationsstrukturen.
-  Seien weiterhin $\varphi \colon S \to S'$ und $\varphi' \colon S' \to S''$ Homomorphismen in die jeweilige Struktur.
+  Seien weiterhin $\varphi \colon S \to S'$ und $\varphi' \colon S' \to S''$ Homomorphismen.
   Dann ist $\varphi' \circ \varphi \colon S \to S''$ ein Homomorphismus von $\mathbb{S}$ nach $\mathbb{S}''$.
 \end{theorem}
 \begin{proof}
@@ -779,15 +792,16 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Zunächst sei angenommen, dass $(S, \Sigma)$ idempotent ist.
   Setze $\eta = \tau$. Dann ist $\beta \colon I \to S, i \mapsto \Sigma((\alpha \circ \tau)_{\mid \tau^{-1}(i)})$
   und es gilt $\Sigma(\alpha \circ \tau) = \Sigma(\beta)$ laut dem Teilsummenaxiom.
-  $(\alpha \circ \tau)_{\mid \tau^{-1}(i)}$ ist eine konstante Abbildung,
-  weshalb wegen der Idempotenz von $(S, \Sigma)$ für alle $h \in \tau^{-1}(i)$ gilt: 
+  Die Abbildung $(\alpha \circ \tau)_{\mid \tau^{-1}(i)}$ ist konstant,
+  weshalb wegen der Idempotenz von $(S, \Sigma)$ für alle $i \in I$ und $h \in \tau^{-1}(i)$ gilt: 
   \begin{equation*}
-    \Sigma((\alpha \circ \tau)_{\mid \tau^{-1}(i)}) = (\alpha \circ \tau)(h) = \alpha(i).
+    \beta(i) = \Sigma((\alpha \circ \tau)_{\mid \tau^{-1}(i)}) = (\alpha \circ \tau)(h) = \alpha(i).
   \end{equation*}
   Das heißt $\alpha = \beta$ und somit $\Sigma(\alpha \circ \tau) = \Sigma(\beta) = \Sigma(\alpha)$.
 
   Gilt nun umgekehrt $\Sigma(\alpha \circ \tau) = \Sigma(\alpha)$ für jede Abbildung $\alpha \colon I \to S$ und jede surjektive Abbildung $\tau \colon H \to I$.
-  Sei weiterhin für ein beliebiges $c \in S$ $\gamma \colon H \to S, h \mapsto c$ eine konstante Abbildung.
+  Sei weiterhin für ein beliebiges $c \in S$ 
+  eine konstante Abbildung $\gamma \colon H \to S, h \mapsto c$ definiert.
   Für ein festes $j \in H$ seien außerdem $\tau \colon H \to \{j\}, h \mapsto j$ und $\alpha \colon \{j\} \to S, j \mapsto c$ Abbildungen.
   Da $\gamma = \alpha \circ \tau$ und $\tau$ eine surjektive Abbildung ist gilt laut Voraussetzung
   für alle $h \in H$:
@@ -799,12 +813,18 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \subsection{Summationsstrukturen und Monoide}
 
+\begin{definition}
+  Es sei $\mathbb{S} = (M, \Sigma)$ eine [finitäre] Summationsstruktur.
+  Dann ist $\mathbb{M} = (M, +, 0)$ mit
+  $0 = 0_\mathbb{S}$ und
+  $+ \colon M \times M \to M, (a, b) \mapsto \Sigma(\alpha)$, wobei
+  $\alpha \colon [2] \to M, \{ 1 \mapsto a, 2 \mapsto b\}$
+  das zu $\mathbb{S}$ gehörige kommutative Monoid.
+\end{definition}
+
 \begin{theorem}\label{Theorem_SummationMonoid}
   Sei $(M, \Sigma)$ eine [finitäre] Summationsstruktur.
-  Dann lässt sich wie folgt das zu $(M, \Sigma)$ zugehörige kommutative Monoid $\mathbb{M} = (M, +, 0)$ konstruieren:
-  Setze $0 = \Sigma(\emptyset \to M)$ und
-  $+ \colon M \times M \to M, (a, b) \mapsto \Sigma(\alpha)$, wobei
-  $\alpha \colon [2] \to M, \{ 1 \mapsto a, 2 \mapsto b\}$.
+  Dann ist dazu gehörige kommutative Monoid $\mathbb{M} = (M, +, 0)$ ein kommutatives Monoid.
 \end{theorem}
 \begin{proof}
   Zunächst soll gezeigt werden, dass $\mathbb{M}$ assoziativ ist.
@@ -823,14 +843,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{align*}
     \Sigma(\beta_1) = \beta_1(1) + \beta_1(2).
   \end{align*}
-  $\beta_1(1)$ ergibt sich aus folgender Gleichungskette:
+  $\beta_1(1)$ ergibt sich aus folgender Gleichungskette
   \begin{align*}
     \beta_1(1) &= \Sigma(\alpha_{\eta_1^{-1}(1)})\\
-    &= \Sigma(\alpha_{[2]})\\
-    &= \Sigma_{i \in [2]}(\alpha(i))\\ 
+    &= \Sigma(\alpha_{\mid \{1, 2\}})\\
     &= \alpha(1) + \alpha(2) = a + b.
   \end{align*}
-  $\beta_1(2)$ kann dagegen wie folgt berechnet werden:
+  $\beta_1(2)$ kann dagegen wie folgt berechnet werden
   \begin{align*}
     \beta_1(2) = \Sigma(\alpha_{\mid \eta_1^{-1}(2)})
     = \Sigma(\alpha_{\mid \{3\}})
@@ -838,22 +857,22 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{align*}
   Insgesamt ist also $\Sigma(\beta_1) = (a + b) + c$.
   
-  Analog zu $\beta_1$ kann auch $\Sigma(\beta_2)$ wie folgt angegeben werden:
+  Analog zu $\beta_1$ kann auch $\Sigma(\beta_2)$ wie folgt angegeben werden
   \begin{align*}
     \Sigma(\beta_2) = \beta_2(1) + \beta_2(2).
   \end{align*}
-  $\beta_2(1)$ ist schlicht:
+  $\beta_2(1)$ ist
   \begin{align*}
     \beta_2(1) = \Sigma(\alpha_{\mid \eta_2^{-1}(1)}) = \alpha(1) = a.
   \end{align*}
-  Für $\beta_2(2)$ ergibt sich:
+  Für $\beta_2(2)$ ergibt sich
   \begin{align*}
     \beta_2(2) &= \Sigma(\alpha_{\mid \eta_2^{-1}(2)}) 
     = \Sigma(\alpha_{\mid \{2, 3\}}).
   \end{align*}
   Da $\alpha_{\mid\{2, 3\}}$ keine Abbildung von $[2] \to M$ ist bedarf es folgender Umbenennung:
   \begin{align*}
-    \tau \colon [2] \to \{ 2, 3\}, \{ 1 \to 2, 2 \to 3 \}.
+    \tau \colon [2] \to \{ 2, 3\}, \{ 1 \mapsto 2, 2 \mapsto 3 \}.
   \end{align*}
   Nun kann $\beta_2(2)$ wie folgt ausgedrückt werden:
   \begin{align*}
@@ -898,8 +917,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{align*}
   Außerdem ist
   \begin{align*}
-    \beta_2(1) &= \Sigma(\alpha_{\mid \eta_2^{-1}(1)}) = 0 \text{ und}\\
-    \beta_2(2) &= \Sigma(\alpha_{\mid \eta_2^{-1}(2)}) = \alpha(1) = m.
+    \beta_2(1) &= \Sigma(\alpha_{\mid \eta_2^{-1}(1)}) = \Sigma(\alpha_{\mid \emptyset}) = 0 \text{ und}\\
+    \beta_2(2) &= \Sigma(\alpha_{\mid \eta_2^{-1}(2)}) = \Sigma(\alpha_{\mid \{1\}}) = \alpha(1) = m.
   \end{align*}
   Laut Teilsummenaxiom gilt schließlich:
   \begin{align*}
@@ -928,7 +947,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Sei $\mathbb{M} = (M, +, \varepsilon)$ ein  kommutatives Monoid.
+  Gegeben sei ein  kommutatives Monoid $\mathbb{M} = (M, +, \varepsilon)$.
   Dann ist $(M, \Sigma^\text{fin})$ die zu $\mathbb{M}$ gehörige finitäre Summationsstruktur,
   wobei für jede endliche Menge $I = \{i_1, i_2, \dots, i_n\}$
   und jede Abbildung $\alpha \colon I \to M$ 
@@ -942,6 +961,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist $(M, \Sigma^\text{fin})$ eine finitäre Summationsstruktur.
 \end{theorem}
 \begin{proof}
+  Die Wohldefiniertheit folgt aus der Kommutativität von $\mathbb{M}$.
+
   Sei $\alpha \colon \{i\} \to M$ eine Abbildung.
   Dann ist $\Sigma^\text{fin}(\alpha) = \alpha(i)$.
   Es gilt demnach das Fundierungsaxiom.
@@ -949,33 +970,35 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Seien weiterhin $\alpha \colon I \to M$,
   $\eta \colon I \to A$ und $\beta \colon A \to M, a \mapsto \Sigma^\text{fin}(\alpha_{\mid \eta^{-1}(a)})$
   Abbildungen, wobei $I = \{i_1, i_2, \dots, i_n\}$ und $A = \{a_1, a_2, \dots, a_m\}$ endliche Mengen sind.
-  Außerdem sei $n_k = |\{ i_{k,l} \mid i_{k,l} \in \eta^{-1}(a_k) \subseteq I \}|$
-  Dann ist 
+  Da 
+  \begin{equation*}
+    \mathop{\dot{\bigcup_{a \in A}}} \eta^{-1}(a) = I
+  \end{equation*}
+  ist wegen der Assoziativität und Kommutativität von $\mathbb{M}$
   \begin{align*}
     \Sigma^\text{fin}(\beta)
-    &= \beta(a_1) + \dots + \beta(a_m) \\
-    &= (\alpha(i_{1,1}) + \dots + \alpha(i_{1,n_1})) + \dots + (\alpha(i_{m,1}) + \dots + \alpha(i_{m,n_m})) \\
-    &= \alpha(i_1) + \dots + \alpha(i_n) \\
-    &= \Sigma^\text{fin}(\alpha).
+    = \beta(a_1) + \dots + \beta(a_m)
+    = \alpha(i_1) + \dots + \alpha(i_n)
+    = \Sigma^\text{fin}(\alpha).
   \end{align*}
   Also gilt auch das Teilsummenaxiom.
 \end{proof}
 
 \begin{definition}
-  Ein kommutatives Monoid $\mathbb{M} = (M, +, \varepsilon)$ heiße natürlich geordnet,
+  Ein kommutatives Monoid $\mathbb{M} = (M, +, 0)$ heiße natürlich geordnet,
   falls $\leq_\mathbb{M} = \{ (x, y) \in M^2 \mid \exists t \in M \colon x + t = y \}$ eine Ordnungsrelation definiert.
 \end{definition}
 
 \begin{theorem}
-  Sei $\mathbb{M} = (M, +, \varepsilon)$ ein kommutatives Monoid.
+  Sei $\mathbb{M} = (M, +, 0)$ ein kommutatives Monoid.
   Dann ist $\mathbb{M}$ genau dann natürlich geordnet wenn gilt:
   \begin{equation*} \label{EquationAntisymmetrischesMonoid}
     \forall x,s,t \in M \colon (x + s) + t = x \implies x + s = x.\tag{$\ast$}
   \end{equation*}
 \end{theorem}
 \begin{proof}
-  Ist $\mathbb{M} = (M, +, \varepsilon)$ ein kommutatives Monoid, so ist $(M, \leq_\mathbb{M})$ stets reflexiv und transitiv.
-  Denn für alle $x$ existiert $\varepsilon \in M$ mit $x + \varepsilon = x$ und somit $x \leq_\mathbb{M} x$.
+  Ist $\mathbb{M} = (M, +, 0)$ ein kommutatives Monoid, so ist $(M, \leq_\mathbb{M})$ stets reflexiv und transitiv.
+  Denn für alle $x$ existiert $0 \in M$ mit $x + 0 = x$ und somit $x \leq_\mathbb{M} x$.
   Gilt außerdem $x \leq_\mathbb{M} y$ und $y \leq_\mathbb{M} z$, d.h. ist $x + t_1 = y$ und $y + t_2 = z$ für $t_1, t_2 \in M$. 
   Dann ist $x + (t_1 + t_2) = z$, wobei $t_1 + t_2 \in M$, womit $x \leq_\mathbb{M} z$ gilt.
 
@@ -989,14 +1012,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{example}
-  Beispiele für ein natürlich geordnetes kommutatives Monoid sind $(\mathbb{N}, +, 0)$ und $(\mathbb{R}_{\geq 0} \cup \{\infty\}, +, 0)$, wobei
+  Beispiele für ein natürlich geordnetes kommutatives Monoid sind $(\mathbb{N}, +, 0)$ und $([0, \infty], +, 0)$, wobei
   $x + \infty = \infty$.
 
   Ein Gegenbeispiel ist $(\mathbb{Z}, +, 0)$, da $0 \leq 1$ und $1 \leq 0$ gilt.
 \end{example}
 
 \begin{definition}
-  Sei $(M, +, \varepsilon)$ ein Monoid. 
+  Sei $(M, +, 0)$ ein Monoid. 
   Ein Element $x \in M$ heißt idempotent, falls
   \begin{equation*}
     x + x = x.
@@ -1010,13 +1033,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   wenn die zu $\mathbb{M}$ gehörige finitäre Summationsstruktur idempotent ist.
 \end{theorem}
 \begin{proof}
-  Sei $\mathbb{M} = (M, +, \varepsilon)$ ein idempotentes kommutatives Monoid.
+  Sei $\mathbb{M} = (M, +, 0)$ ein idempotentes kommutatives Monoid.
   Sei weiterhin $\alpha \colon I \to M$ eine Abbildung mit endlicher Indexmenge $I = \{i_1, \dots, i_n\}$,
-  sodass $\forall 1 \leq j \leq n \colon \alpha(i_j) = m \in M$.
+  sodass $\forall i \in I \colon \alpha(i) = m$ für ein $m \in M$.
   Dann ist für alle $i \in I$
   \begin{align*}
-    \Sigma^\text{fin}(\alpha) &= \sum_{j = 1}^n\alpha(i_j) \\
-    &= \sum_{j = 1}^n m = m = \alpha(i).
+    \Sigma^\text{fin}(\alpha) 
+    &= \alpha(i_1) + \dots \alpha(i_n) \\
+    &= m +\dots + m 
+    &= m = \alpha(i).
   \end{align*}
   Sei umgekehrt $(M, \Sigma^\text{fin})$ eine idempotente Summationsstruktur und $m \in M$ ein Element aus der Grundmenge.
   Weiterhin sei $\alpha \colon [2] \to M, i \mapsto m$ eine konstante Abbildung.
@@ -1026,35 +1051,36 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{align*}
 \end{proof}
 
-\subsection{Summation und Inzidenzstrukturen}
+\subsection{Fuzzy-Inzidenzstrukturen und Matrizen}
 
 \begin{definition}
-  Eine Matrix über einer Menge $M$ (auch $M$-wertige Matrix) ist definiert als Tripel $(P, B, \alpha)$
-  bestehend aus den Mengen $P$, $B$ und einer Abbildung $\alpha \colon P \times B \to M$.
+  Eine Matrix über einer Menge $S$ (auch $S$-wertige Matrix) ist definiert als Tripel $(P, B, \alpha)$
+  bestehend aus den Mengen $P$, $B$ und einer Abbildung $\alpha \colon P \times B \to S$.
   
-  Wir sagen auch, dass $\alpha$ eine $(P \times B)$-Matrix über M ist. 
+  Wir sagen auch, dass $\alpha$ eine $(P \times B)$-Matrix über $S$ ist. 
 \end{definition}
 
 \begin{definition}
-  Eine $M$-wertige Matrix $\mathcal{I} = (P, B, \alpha)$ wird auch Fuzzy-Inzidenz-struktur genannt.
-  Ist $\mathbb{M} = (M, \Sigma)$ eine [finitäre] Summationsstruktur, 
-  so nennt man $\mathcal{I}$ auch eine Fuzzy-Inzidenzstruktur über $\mathbb{M}$.
+  Eine $S$-wertige Matrix $\mathcal{I} = (P, B, \alpha)$ wird auch Fuzzy-Inzidenz-struktur genannt.
+  Ist $\mathbb{S} = (S, \Sigma)$ eine [finitäre] Summationsstruktur, 
+  so nennt man $\mathcal{I}$ auch eine Fuzzy-Inzidenzstruktur über $\mathbb{S}$.
   Sind $P$ und $B$ endlich, so ist $\mathcal{I}$ finitär.
 \end{definition}
 
 \begin{definition}
-  Gegeben sei eine $M$-wertige Matrix $\mathcal{I} = (P, B, \alpha)$.
-  Für jedes $p \in P$ heiße die Abbildung $\alpha(p, \cdot) \colon B \to M, b \mapsto \alpha(p, b)$
+  Gegeben sei eine $S$-wertige Matrix $\mathcal{I} = (P, B, \alpha)$.
+  Für jedes $p \in P$ heiße die Abbildung $\alpha(p, \cdot) \colon B \to S, b \mapsto \alpha(p, b)$
   die $p$-te Zeile von $\mathcal{I}$ bzw. $\alpha$.
-  $\text{row}_\alpha \colon P \to M^B, p \mapsto \alpha(p, \cdot)$ ist die Row-Map für $\mathcal{I}$ bzw. $\alpha$.
+  Die Abbildung $\text{row}_\alpha \colon P \to S^B, p \mapsto \alpha(p, \cdot)$ ist die Row-Map für $\mathcal{I}$ bzw. $\alpha$.
 
-  Analog wird für jedes $b \in B$ die Abbildung $\alpha(\cdot, b) \colon P \to M, p \mapsto \alpha(p, b)$
+  Analog wird für jedes $b \in B$ die Abbildung $\alpha(\cdot, b) \colon P \to S, p \mapsto \alpha(p, b)$
   als die $b$-te Spalte von $\mathcal{I}$ bzw. $\alpha$ bezeichnet.
-  Weiterhin ist $\text{col}_\alpha \colon B \to M^P, b \mapsto \alpha(\cdot, b)$ die Column-Map für $\mathcal{I}$ bzw. $\alpha$.
+  Weiterhin ist $\text{col}_\alpha \colon B \to S^P, b \mapsto \alpha(\cdot, b)$ die Column-Map für $\mathcal{I}$ bzw. $\alpha$.
 \end{definition}
 
 \begin{definition}
-  Sei $\mathcal{I} = (P, B, \alpha)$ eine $M$-wertige Fuzzy-Inzidenzstruktur über $\mathbb{M} = (M, \Sigma)$.
+  Sei $\mathcal{I} = (P, B, \alpha)$ eine $S$-wertige Fuzzy-Inzidenzstruktur
+  über $\mathbb{S} = (S, \Sigma)$.
   Dann ist die Zeilensumme von $\mathcal{I}$ bzw. $\alpha$
   \begin{equation*}
     \Sigma(\alpha(p, \cdot)) = \sum_{b \in B}\alpha(p, b).
@@ -1066,7 +1092,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{definition}
-  Eine Fuzzy-Inzidenzstruktur $\mathcal{I}$ über $\mathbb{M}$ wird als taktische Fuzzy-Konfiguration über $\mathbb{M}$ bezeichnet,
+  Eine Fuzzy-Inzidenzstruktur $\mathcal{I}$ über $\mathbb{S}$
+  wird als taktische Fuzzy-Konfiguration über $\mathbb{S}$ bezeichnet,
   falls $r_\mathcal{I}$ und $k_\mathcal{I}$ existieren mit
   \begin{itemize}
     \item $\forall p \in P  \colon \Sigma(\alpha(p, \cdot)) = r_\mathcal{I}$ und
@@ -1076,7 +1103,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}[Satz der doppelten Abzählung]
   Sei  $\mathcal{I} = (P, B, \alpha)$ eine [finitäre] Fuzzy-Inzidenzstruktur über einer [finitären]
-  Summationsstruktur $\mathbb{M} = (M, \Sigma)$.
+  Summationsstruktur $\mathbb{S} = (S, \Sigma)$.
   Dann gilt:
   \begin{equation*}
     \sum_{p \in P}\sum_{b \in B}\alpha(p, b) = \Sigma(\alpha) = \sum_{b \in B}\sum_{p \in P}\alpha(p, b).
@@ -1084,7 +1111,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{theorem}
 \begin{proof}
   Es seien $\eta \colon P \times B \to P, (p, b) \mapsto p$ und
-  $\beta \colon P \to M, p \mapsto \Sigma(\alpha_{\mid \eta^{-1}(p)})$ Abbildungen.
+  $\beta \colon P \to S, p \mapsto \Sigma(\alpha_{\mid \eta^{-1}(p)})$ Abbildungen.
   Desweiteren sei eine bijektive Abbildung $\tau_p \colon B \to \{p\} \times B, b \mapsto (p, b)$ gegeben.
   Für ein $p \in P$ ist
   \begin{align*}
@@ -1103,7 +1130,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{definition}
-  Sei $\mathcal{I} = (P, B, I)$ eine Inzidenzstruktur.
+  Sei $\mathcal{I} = (P, B, I)$ eine endliche Inzidenzstruktur.
   Sei weiterhin
   \begin{equation*}
     \alpha_{\mathcal{I}} \colon P \times B \to \mathbb{N} \cup \{\infty\}, (p, b) \mapsto
@@ -1112,7 +1139,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
       0 & sonst
     \end{cases}
   \end{equation*}
-  Dann ist $(P, B, \alpha_{\mathcal{I}})$ eine Fuzzy-Inzidenzstruktur über $(\mathbb{N} \cup \{\infty\}, \Sigma)$,
+  Dann ist $(P, B, \alpha_{\mathcal{I}})$ eine Fuzzy-Inzidenzstruktur
+  über der finitären Summationsstruktur $(\mathbb{N} \cup \{\infty\}, \Sigma)$,
   wobei $\Sigma$ die erweiterte normale Summation darstellt.
 \end{definition}
 
@@ -1126,16 +1154,18 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $p \in P$ ein beliebiges Element in $P$.
   Dann gilt
   \begin{equation*}
-    r_\mathcal{I} = \Sigma(\alpha_\mathcal{I}(p, \cdot)) 
+    \Sigma(\alpha_\mathcal{I}(p, \cdot)) 
     = \sum_{b \in B}\alpha_\mathcal{I}(p, b)
-    = \sum_{b \in pI}1 = |pI| = r.
+    = \sum_{b \in pI} 1 = |pI|.
   \end{equation*}
 
   Ein ähnliches Argument kann auch für die Blöcke verwendet werden, wodurch die Behauptung bewiesen ist.
 \end{proof}
 
 \begin{theorem}
-  Ist $\mathcal{I} = (P, B, \alpha)$ eine taktische Fuzzy-Konfiguration mit den Parametern $(|P|, r_\mathcal{I}, |B|, k_\mathcal{I})$ über der Summationsstruktur $\mathbb{M} = (M, \Sigma)$, so gilt:
+  Ist $\mathcal{I} = (P, B, \alpha)$ eine taktische Fuzzy-Konfiguration
+  mit den Parametern $(|P|, r_\mathcal{I}, |B|, k_\mathcal{I})$
+  über der Summationsstruktur $\mathbb{S} = (S, \Sigma)$, so gilt:
   \begin{equation*}
     \sum_{p \in P}r_\mathcal{I} = \sum_{b \in B}k_\mathcal{I}.
   \end{equation*}
@@ -1166,9 +1196,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     \forall u \in P \colon ((\forall x \in X \colon x \mathrel{R} u) \implies t \mathrel{R} u),
   \end{equation*}
-  d.h. wenn $u \in P$ ebenfalls Target von $X$ ist, dann gilt $t \mathrel{R} u$.
+  d.h. wenn für alle Targets $u \in P$ von $X$ gilt $t \mathrel{R} u$.
 
-  Analog dazu ist der Begriff essentielle Source definiert.
+  Eine Source $s \in P$ von $X$ ist essentiell,
+  falls für alle Sources $u \in P$ von $X$ gilt $u \mathrel{R} s$.
 \end{definition}
 
 \begin{definition}
@@ -1192,13 +1223,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{proof}
   Sei $\mathbb{P} = (P, R)$ ein Targoid und $X \subseteq P$ eine beliebige Teilmenge.
   Ist $t \in P$ ein Target von $X$ bzgl. $\mathbb{P}$,
-  dann gilt $x \mathrel{R} t$ für alle $x \in X$
+  dann gilt $x \mathrel{R} t$ für alle $x \in X$,
   also auch $t \mathrel{R}^{-1} x$.
   Das heißt die Targets von $X$ bzgl. $\mathbb{P}$
-  sind genau die Sources von $X$ bzgl. $\mathbb{P}^{-1}$.
+  entsprechen genau den Sources von $X$ bzgl. $\mathbb{P}^{-1}$.
 
   Sei nun $t \in P$ ein essentielles Target von $X$ bzgl. $\mathbb{P}$.
-  Das heißt für alle weiteren Targets $u \in P$ bzgl. $\mathbb{P}$ gilt $t \mathrel{R} u$,
+  Das heißt für alle Targets $u \in P$ bzgl. $\mathbb{P}$ gilt $t \mathrel{R} u$,
   also $u \mathrel{R}^{-1} t$.
   Da alle Targets von $X$ bzgl. $\mathbb{P}$ Sources von $X$ bzgl. $\mathbb{P}^{-1}$ sind,
   ist $t$ eine essentielle Source von $X$ bzgl. $\mathbb{P}^{-1}$.
@@ -1206,8 +1237,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{lemma}\label{Lemma_SuperSource}
   Sei $(P, R)$ ein Targoid mit nichtleerer Grundmenge $P$.
-  Dann existiert ein Element $p \in P$ für das gilt: $\forall q \in P \colon p \mathrel{R} q$.
-  Das heißt insbesondere, dass $p$ Source von jeder Teilmenge in $P$ ist.
+  Dann existiert ein Element $s \in P$ für das gilt: 
+  $\forall p \in P \colon s \mathrel{R} p$.
+  Das heißt insbesondere, dass $s$ Source von jeder Teilmenge von $P$ ist.
 \end{lemma}
 \begin{proof}
   Sei $X = \emptyset \subseteq P$. Dann ist die Menge aller Targets von $X$ gleich der Menge $P \neq \emptyset$.
@@ -1228,7 +1260,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Da $t$ ein essentielles Target ist gilt aber auch $t \mathrel{R} x$ für alle $x \in X$.
   Das heißt, dass $t$ eine Source von $X$ ist.
   Sei weiterhin $s \in P$ eine Source von $X$.
-  Dann ist auch $s \in S_X$ und da $t$ ein Target von $S_X$ gilt $s \mathrel{R} t$.
+  Dann ist $s \in S_X$ und da $t$ ein Target von $S_X$ gilt $s \mathrel{R} t$.
   Also ist $t$ eine essentielle Source von $X$.
 
   Sei umgekehrt $\mathbb{P}$ ein Sourcoid.
@@ -1237,7 +1269,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{figure}
-  \centering {\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{TargoidSourcoid.png}}
+  \Large
+  \centering
+  \def\svgwidth{0.6\textwidth}
+  \input{TargoidSourcoid.pdf_tex}
   \caption{Veranschaulichung von Satz \ref{Theorem_TargoidEqualsSourcoid}}
   \label{fig:TargoidSourcoid}
 \end{figure}
@@ -1248,6 +1283,28 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Ein binäres Relat $\mathbb{P} = (P, R)$ heißt vollständiger Verband (geordnetes Targoid), 
   falls $\mathbb{P}$ sowohl Ordnung als auch Targoid bzw. Sourcoid ist.
 \end{definition}
+
+\begin{minipage}[t]{0.45\textwidth}
+  \def\svgwidth{0.4\textwidth}
+  \centering
+  \input{GegenbeispielUnabhaengig.pdf_tex}
+  \captionof{figure}{Antiordnungstargoid}\label{fig:AntiOrdnungTargoid}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+  \def\svgwidth{0.4\textwidth}
+  \centering
+  \input{GegenbeispielOrdnungTargetNichtTargoid.pdf_tex}
+  \captionof{figure}{Fast-Targoid}\label{fig:OrdnungFastTargoid}
+\end{minipage}
+
+\begin{remark}
+  Abbildung \ref{fig:AntiOrdnungTargoid} zeigt ein Targoid,
+  welches nicht reflexiv, nicht antisymmetrisch und nicht transitiv ist.
+
+  Abbildung \ref{fig:OrdnungFastTargoid} zeigt eine Ordnung,
+  sodass jede Teilmenge ein Target besitzt,
+  aber kein Targoid ist.
+\end{remark}
 
 \begin{theorem}\label{Theorem_ReflexivesRelat}
   Ist $(P, R)$ ein reflexives binäres Relat, 
@@ -1260,7 +1317,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{theorem}\label{Theorem_AntisymmetrischesRelat}
-  Ist $(P, R)$ anti-symmetrisch, so existiert zu jeder Teilmenge nur höchstens ein essentielles Target.
+  Ist $(P, R)$ anti-symmetrisch, so existiert zu jeder Teilmenge höchstens ein essentielles Target.
 \end{theorem}
 \begin{proof}
   Angenommen für eine Teilmenge von $P$ existieren zwei verschiedene essentielle Targets $t_1$ und $t_2$.
@@ -1273,6 +1330,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann heiße $t \in P$ [essentielles] Target von $\alpha$ in $(P, R)$,
   falls $t$ ein [essentielles] Target von $\alpha(I)$ ist.
 \end{definition}
+
+\begin{figure}[h]
+  \Large
+  \def\svgwidth{0.85\textwidth}
+  \input{TransitivesRelat.pdf_tex}
+  \caption{Veranschaulichung von Lemma \ref{Lemma_TransitivesRelat}}
+  \label{fig:TransitivesRelat}
+\end{figure}  
 
 \begin{lemma}\label{Lemma_TransitivesRelat}
   Sei $(P, R)$ ein transitives binäres Relat. Dann gilt:
@@ -1300,11 +1365,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Damit ist die Behauptung bewiesen.
 \end{proof}
 
-\begin{figure}
-  \centering {\includegraphics[width=0.75\textwidth,height=0.75\textheight,keepaspectratio]{transitivesRelat.png}}
-  \caption{Veranschaulichung von Lemma \ref{Lemma_TransitivesRelat}}
-  \label{fig:TransitivesRelat}
-\end{figure}
+%\centering
 
 \begin{definition}
   Sei $\mathbb{P} = (P, R)$ ein vollständiger Verband.
@@ -1326,14 +1387,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{theorem}
 \begin{proof}
   Sei $\alpha \colon \{i\} \to P$ eine Abbildung.
-  Wegen der Reflexivität von $(P, R)$ besitzt $\alpha$ laut Satz \ref{Theorem_AntisymmetrischesRelat} genau ein essentielles Target,
-  welches laut Satz \ref{Theorem_ReflexivesRelat} $\alpha(i)$ ist.
+  Wegen der Antisymmetrie von $(P, R)$ besitzt $\alpha$ laut Satz \ref{Theorem_AntisymmetrischesRelat} genau ein essentielles Target,
+  welches laut Satz \ref{Theorem_ReflexivesRelat} $\alpha(i)$ ist, da $(P, R)$ reflexiv ist.
   Also ist $\text{sup}_\mathbb{P}(\alpha) = \alpha(i)$ und das Fundierungsaxiom gilt.
 
   Seien weiterhin $\alpha \colon I \to P$, $\eta \colon I \to A$
   und  $\beta \colon A \to P, a \mapsto \text{sup}_\mathbb{P}(\alpha_{\mid \eta^{-1}(a)})$ Abbildungen.
   Aufgrund der Antisymmetrie besitzt $\alpha$ genau ein essentielles Target $\text{sup}_\mathbb{P}(\alpha)$ in $(P, R)$ (Satz \ref{Theorem_AntisymmetrischesRelat}).
-  Aus dem selben Grund besitzt $\alpha_{\mid \eta^{-1}(a)}$ für alle $a \in A$ ein essentielles Target $\text{sup}_\mathbb{P}(\alpha_{\mid \eta^{-1}(a)}) = \beta(a)$.
+  Aus dem selben Grund besitzt $\alpha_{\mid \eta^{-1}(a)}$ für alle $a \in A$ genau ein essentielles Target $\text{sup}_\mathbb{P}(\alpha_{\mid \eta^{-1}(a)}) = \beta(a)$.
   Durch das soeben bewiesenen Lemma \ref{Lemma_TransitivesRelat} ergibt sich somit, 
   dass das essentielle Target von $\beta$ gleich dem essentiellen Target von $\alpha$ ist.
   Damit ist $\text{sup}_\mathbb{P}(\alpha) = \text{sup}_\mathbb{P}(\beta)$, womit gezeigt ist, dass auch das Teilsummenaxiom erfüllt ist.
@@ -1344,6 +1405,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dies entspricht laut Satz \ref{Theorem_ReflexivesRelat} $p$ selbst, also gilt für alle $i \in I$: $\sup_\mathbb{P}(\alpha) = p = \alpha(i)$.
 
 \end{proof}
+
+\begin{figure}[h]
+  \large
+  \def\svgwidth{0.3\textwidth}
+  \centering
+  \input{GegenbeispielTeilsummenaxiom.pdf_tex}
+  \caption{Transitivität ist notwending für das Teilsummenaxiom}
+  \label{fig:GegenbeispielTeilsummenaxiom}
+\end{figure}  
 
 \begin{theorem}
   Ist $\mathbb{S} = (S, \Sigma)$ eine idempotente finitäre Summationsstruktur 
@@ -1375,7 +1445,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Ein Summoid ist definiert als Quadrupel $\mathcal{S} = (S, \Sigma, *, \varepsilon)$,
   bestehend aus einer Summationsstruktur $\mathcal{S}_\text{Sum} = (S, \Sigma)$ und 
   einem Monoid $\mathcal{S}_\text{Mult} = (S, *, \varepsilon)$, sodass
-  für ein Element $s \in S$ und eine Abbildung $\alpha \colon I \to S$ folgende Distributivgesetze gelten:
+  für ein beliebiges Element $s \in S$ und eine beliebige Abbildung $\alpha \colon I \to S$ folgende Distributivgesetze gelten:
   \begin{align*}
     s \ast \Sigma(\alpha) = \Sigma(s \ast \alpha) \text{ mit } s \ast \alpha \colon I \to S, i \mapsto s \ast \alpha(i) \\
     \Sigma(\alpha) \ast s = \Sigma(\alpha \ast s) \text{ mit } \alpha \ast s \colon I \to S, i \mapsto \alpha(i) \ast s
@@ -1487,7 +1557,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   wodurch noch zu zeigen bleibt, dass für jede beliebige Abbildung $\varphi \colon \Lambda \to \text{End}_\mathbb{S}$
   gilt: $\bar\Sigma(\varphi) \in \text{End}_\mathbb{S}$. 
   Sei dazu $\alpha \colon I \to S$ eine Abbildung.
-  Dann gilt:
+  Dann ist
   \begin{align*}
     (\bar\Sigma(\varphi))(\Sigma(\alpha)) 
     &= \sum_{\lambda \in \Lambda}\varphi_\lambda(\Sigma(\alpha)) \\
@@ -1498,7 +1568,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= \Sigma((\bar\Sigma(\varphi)) \circ \alpha).
   \end{align*}
 
-  Wie man leicht sieht ist $(\text{End}_\mathbb{S}, \circ, \text{id}_S)$ ein Monoid, 
+  $(\text{End}_\mathbb{S}, \circ, \text{id}_S)$ ist ein Monoid, 
   sodass nur noch die Distributivgesetze gezeigt werden müssen.
   Seien dazu $\psi \in \text{End}_\mathbb{S}$, $\varphi \colon \Lambda \to \text{End}_\mathbb{S}$.
   Dann gilt für alle $s \in S$
@@ -1535,9 +1605,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     \varphi(\sup(\alpha))= \inf(\varphi \circ \alpha).
   \end{equation*}
-  Außerdem gilt für alle $a, b \in [0, \infty]$:
+  Außerdem gilt für alle $a, b \in [0, \infty]$
   \begin{equation*}
-    \varphi(a + b) = 2^{-(a+b)} = \varphi(a) \cdot \varphi(b).
+    \varphi(a + b) = 2^{-(a+b)} = \varphi(a) \cdot \varphi(b)
+  \end{equation*}
+  sowie
+  \begin{equation*}
+    \varphi(0) = 2^0 = 1.
   \end{equation*}
 \end{proof}
 
@@ -1577,6 +1651,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= \lambda_{s_1}(\lambda_{s_2}(s))
     = (\lambda(s_1) \circ \lambda(s_2))(s).
   \end{align*}
+  Außerdem ist für ein beliebiges $s \in S$
+  \begin{equation*}
+    \lambda_\varepsilon(s) = \varepsilon \ast s = s = \text{id}_S(s).
+  \end{equation*}
   Damit ist gezeigt, dass $\lambda$ ein Homomorphismus von $\mathcal{S}$ nach $\text{End}_\mathcal{S}$ ist.
 
   Um noch schließlich die Injektivität zu zeigen seien $s, t \in S$ und $\lambda(s) = \lambda(t)$.
@@ -1588,19 +1666,19 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{example}
   Sei $\text{Nat} = (\mathbb{N}, \Sigma, \cdot, 1)$ das natürliche Summoid.
-  Dann ist \\$End(\text{Nat}_\text{Sum}) = (End_{\text{Nat}_\text{Sum}}, \bar\Sigma, \circ, \text{id}_\mathbb{N})$ das zur natürlichen Summationsstruktur gehörige Endomorphismen-Summoid.
+  Dann ist \\$\text{End}(\text{Nat}_\text{Sum}) = (End_{\text{Nat}_\text{Sum}}, \bar\Sigma, \circ, \text{id}_\mathbb{N})$ das zur natürlichen Summationsstruktur gehörige Endomorphismen-Summoid.
 
   Sei $\mathbbm{1}^{[n]} \colon [n] \to \mathbb{N}, i \mapsto 1$ für jedes $n \in \mathbb{N}$.
-  Dann gilt für jedes $\varphi \in End_{\text{Nat}_\text{Sum}}$:
+  Dann gilt für jedes $\varphi \in \text{End}_{\text{Nat}_\text{Sum}}$:
   \begin{equation*}
     \varphi(n) = \varphi(\Sigma(\mathbbm{1}^{[n]})) = \Sigma(\varphi \circ \mathbbm{1}^{[n]}) = \sum_{i \in [n]}\varphi(1) = (\varphi(1)) \cdot n.
   \end{equation*}
 
   Für jedes $k \in \mathbb{N}$ ist $\lambda_k \colon \mathbb{N} \to \mathbb{N}, n \mapsto k \cdot n$
   stets ein Endomorphismus von $\text{Nat}$.
-  Denn für jede Abbildung $\alpha \colon I \to \mathbb{N}$ gilt stets:
+  Denn für jede Abbildung $\alpha \colon I \to \mathbb{N}$ gilt
   \begin{equation*}
-    \lambda_k(\Sigma(\alpha)) = k \cdot \sum_{i \in I}\alpha(i) = \sum_{i \in I}k \cdot \alpha(i) = \sum \lambda_k(\alpha).
+    \lambda_k(\Sigma(\alpha)) = k \cdot \sum_{i \in I}\alpha(i) = \sum_{i \in I}k \cdot \alpha(i) = \sum_{i \in I} \lambda_k(\alpha(i)).
   \end{equation*}
 
   Damit ist $End_{\text{Nat}_\text{Sum}} = \{\lambda_k \mid k \in \mathbb{N}\}$
@@ -1633,18 +1711,20 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{example}
-  Seien $H = \{1, 2\}$ und $I = \{a, b, c, d\}$ Mengen und $F \in \mathcal{P}(I)^H$ 
-  mit $F = (\{a\}, \{b, c\})$ eine Familie.
+  Seien $H = \{1, 2\}$ und $I = \{a, b, c, d\}$ Mengen und $(I_h)_{h \in H} \in \mathcal{P}(I)^H$ 
+  mit $I_1 = \{a\}$ und $I_2 =  \{b, c\}$ eine Familie.
   Dann ist
   \begin{align*}
-    \bigtimes_{h \in H}F = \{&\gamma_1 \colon H \to \{a, b, c\}, \{ 1 \mapsto a, 2 \mapsto b\}, \\ 
+    \bigtimes_{h \in H} I_h = \{&\gamma_1 \colon H \to \{a, b, c\}, \{ 1 \mapsto a, 2 \mapsto b\}, \\ 
                               &\gamma_2 \colon H \to \{a, b, c\}, \{ 1 \mapsto a, 2 \mapsto c\} \}.
   \end{align*}
 \end{example}
 
 \begin{theorem}\label{Theroem_Ausmultiplitzieren}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid.
-  Dann gilt für jede endliche Menge $H$ und jede beliebige Menge $I$ sowie für jede beliebige Mengenfamilie $I_h = (I_h)_{h \in H} \in \mathcal{P}(I)^H$
+  Dann gilt für jede endliche Menge $H$
+  und jede beliebige Menge $I$
+  sowie für jede beliebige Mengenfamilie $(I_h)_{h \in H} \in \mathcal{P}(I)^H$
   und jede Familie $(\alpha_h)_{h \in H}$ von Abbildungen $\alpha_h \colon I_h \to S$ stets:
   \begin{equation*}
     \prod_{h \in H}\sum_{i_h \in I_h}\alpha_h(i_h) = \sum_{(i_h)_{h \in H} \in \bigtimes_{h \in H}I_h}\prod_{h \in H}\alpha_h(i_h),
@@ -1711,7 +1791,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   $(S, \Pi)$ die zu $\mathcal{S}_\text{Mult}$ gehörige finitäre Summationsstruktur
   und $(S, +, \varepsilon)$ das zu $\mathcal{S}_\text{Sum}$ gehörige kommutative Monoid,
   sodass $0_\mathcal{S} = \varepsilon$.
-  Dann ist $(S, \text{SOP}_\mathcal{S})$ eine Summationsstruktur.
+  Dann ist $(S, \text{SOP}_\mathcal{S})$ eine \hyphenation{Summations-struktur}.
 \end{theorem}
 \begin{proof}
   Sei $\alpha \colon \{i\} \to S$ eine Abbildung.
@@ -1778,7 +1858,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Das Łukasiewicz-Monoid ist definiert als $\mathbb{L} = ([0, 1], \ast, 1)$.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{Theorem_LukasiewiczAllgemein}
   Sei $\ast$ die Łukasiewicz-Norm.
   Dann gilt für beliebige Tupel \\ $(x_0, \dots, x_n) \in [0, 1]^{n+1}$:
   \begin{equation*}
@@ -1809,19 +1889,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{theorem}
-  Das Łukasiewicz-Monoid ist ein Monoid.
+  Das Łukasiewicz-Monoid ist ein kommutatives Monoid.
 \end{theorem}
 \begin{proof}
-  Als erstes soll die Assoziativität gezeigt werden.
-  Für $x, y, z \in [0, 1]$ gilt
-  \begin{align*}
-    (x \ast y) \ast z &= \max(((x + y) + z) - 2, 0) \\
-    &= \max((x + (y + z)) - 2, 0) = x \ast (y \ast z).
-  \end{align*}
+  Die Assoziativität folgt aus Satz \ref{Theorem_LukasiewiczAllgemein}.
   $1$ ist das neutrale Element, da für alle $x \in [0, 1]$
   \begin{equation*}
     1 \ast x = \max(1 + x - 1, 0) = \max(x, 0) = x = \max(x + 1 - 1, 0) = x \ast 1 \qedhere
   \end{equation*}
+  Die Kommutativität ergibt sich direkt aus der Definition.
 \end{proof}
 
 \begin{definition}
@@ -1861,7 +1937,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}
   Die Fuzzy-Negation ist ein Ordnungsisomorphismus zwischen den Ordnungen $([0, 1], \leq)$ und $([0, 1], \geq)$.
-  Die Fuzzy-Negation ist deshalb ein Antiautomorphismus.
 \end{theorem}
 \begin{proof}
   Sei $a, b \in [0, 1]$ mit $a \leq b$.
@@ -1893,10 +1968,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{align*}
 \end{proof}
 
+\newpage
+
 \begin{definition}
   Seien $a, c \in [0, 1]$. Das größte $b \in [0, 1]$, für das $a \wedge b \leq c$ gilt wird mit $a \overset{\wedge}{\rightarrow} c$ bezeichnet.
+\end{definition}
 
-  $a \overset{\wedge}{\rightarrow} c$ ist also definiert als 
+\begin{theorem}
+  Für $a, c \in [0, 1]$ gilt
   \[   
   a \overset{\wedge}{\rightarrow} c = 
     \begin{cases}
@@ -1904,7 +1983,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
       c &\quad\text{sonst.}
     \end{cases}
   \]
-\end{definition}
+\end{theorem}
 
 \begin{definition}
   Sei $\ast$ die Łukasiewicz-Norm und $a, c \in [0, 1]$.
@@ -1912,10 +1991,19 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{theorem}
-  $a \overset{\ast}{\rightarrow} c = (\overline{a} + c) \wedge 1$.
+  Für $a, c \in [0, 1]$ gilt
+  \[   
+  a \overset{\ast}{\rightarrow} c = 
+    \begin{cases}
+      1 &\quad\text{wenn } a \leq c \\
+      \overline{a} + c &\quad\text{sonst.}
+    \end{cases}
+  \]
 \end{theorem}
 \begin{proof}
-  Für $x = a \overset{\ast}{\rightarrow} c$ muss folgende Ungleichung gelten:
+  Ist $a \leq c$, so ist $a \ast 1 = a \leq c$.
+  Ist $a > c$, so muss
+  für $x = a \overset{\ast}{\rightarrow} c$ folgende Ungleichung gelten:
   \begin{equation*}
     a + x - 1 \leq a \ast x \leq c.
   \end{equation*}
@@ -1923,7 +2011,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     x \leq (1 - a) + c = \overline{a} + c.
   \end{equation*}
-  Ist $\overline{a} + c \geq 1$, so muss $a \overset{\ast}{\rightarrow} c = 1$ sein und ansonsten $\overline{a} + c$.
+  Das größte $x$ ist dementsprechend genau $\overline{a} + c$.
 \end{proof}
 
 \begin{definition}
@@ -1931,6 +2019,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Die größte Menge $B \subseteq \Omega$ mit $A \cap B \subseteq C$ wird bezeichnet als $A \overset{\cap}{\rightarrow} C$.
 \end{definition}
 \begin{theorem}
+  Für $A, B \subseteq \Omega$ gilt
   \[   
   A \overset{\cap}{\rightarrow} C = 
     \begin{cases}
@@ -1940,7 +2029,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \]
 \end{theorem}
 \begin{proof}
-  Für $A \subseteq C$ ist die Aussage offensichtlich erfüllt.
+  Für $A \subseteq C$ ist $A \cap \Omega = A \subseteq C$.
   Ist dagegen $A \nsubseteq C$, so gilt
   \begin{equation*}
     A \cap (\bar{A} \cup C) = (A \cap \bar{A}) \cup (A \cap C) = A \cap C \subseteq C.
@@ -1949,14 +2038,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dazu sei angenommen es existiere eine weitere Menge $Y$ mit $(\bar{A} \cup C) \subsetneq Y$
   und $A \cap Y \subseteq C$.
   Sei $y \in Y \setminus (\bar{A} \cup C) = (Y \setminus \bar{A}) \cap (Y \setminus C)$.
-  Das beudetet, dass $y \in A$ und $y \notin C$.
-  Aus $y \in A$ folgt aber auch laut Voraussetzung $y \in C$.
+  Das bedeutet, dass $y \in Y$ sowie $y \in A$ und $y \notin C$.
+  Aus $y \in A \cap Y$ und $A \cap Y \subseteq C$ folgt aber $y \in C$.
 \end{proof}
 
 \newpage
 \section{Summoid-Module}
 
-\begin{definition}
+\begin{definition}\label{Definition_SummoidModul}
   Sei $\mathbb{M} = (M, \Sigmacirc)$ eine Summationsstruktur, $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
   und $\text{scal} \colon S \to \text{End}_\mathbb{M}$ ein Homomorphismus von $\mathcal{S}$ nach $\text{End}(\mathbb{M})$
   mit $\text{End}(\mathbb{M}) = (\text{End}_\mathbb{M}, \bar\Sigma, \circ, \text{id}_M)$.
@@ -1966,15 +2055,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{definition}
   Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul mit
   $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$.
-  Dann heißt eine Abbildung 
+  Dann ist die Operation
   \begin{equation*}
     \cdot \colon S \times M \to M, (s, m) \mapsto s \cdot m = (\text{scal}(s))(m)
   \end{equation*}
-  (linksseitiges) Scaling bzgl. $(\mathbb{M}, \mathcal{S})$.
+  das (linksseitiges) Scaling bzgl. $\mathfrak{M}$ bzw. $(\mathbb{M}, \mathcal{S})$.
 \end{definition}
 
 \begin{remark}
-  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul wie oben.
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul wie in Definition \ref{Definition_SummoidModul}.
   Dann gelten folgende Eigenschaften:
   \begin{enumerate}
     \item Da $\text{scal}$ ein Homomorphismus ist, gilt für alle $(s_i)_{i \in I} \in S^I$
@@ -2040,10 +2129,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Dann ist $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
-  mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$
+  Dann ist $\text{Mod}(\mathcal{S}, N) = (({\mathcal{S}_\text{Sum}})^N, \mathcal{S}, \text{scal})$
+  mit ${(\mathcal{S}_\text{Sum}})^N = (S^N, \Sigmacirc)$
   das $N$-freie Summoid-Modul über $\mathcal{S}$, wobei
-  $\text{scal} \colon S \to \text{End}_{{\mathcal{S}_\text{Sum}}^N}$ eine Abbildung mit
+  $\text{scal} \colon S \to \text{End}_{{(\mathcal{S}_\text{Sum}})^N}$ eine Abbildung mit
   \begin{equation*}
     \text{scal}(s) \colon S^N \to S^N, v \mapsto (s \ast v(n))_{n \in N}
   \end{equation*}
@@ -2051,25 +2140,43 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Dann ist $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
-  mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ ein Summoid-Modul.
+  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul mit
+  $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$.
+  Dann gilt für alle $m \in M$
+  \begin{equation*}
+    0_\mathcal{S} \cdot m = 0_\mathbb{M}.
+  \end{equation*}
 \end{theorem}
 \begin{proof}
-  Zunächst muss gezeigt werden, dass $\text{scal}(s) \in \text{End}_{{\mathcal{S}_\text{Sum}}^N}$.
+  Sei $\alpha \colon \emptyset \to S$, dann ist
+  \begin{equation*}
+    0_\mathcal{S} \cdot m
+    = \bigg( \sum_{i \in \emptyset} \alpha(i) \bigg) \cdot m
+    = \sumcirc_{i \in \emptyset} \alpha(i) \cdot m
+    = 0_\mathbb{M}.
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
+  Dann ist $\text{Mod}(\mathcal{S}, N) = (({\mathcal{S}_\text{Sum}})^N, \mathcal{S}, \text{scal})$
+  mit ${(\mathcal{S}_\text{Sum}})^N = (S^N, \Sigmacirc)$ ein Summoid-Modul.
+\end{theorem}
+\begin{proof}
+  Zunächst muss gezeigt werden, dass $\text{scal}(s) \in \text{End}_{({\mathcal{S}_\text{Sum}})^N}$.
   Dazu sei $(v_i)_{i \in I} \in (S^N)^I$ und $s \in S$.
   Dann ist
   \begin{align*}
-    \bigg( \text{scal}(s) \bigg(\sumcirc_{i \in I} v_i \bigg) \bigg)(n)
+    \bigg( s \cdot \sumcirc_{i \in I} v_i \bigg)(n)
     &= s \ast \bigg( \sumcirc_{i \in I} v_i \bigg)(n) \\
     &= s \ast \sum_{i \in I} v_i(n) \\
     &= \sum_{i \in I} s \ast v_i(n) \\
-    &= \sum_{i \in I} ((\text{scal}(s))(v_i))(n) \\
-    &= \bigg( \sumcirc_{i \in I} (\text{scal}(s))(v_i) \bigg)(n).
+    &= \sum_{i \in I} (s \cdot v_i)(n) \\
+    &= \bigg( \sumcirc_{i \in I} s \cdot v_i \bigg)(n).
   \end{align*}
 
   Weiterhin ist zu zeigen, dass $\text{scal}$ ein Homomorphismus 
-  zwischen $\mathcal{S}$ und dem Endomorphismen-Summoid $\text{End}({\mathcal{S}_\text{Sum}}^N) = (\text{End}_{{\mathcal{S}_\text{Sum}}^N}, \bar\Sigma, \circ, \text{id}_{S^N})$ ist.
+  zwischen $\mathcal{S}$ und dem Endomorphismen-Summoid $\text{End}(({\mathcal{S}_\text{Sum}})^N) = (\text{End}_{({\mathcal{S}_\text{Sum}})^N}, \bar\Sigma, \circ, \text{id}_{S^N})$ ist.
 
   Es sei $v \in S^N$ und $n \in N$ sowie $(s_i)_{i \in I} \in S^I$ für eine Menge $I$. 
   Dann ist
@@ -2081,7 +2188,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= \bigg(\sumcirc_{i \in I} (\text{scal}(s_i))(v)\bigg)(n) \\
     &= \Bigg(\bigg(\sumbar_{i \in I}\text{scal}(s_i)\bigg)(v)\Bigg)(n).
   \end{align*}
-
   Außerdem ist für $s, t \in S$
   \begin{align*}
     ((\text{scal}(s \ast t))(v))(n)
@@ -2091,11 +2197,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= (\text{scal}(s)(\text{scal}(t)(v)))(n) \\
     &= (\text{scal}(s) \circ \text{scal}(t))(n).
   \end{align*}
+  Schließlich ist für $v \in S^N$
+  \begin{equation*}
+    \varepsilon \cdot v = v = \text{id}_{S^N}(v).
+  \end{equation*}
 \end{proof}
 
 \begin{definition}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Dann heiße die Abbildung $\delta^N \colon N \to S^N, n \mapsto \delta^N_n$ mit
+  Dann heißt die Abbildung $\delta^N \colon N \to S^N, n \mapsto \delta^N_n$ mit
   \begin{equation*}
     \delta^N_n \colon N \to S, n' \mapsto
     \begin{cases}
