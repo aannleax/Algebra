@@ -920,9 +920,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \beta_2(1) &= \Sigma(\alpha_{\mid \eta_2^{-1}(1)}) = \Sigma(\alpha_{\mid \emptyset}) = 0 \text{ und}\\
     \beta_2(2) &= \Sigma(\alpha_{\mid \eta_2^{-1}(2)}) = \Sigma(\alpha_{\mid \{1\}}) = \alpha(1) = m.
   \end{align*}
-  Laut Teilsummenaxiom gilt schließlich:
+  Laut Teilsummenaxiom gilt schließlich
   \begin{align*}
-    \Sigma(\beta_1) = \Sigma(\alpha) = \Sigma(\beta_2).
+    \Sigma(\beta_1) = \Sigma(\alpha) = \Sigma(\beta_2)
   \end{align*}
   und damit
   \begin{align*}
@@ -1040,7 +1040,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{align*}
     \Sigma^\text{fin}(\alpha) 
     &= \alpha(i_1) + \dots \alpha(i_n) \\
-    &= m +\dots + m 
+    &= m +\dots + m \\
     &= m = \alpha(i).
   \end{align*}
   Sei umgekehrt $(M, \Sigma^\text{fin})$ eine idempotente Summationsstruktur und $m \in M$ ein Element aus der Grundmenge.
@@ -1297,14 +1297,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \captionof{figure}{Fast-Targoid}\label{fig:OrdnungFastTargoid}
 \end{minipage}
 
-\begin{remark}
+\begin{example}
   Abbildung \ref{fig:AntiOrdnungTargoid} zeigt ein Targoid,
   welches nicht reflexiv, nicht antisymmetrisch und nicht transitiv ist.
 
   Abbildung \ref{fig:OrdnungFastTargoid} zeigt eine Ordnung,
   sodass jede Teilmenge ein Target besitzt,
-  aber kein Targoid ist.
-\end{remark}
+  welche aber kein Targoid ist.
+\end{example}
 
 \begin{theorem}\label{Theorem_ReflexivesRelat}
   Ist $(P, R)$ ein reflexives binäres Relat, 
@@ -1354,9 +1354,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Das bedeutet, dass für alle $a \in A$ gilt: $\beta(a) \mathrel{R} t$, womit gezeigt wäre, 
   dass $t$ ein Target von $\beta$ in $(P, R)$ ist.
 
-  Sei $u \in P$ ein weiteres Target von $\beta$ in $(P, R)$.
+  Sei $u \in P$ ein beliebiges Target von $\beta$ in $(P, R)$.
   Das heißt $\forall a \in A \colon t_a \mathrel{R} u$.
-  Für jedes $a \in A$ ist $t_a$ aber auch Target von $\alpha_{\mid \eta^{-1}(a)}$,
+  Für jedes $a \in A$ ist $t_a$ auch Target von $\alpha_{\mid \eta^{-1}(a)}$,
   weshalb $\forall i \in \eta^{-1}(a) \colon \alpha(i) \mathrel{R} t_a$.
   Da $(P, R)$ transitiv ist gilt damit $\forall a \in A \forall i \in \eta^{-1}(a) \colon \alpha(i) \mathrel{R} u$
   und somit $\forall i \in I \colon \alpha(i) \mathrel{R} u$, d.h. $u$ ist Target von $\alpha$ in $(P, R)$.
@@ -1411,9 +1411,20 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \def\svgwidth{0.3\textwidth}
   \centering
   \input{GegenbeispielTeilsummenaxiom.pdf_tex}
-  \caption{Transitivität ist notwending für das Teilsummenaxiom}
-  \label{fig:GegenbeispielTeilsummenaxiom}
-\end{figure}  
+  \caption{Transitivität ist notwending für das Teilsummenaxiom}\label{fig:GegenbeispielTeilsummenaxiom}
+\end{figure}
+
+\begin{example}
+  Abbildung \ref{fig:GegenbeispielTeilsummenaxiom} zeigt,
+  dass das Teilsummenaxiom verletzt sein könnte,
+  wenn das Relat zwar reflexiv, antisymmetrisch und ein Targoid ist,
+  aber nicht transitiv.
+  Denn das essentielle Target von $\{a, b\}$ ist $b$,
+  für $\{c\}$ ist es $c$,
+  aber für $\{a, b, c\}$ ist es nicht das essentielle Target von $\{b, c\}$,
+  was $c$ wäre,
+  sondern $\top$.
+\end{example}
 
 \begin{theorem}
   Ist $\mathbb{S} = (S, \Sigma)$ eine idempotente finitäre Summationsstruktur 
@@ -1432,10 +1443,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     y = x + s_1 = x + (x + s_1) = x + y = y + x = y + (y + s_2) = y + s_2 = x.
   \end{equation*}
-
-  Zu zeigen bleibt also noch, dass jede Teilmenge von $S$ ein essentielles Target besitzt.
-  Sei also $X \subseteq S$ eine Teilmenge von $S$ und $t = \text{max}(X)$.
-  Dann ist $t$ das essentielle Target von $X$ und die Aussage ist bewiesen.
+  Sei nun $X = \{x_1, \dots, x_n\} \subseteq_\text{fin} S$ eine endliche Teilmenge von $S$.
+  Dann ist $t = x_1 + \dots + x_n$ das essentielle Target von $X$.
+  Denn für $x \in X$ gilt $x + t = t$, also $x \leq_\mathbb{S} t$.
+  Ist nun $u \in S$ ein Target von $X$, 
+  d.h. gilt $\forall i \in [n] \exists z_i \in S \colon x_i + z_i = u$,
+  so ist 
+  \begin{equation*}
+    u = (x_1 + z_1) + \dots + (x_n + z_n) = (x_1 + \dots + x_n) + (z_1 + \dots + z_n) = t + z,
+  \end{equation*}
+  wobei $z = z_1 + \dots + z_n \in S$.
+  Also gilt auch $t \leq_\mathbb{S} u$.
 \end{proof}
 
 \newpage
@@ -2157,7 +2175,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{Theorem_ModSNSummoidModul}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
   Dann ist $\text{Mod}(\mathcal{S}, N) = (({\mathcal{S}_\text{Sum}})^N, \mathcal{S}, \text{scal})$
   mit ${(\mathcal{S}_\text{Sum}})^N = (S^N, \Sigmacirc)$ ein Summoid-Modul.
@@ -2238,9 +2256,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathfrak{M}$ ein Summoid-Modul, $N$ eine Menge und $\gamma \in M^N$ eine $N$-fache Vektorenfamilie von $\mathfrak{M}$.
-  Dann ist $f_\gamma$ definiert als
+  Dann ist $f_\gamma$, definiert als
   \begin{equation*}
-    f_\gamma \colon S^N \to M, u \mapsto u \odot \gamma
+    f_\gamma \colon S^N \to M, u \mapsto u \odot \gamma,
   \end{equation*}
   die lineare Fortsetzung von $\gamma$.
 \end{definition}
@@ -2262,8 +2280,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{theorem}\label{Theorem_FGammaSLinear}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Sei weiterhin $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
-  mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
+  Sei weiterhin $\text{Mod}(\mathcal{S}, N) = (({\mathcal{S}_\text{Sum}})^N, \mathcal{S}, \text{scal})$
+  mit ${(\mathcal{S}_\text{Sum}})^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
   sowie $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal'})$
   mit $\mathbb{M} = (M, \Sigmacirc')$ ein Summoid-Modul.
   Ist außerdem $\gamma \in M^N$ eine $N$-fache Vektorenfamilie von $\mathfrak{M}$.
@@ -2281,7 +2299,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= {\sumcirc_{i \in I}}' {\sumcirc_{n \in N}}' u_i(n) \cdot' \gamma(n) \\
     &= {\sumcirc_{i \in I}}' f_\gamma(u_i).
   \end{align*}
-  Also ist $f_\gamma$ ein Homomorphismus von ${\mathcal{S}_\text{Sum}}^N$ nach $\mathbb{M}$.
+  Also ist $f_\gamma$ ein Homomorphismus von $({\mathcal{S}_\text{Sum}})^N$ nach $\mathbb{M}$.
 
   Sei nun $v \in S^N$ und $s \in S$.
   Dann ist
@@ -2325,9 +2343,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist
   \begin{align*}
     (f_\gamma \circ \delta^N)(n) 
-    &= f_\gamma(\delta^N(n)) \\
     &= f_\gamma(\delta^N_n) \\
-    &= \delta^N_n \odot \gamma \\
     &= \sumcirc_{n' \in N}\delta^N_n(n') \cdot \gamma(n') \\
     &= \varepsilon \cdot \gamma(n) \\
     &= \gamma(n).
@@ -2363,21 +2379,21 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Dann ist $\gamma_{\mid N'}$ linear unabhängig.
 \end{lemma}
 \begin{proof}
-  Seien $u', w' \in S^{N'}$ Familien von Skalaren.
-  Sei weiterhin eine Abbildung
+  Seien $u_1', u_2' \in S^{N'}$ Familien von Skalaren.
+  Seien weiterhin für $i \in \{1, 2\}$ die Abbildungen
   \begin{equation*}
-    u \colon N \to S, n \mapsto
+    u_i \colon N \to S, n \mapsto
     \begin{cases}
-      u'(n) & \text{falls } n \in N' \\
+      u_i'(n) & \text{falls } n \in N' \\
       0_\mathcal{S} & \text{sonst}
     \end{cases}
   \end{equation*}
-  mit $u_{\mid N'} = u'$ sowie analog dazu eine Abbildung $w \colon N \to S$ definiert.
+  definiert, sodass ${u_i}_{\mid N'} = u_i'$ .
   Dann gilt
   \begin{equation*}
-    u' \odot \gamma_{\mid N'} = w' \odot \gamma_{\mid N'} \iff u \odot \gamma = w \odot \gamma,
+    u_1' \odot \gamma_{\mid N'} = u_2' \odot \gamma_{\mid N'} \iff u_1 \odot \gamma = u_2 \odot \gamma,
   \end{equation*}
-  woraus wegen der Unabhängigkeit von $\gamma$ demnach $u = w$ und damit $u' = w'$ folgt.
+  woraus wegen der Unabhängigkeit von $\gamma$ demnach $u_1 = u_2$ und damit $u_1' = u_2'$ folgt.
 \end{proof}
 
 \begin{theorem}
@@ -2393,7 +2409,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  Sei $m \in M$. 
+  Für die erste Aussage sei $m \in M$. 
   Da $\gamma$ erzeugend ist existiert ein $u \in S^N$ mit $u \odot \gamma = m$.
   Da $\kappa$ surjektiv ist existiert eine Abbildung $\eta \colon N \to K$
   mit $\kappa \circ \eta = \text{id}_N$.
@@ -2406,7 +2422,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \end{cases}  
   \end{equation*}
   eine Abbildung.
-  Dann gilt:
+  Dann gilt
   \begin{align*}
     w \odot (\gamma \circ \kappa) 
     &= \sumcirc_{k \in K}w(k) \cdot \gamma(\kappa(k)) \\
@@ -2460,7 +2476,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
   Seien weiterhin $K$, $N$ Mengen, $\delta^N$ die Standardbasis von $\text{Mod}(S, N)$
   und eine Abbildung $\kappa \colon K \to N$ gegeben.
-  Dann gilt für alle $k \in K$:
+  Dann gilt für alle $k \in K$
   \begin{equation*}
     \varphi_\kappa(\delta^N_{\kappa(k)})= \chi^K_{\kappa^{-1}(\kappa(k))}.
   \end{equation*}
@@ -2479,7 +2495,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{proof}
 
 \begin{corollary}
-  Ist $\kappa$ zudem injektiv, so gilt:
+  Ist $\kappa$ zudem injektiv, so gilt
   \begin{equation*}
     \varphi_\kappa(\delta^N_{\kappa(k)}) = \delta^K_k. 
   \end{equation*}
@@ -2499,21 +2515,21 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   Seien weiterhin $K$ und $N$ Mengen und $\delta^N$ und $\delta^K$ die
   Standardbasen von $\text{Mod}(\mathcal{S}, N)$ bzw. $\text{Mod}(\mathcal{S}, K)$
   sowie $\kappa \colon K \to N$ eine Abbildung.
-  Dann gilt:
+  Dann gilt für alle $k \in K$
   \begin{equation*}
-    \psi_\kappa \circ \delta^K = \delta^N \circ \kappa.
+    \psi_\kappa(\delta^K_k)= \delta^N_{\kappa(k)}.
   \end{equation*}
 \end{theorem}
 \begin{proof}
   Sei $k \in K$ und $n \in N$. Dann ist
   \begin{align*}
-    (\psi_\kappa(\delta^K(k)))(n) 
+    (\psi_\kappa(\delta^K_k))(n) 
     &= \sum_{k' \in \kappa^{-1}(n)}\delta^K_k(k') \\
     &= \begin{cases}
       \varepsilon & \kappa(k) = n \\
       0_\mathcal{S} & \text{sonst}
     \end{cases} \\
-    &= (\delta^N_\kappa(k))(n).
+    &= \delta^N_{\kappa(k)}(n).
   \end{align*}
 \end{proof}
 
@@ -2531,43 +2547,27 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{proof}
   Sei $v \in S^K$. Dann ist
   \begin{align*}
-    f_\lambda(v)
-    &= v \odot (\gamma \circ \kappa) \\
-    &= \sumcirc_{k \in K}v(k) \cdot \gamma(\kappa(k)) \\
-    &= \sumcirc_{n \in N}\sumcirc_{k \in \kappa^{-1}(n)} \big(v(k)\cdot \gamma(\kappa(k))\big) \\
-    &= \sumcirc_{n \in N}\sumcirc_{k \in \kappa^{-1}(n)} \big(v(k)\cdot \gamma(n)\big) \\
-    &= \sumcirc_{n \in N}\bigg(\sum_{k \in \kappa^{-1}(n)} v(k) \bigg) \cdot \gamma(n) \\
+    f_\gamma(\psi_\kappa(v))
     &= \sumcirc_{n \in N}(\psi_\kappa(v))(n) \cdot \gamma(n) \\
-    &=  \psi_\kappa(v) \odot \gamma \\
-    &= f_\gamma(\psi_\kappa(v)).
+    &= \sumcirc_{n \in N}\bigg(\sum_{k \in \kappa^{-1}(n)} v(k) \bigg) \cdot \gamma(n) \\
+    &= \sumcirc_{n \in N}\sumcirc_{k \in \kappa^{-1}(n)} v(k)\cdot \gamma(n) \\
+    &= \sumcirc_{n \in N}\sumcirc_{k \in \kappa^{-1}(n)} v(k)\cdot \gamma(\kappa(k)) \\
+    &= \sumcirc_{k \in K}v(k) \cdot \gamma(\kappa(k)) \\
+    &= f_\lambda(v).
   \end{align*}
 \end{proof}
 
-\begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
-  Seien weiterhin $K$ und $N$ Mengen, $\kappa \colon K \to N$ eine Abbildung
-  und $\delta^N$ die Standardbasis von $\text{Mod}(\mathcal{S}, N)$.
-  Dann gilt:
+\begin{corollary}
+  Für $\gamma = \delta^N$ ergibt sich
   \begin{equation*}
     \psi_\kappa = f_{\delta^N \circ \kappa}.
   \end{equation*}
-\end{theorem}
-\begin{proof}
-  Sei $v \in S^K$ und $n \in N$. Dann ist
-  \begin{align*}
-    (f_{\delta^N \circ \kappa}(v))(n)
-    &= (v \odot (\delta^N \circ \kappa))(n) \\
-    &= \bigg(\sumcirc_{k \in K} v(k) \cdot \delta^N_{\kappa(k)}\bigg)(n) \\
-    &= \sum_{k \in K} v(k) \ast \delta^N_{\kappa(k)}(n) \\
-    &= \sum_{k \in \kappa^{-1}(n)} v(k) \\
-    &= (\psi_\kappa(v))(n).
-  \end{align*}
-\end{proof}
+\end{corollary}
 
 \begin{theorem}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid und $N$ eine Menge.
-  Sei weiterhin $\text{Mod}(\mathcal{S}, N) = ({\mathcal{S}_\text{Sum}}^N, \mathcal{S}, \text{scal})$
-  mit ${\mathcal{S}_\text{Sum}}^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
+  Sei weiterhin $\text{Mod}(\mathcal{S}, N) = (({\mathcal{S}_\text{Sum}})^N, \mathcal{S}, \text{scal})$
+  mit $({\mathcal{S}_\text{Sum}})^N = (S^N, \Sigmacirc)$ das $N$-freie Summoid-Modul über $\mathcal{S}$
   sowie $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal'})$
   mit $\mathbb{M} = (M, \Sigmacirc')$ ein Summoid-Modul.
   Seien zudem $f$ und $g$ $\mathcal{S}$-lineare Abbildungen von $\text{Mod}(S, N)$ nach $\mathfrak{M}$.
@@ -2593,9 +2593,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \subsection{Matrizen und lineare Abbildungen}
 
 \begin{definition}
-  Seien $K$, $N$ und $S$ Mengen und $\rho \in (S^N)^K$ eine Abbildung.
-  Dann ist $(K, N, \text{mat}(\rho))$ mit $\text{mat}(\rho) \colon K \times N \to S, (k, n) \mapsto (\rho(k))(n)$
-  die zu $\rho$ gehörige $(K \times N)$-Matrix über $S$.
+  Seien $K$, $N$ und $S$ Mengen und $\alpha \in (S^N)^K$ eine Abbildung.
+  Dann ist $(K, N, \text{mat}(\alpha))$ mit $\text{mat}(\alpha) \colon K \times N \to S, (k, n) \mapsto (\alpha(k))(n)$
+  die zu $\alpha$ gehörige $(K \times N)$-Matrix über $S$.
 \end{definition}
 
 \begin{definition}
@@ -2603,7 +2603,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und $K$ und $N$ Mengen.
   Sei desweiteren $f \colon S^K \to S^N$ eine $\mathcal{S}$-lineare
   Abbildung von $\text{Mod}(\mathcal{S}, K)$ nach $\text{Mod}(\mathcal{S}, N)$.
-  Dann ist $\alpha = \text{mat}(f \circ \delta^K)$
+  Dann ist $\text{mat}(f \circ \delta^K)$
   die zu $(f, \delta^K, \delta^N)$ gehörige Matrix.
 \end{definition}
 
@@ -2612,7 +2612,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   $K$ und $N$ Mengen und eine Abbildung $\kappa \colon K \to N$ gegeben.
   Sei weiterhin $\alpha_\kappa$ die zu $(f_{\delta^N \circ \kappa}, \delta^K, \delta^N)$
   gehörige Matrix.
-  Dann gilt für beliebige $k \in K$:
+  Dann gilt für beliebige $k \in K$
   \begin{equation*}
     \alpha_\kappa(k, \cdot) = \delta^N_{\kappa(k)}.
   \end{equation*}
@@ -2650,7 +2650,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     \item Ist $f$ eine $\mathcal{S}$-lineare Abbildung von $\text{Mod}(\mathcal{S}, K)$ nach $\text{Mod}(\mathcal{S}, N)$
           und $\alpha$ die zu $(f, \delta^K, \delta^N)$ gehörige Matrix.
           Dann ist die zu $\alpha$ gehörige lineare Abbildung gleich $f$.
-    \item Ist umgekehrt eine $(K \times N)$-Matrix $(K, N, \alpha)$ gegeben,
+    \item Ist umgekehrt $(K, N, \alpha)$ eine $(K \times N)$-Matrix über $\mathcal{S}$,
           so entspricht die zu $(f_{\text{row}(\alpha)}, \delta^K, \delta^N)$
           gehörige Matrix genau $\alpha$. 
   \end{enumerate}
@@ -2658,7 +2658,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{proof}
   Die zu $f$ gehörige Matrix $\alpha$ ist gegeben durch
   \begin{equation*}
-    \alpha = \text{mat}(f \circ \delta^K) \colon K \times N \to S, (k, n) \mapsto ((f \circ \delta^K)(k))(n).
+    \alpha = \text{mat}(f \circ \delta^K) \colon K \times N \to S, (k, n) \mapsto (f(\delta^K_k))(n).
   \end{equation*}
   Also ist $\text{row}(\alpha) = f \circ \delta^K$.
   Somit gilt für alle $u \in S^K$
@@ -2671,7 +2671,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \end{equation*}
   womit die erste Aussage bewiesen wäre.
 
-  Seien nun $k \in K$ und $n \in N$. Dann ist
+  Seien $\alpha$ eine $(K \times N)$-Matrix und $k \in K$ und $n \in N$. Dann ist
   \begin{align*}
     \text{mat}(f_{\text{row}(\alpha)} \circ \delta^K)(k, n)
     &= (f_{\text{row}(\alpha)}(\delta^K_k))(n) \\
@@ -2683,6 +2683,55 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   und somit der zweite Teil des Satzes bewiesen.
 \end{proof}
 
+\begin{theorem}\label{Theorem_ModSKMSPhiSLinear}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
+  und $K$ ein Menge. Sei weiterhin
+  $\text{Mod}(\mathcal{S}, K) = ((\mathcal{S}_\text{Sum})^K, \mathcal{S}, \text{scal})$
+  mit $(\mathcal{S}_\text{Sum})^K = (S^K, \Sigmacirc)$
+  das $K$-freie Summoid-Modul über $\mathcal{S}$
+  sowie $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal'})$ ein Summoid-Modul
+  mit $\mathbb{M} = (M, \Sigmacirc')$.
+  Eine Abbildung $\varphi \colon S^K \to M$ ist genau dann $\mathcal{S}$-linear von
+  $\text{Mod}(\mathcal{S}, K)$ nach $\mathfrak{M}$ wenn eine Vektorenfamilie
+  $\gamma \in M^K$ existiert mit $f_\gamma = \varphi$.
+\end{theorem}
+\begin{proof}
+  Angenommen $\varphi$ ist $\mathcal{S}$-linear.
+  Dann gilt
+ \begin{equation*}
+    \varphi(u)
+    = \varphi \bigg( \sumcirc_{k \in K} u(k) \cdot \delta^K_k \bigg)
+    = {\sumcirc_{k \in K}}' u(k) \cdot' \varphi(\delta^K_k)
+    = f_{\varphi \circ \delta^K}(u).
+  \end{equation*}
+  Also ist $\gamma = \varphi \circ \delta^K$.
+ 
+  Angenommen es existiert eine Abbildung $\gamma \in M^K$ für die gilt $\varphi = f_\gamma$.
+  Dann ist $\varphi$ laut Satz \ref{Theorem_FGammaSLinear} $\mathcal{S}$-linear.
+\end{proof}
+
+\begin{theorem}
+  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
+  sowie $K$ und $N$ Mengen.
+  Dann ist $\varphi \colon S^K \to S^N$ eine $\mathcal{S}$-lineare Abbildung von $\text{Mod}(\mathcal{S}, K)$
+  nach $\text{Mod}(\mathcal{S}, N)$ genau dann wenn
+  eine $(K \times N)$-Matrix $\alpha$ über $\mathcal{S}$ existiert mit $\varphi = f_{\text{row}(\alpha)}$.
+\end{theorem}
+\begin{proof}
+  Angenommen $\varphi$ ist $\mathcal{S}$-linear. 
+  Dann gilt, wie in Satz \ref{Theorem_ModSKMSPhiSLinear} gezeigt,
+  \begin{equation*}
+    \varphi = f_{\varphi \circ \delta^K}
+  \end{equation*}
+  und damit auch
+  \begin{equation*}
+    \varphi = f_{\text{row}(\text{mat}(\varphi \circ \delta^K))}.
+  \end{equation*}
+  Das heißt, dass $\alpha = \text{mat}(\varphi \circ \delta^K)$.
+
+  Die andere Richtung folgt wieder aus Satz \ref{Theorem_FGammaSLinear}.
+\end{proof}
+
 \begin{definition}
   Seien $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ und $\mathfrak{M}' = (\mathbb{M}, \mathcal{S}', \text{scal}')$ Summoid-Module.
   Sei weiterhin $\lambda$ eine $K$-Basis von $\mathfrak{M}$
@@ -2690,26 +2739,34 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   sowie eine $\mathcal{S}$-lineare Abbildung $g$ von $\mathfrak{M}$ nach $\mathfrak{M}'$ gegeben.
   Dann ist die zu $(g;\lambda, \gamma)$ gehörige Matrix definiert
   als die zu $f$ gehörige Matrix,
-  wobei $f = f_\gamma^{-1} \circ g \circ f_\lambda$.
+  wobei $f = f_\gamma^{\langle -1 \rangle} \circ g \circ f_\lambda$.
 \end{definition}
 
 \begin{theorem}
-  Die zu $(g;\lambda, \gamma)$ gehörige Matrix ist eindeutig bestimmt.
+  eien $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ und $\mathfrak{M}' = (\mathbb{M}, \mathcal{S}', \text{scal}')$ Summoid-Module.
+  Sei weiterhin $\lambda$ eine $K$-Basis von $\mathfrak{M}$
+  und $\gamma$ eine $N$-Basis von $\mathfrak{M}'$
+  sowie $g$ eine $\mathcal{S}$-lineare Abbildung von $\mathfrak{M}$ nach $\mathfrak{M}'$.
+  Dann gilt für die zu $(g; \lambda, \gamma)$ gehörige Matrix $\alpha$ für alle $k \in K$
+  \begin{equation*}
+    \alpha(k, \cdot) = g(\lambda(k)).
+  \end{equation*}
 \end{theorem}
 \begin{proof}
-  Sei $\alpha = \text{mat}(f \circ \delta^K)$ die zu $f$ gehörige Matrix.
-  Laut Voraussetzung ist weiterhin
+  Sei $f = f_\gamma^{\langle -1 \rangle} \circ g \circ f_\lambda$
+  und $\alpha = \text{mat}(f \circ \delta^K)$ die zu $f$ gehörige Matrix.
+  Es gilt
   \begin{equation*}
     f_\gamma \circ f = g \circ f_\lambda.
   \end{equation*}
-  Für $f_\gamma \circ f$ und $k \in K$ gilt:
+  Für $f_\gamma \circ f$ und $k \in K$ ist
   \begin{equation*}
     (f_\gamma \circ f)(\delta^K_k)
-    = f_\gamma((f \circ \delta^K)(k))
+    = f_\gamma(f(\delta^K_k))
     = f_\gamma(\alpha(k, \cdot))
     = \sumcirc_{n \in N}\alpha(k, n) \cdot \gamma(n).
   \end{equation*}
-  Für $g \circ f_\lambda$ und $k \in K$ gilt dagegen:
+  Für $g \circ f_\lambda$ und $k \in K$ gilt dagegen
   \begin{equation*}
     (g \circ f_\lambda)(\delta^K_k)
     = g \bigg( \sumcirc_{k' \in K} \delta^K_k(k') \cdot \lambda(k') \bigg)
@@ -2719,8 +2776,6 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     g(\lambda(k)) = \sumcirc_{n \in N}\alpha(k, n) \cdot \gamma(n) = f_\gamma(\alpha(k, \cdot)).
   \end{equation*}
-  Da $f_\gamma$ bijektiv ist, gibt es für jedes $k \in K$ genau ein $\alpha(k, \cdot)$,
-  welches diese Gleichung erfüllt.
 \end{proof}
 
 \begin{definition}
@@ -2740,55 +2795,10 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   $\alpha \colon J \times K \to S$ und $\beta \colon K \to N$ Abbildungen.
   Dann ist
   \begin{equation*}
-    \alpha \otimes \beta = \Bigg(\sum_{k \in K} \alpha(j, k) \ast \beta(k, n) \Bigg)_{j, n \in J \times N}
+    \alpha \otimes \beta = \Bigg(\sum_{k \in K} \alpha(j, k) \ast \beta(k, n) \Bigg)_{(j, n) \in J \times N}
   \end{equation*}
   das Matrix-Matrix-Produkt von $\alpha$ und $\beta$.
 \end{definition}
-
-\begin{theorem}\label{Theorem_ModSKMSPhiSLinear}
-  Sei $\mathfrak{M} = (\mathbb{M}, \mathcal{S}, \text{scal})$ ein Summoid-Modul
-  mit $\mathbb{M} = (M, \Sigmacirc)$ und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$
-  sowie $K$ eine Menge.
-  Eine Abbildung $\varphi \colon S^K \to M$ ist genau dann $\mathcal{S}$-linear von
-  $\text{Mod}(\mathcal{S}, K)$ nach $\mathfrak{M}$ wenn eine Vektorenfamilie
-  $\gamma \in M^K$ existiert mit $f_\gamma = \varphi$.
-\end{theorem}
-\begin{proof}
-  Angenommen $\varphi$ ist $\mathcal{S}$-linear.
-  Dann ist $\varphi = f_{\varphi \circ \delta^K}$, also $\gamma = \varphi \circ \delta^K$,
-  denn für $u \in S^K$ ist
-  \begin{equation*}
-    f_{\varphi \circ \delta^K}(u)
-    = \sumcirc_{k \in K} u(k) \cdot \varphi(\delta^K_k)
-    = \varphi \bigg( \sumcirc_{k \in K} u(k) \cdot \delta^K_k \bigg)
-    = \varphi(u).
-  \end{equation*}
-
-  Angenommen es existiert eine Abbildung $\gamma \in M^K$ für die gilt $\varphi = f_\gamma$.
-  Dann ist $\varphi$ laut Satz \ref{Theorem_FGammaSLinear} $\mathcal{S}$-linear.
-\end{proof}
-
-\begin{theorem}
-  Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
-  sowie $K$ und $N$ Mengen.
-  Dann ist $\varphi \colon S^K \to S^N$ eine $\mathcal{S}$-lineare Abbildung von $\text{Mod}(\mathcal{S}, K)$
-  nach $\text{Mod}(\mathcal{S}, N)$ genau dann wenn
-  eine $(K \times N)$-Matrix über $\mathcal{S}$ existiert mit $\varphi = f_{\text{row}(\alpha)}$.
-\end{theorem}
-\begin{proof}
-  Angenommen $\varphi$ ist $\mathcal{S}$-linear. 
-  Dann gilt, wie in Satz \ref{Theorem_ModSKMSPhiSLinear} gezeigt,
-  \begin{equation*}
-    \varphi = f_{\varphi \circ \delta^K}
-  \end{equation*}
-  und damit auch
-  \begin{equation*}
-    \varphi = f_{\text{row}(\text{mat}(\varphi \circ \delta^K))}.
-  \end{equation*}
-  Das heißt, dass $\alpha = \text{mat}(\varphi \circ \delta^K)$.
-
-  Die andere Richtung folgt wieder sofort.
-\end{proof}
 
 \begin{theorem}
   Sei $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid
@@ -2872,7 +2882,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Seien $G = (V, E, \varrho)$ und $G' = (V', E', \varrho')$ Netzwerke.
-  Das Paar $(\varphi, \psi)$ bestehend aus den bijektiven Abbildungen $\varphi \colon V \to V'$
+  Das Paar $(\varphi, \psi)$ bestehend aus den Abbildungen $\varphi \colon V \to V'$
   und $\psi \colon E \to E'$ ist ein Homomorphismus zwischen $G$ und $G'$, falls für jedes $e \in E$
   \begin{equation*}
     \varphi(\varrho(e)) = \varrho'(\psi(e)).
@@ -3158,16 +3168,12 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   die Einschränkung von $\mathbb{G}$ auf $D$.
 \end{definition}
 
-\begin{theorem}
+\begin{remark}
   Ist $P$ eine Menge und $R \subseteq P \times P$.
   Dann bildet R genau dann eine Unterstruktur von $\mathbb{G}_P = (G_P, \star, \text{id})$
   mit $G_P = (P, P \times P, \text{id}_{P \times P})$
   wenn $(P, R)$ eine Präordnung ist.
-\end{theorem}
-\begin{proof}
-  Es gilt: $(p, t), (t, q) \in R$ genau dann wenn $(p, q) = (p, t) \star (t, q) \in R$.
-  Weiterhin ist $R$ genau dann reflexiv wenn $\text{id}(P) = \{(p, p) \mid p \in P\} \subseteq R$.
-\end{proof}
+\end{remark}
 
 \begin{remark}
   Ist $\mathbb{P} = (P, R)$ eine Präordnung,
@@ -3185,13 +3191,13 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 
 \begin{definition}
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk.
-  Dann ist $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
+  Dann ist $\text{Mink}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
   ein Join-Summoid, welches wir das Minkowski-Summoid zu $\mathbb{G}$ nennen.
 \end{definition}
 
 \begin{theorem}
   Sei $\mathbb{G} = (G, \star, \text{id})$ mit $G = (V, E, \varrho)$ ein Aktionsnetzwerk.
-  Dann ist das Minkowski-Summoid $\text{Minsk}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
+  Dann ist das Minkowski-Summoid $\text{Mink}(\mathbb{G}) = (\mathcal{P}(E), \bigcup, \mink, \text{id}(V))$
   ein Join-Summmoid.
 \end{theorem}
 \begin{proof}
@@ -3204,7 +3210,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     = A
     = \text{id}(V) \mink A.
   \end{equation*}
-  Also ist $\text{Minsk}(\mathbb{G})_\text{Mult}$ ein Monoid.
+  Also ist $\text{Mink}(\mathbb{G})_\text{Mult}$ ein Monoid.
 
   Und schließlich ist für $A \in \mathcal{P}(E)$ und $\beta \colon I \to \mathcal{P}(E)$
   \begin{align*}
@@ -3254,7 +3260,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     e_1 \star e_2 \in A^{(m)} \mink A^{(n)} \subseteq A^{(\ast)}.
   \end{equation*}
   Also ist $A^{(\ast)}$ eine Unterstruktur von $\mathbb{G}$,
-  die $A$ ennthält.
+  die $A$ enthält.
 
   Sei nun $D \subseteq E$ eine Unterstruktur von $\mathbb{G}$ mit $A \subseteq D$.
   Wir zeigen, dass $A^{(n)} \subseteq D$ für alle $n \in \mathbb{N}$
@@ -3289,7 +3295,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{example}
 
 \begin{definition}
-  Sei $\mathbb{G} = (G, \star, \text{id})$ ein Aktionsnetzwerk mit $G = (V, E, \varrho)$
+  Sei $\mathbb{G} = (G, \star, \text{id})$ ein Aktionsnetzwerk mit $G = (V, E, \varrho)$.
   Für $e \in E$ ist der Split von $e$ definiert als
   \begin{equation*}
     \text{Split}_\mathbb{G}(e) = \{(c, d) \in E^{\langle 2 \rangle} \mid c \star d = e\}.
@@ -3328,7 +3334,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{align*}
     (u \circledast u_{k + 1})(e)
     &= \sum_{(c, d) \in \text{Split}_\mathbb{G}(e)} u(c) \ast u_{k + 1}(d) \\
-    &= \sum_{(c, d) \in \text{Split}_\mathbb{G}(e)} \sum_{(e_1, \dots e_k) \in k\text{-Split}_\mathbb{G}(c)} u_1(e_1) \ast \dots \ast u_k(e_k) \ast u_{k + 1}(d) \\
+    &= \sum_{(c, d) \in \text{Split}_\mathbb{G}(e)} \sum_{(e_1, \dots, e_k) \in k\text{-Split}_\mathbb{G}(c)} u_1(e_1) \ast \dots \ast u_k(e_k) \ast u_{k + 1}(d) \\
     &= \sum_{(e_1, \dots, e_{k + 1}) \in (k + 1)\text{-Split}_\mathbb{G}(e)} u_1(e_1) \ast \dots \ast u_{k + 1}(e_{k + 1}).
    \end{align*}
 \end{proof}
@@ -3351,7 +3357,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   für beliebige $(u_i)_{i \in I} \in (S^E)^I$
   und
   \begin{equation*}
-    I_G \colon E \to S, e \mapsto
+    I_\mathbb{G} \colon E \to S, e \mapsto
     \begin{cases}
       \varepsilon & \text{falls } e \in \text{id}(V) \\
       0_\mathcal{S} & \text{sonst}
@@ -3378,7 +3384,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     = \sum_{c \star d = e} I_\mathbb{G}(c) \ast u(d)
     = (I_\mathbb{G} \circledast u)(e),
   \end{equation*}
-  da $c \star d = e$ für $d \in \text{id}(V)$ nur gilt, wenn $c = e$.
+  denn aus $(c, d) \in \text{Split}_\mathbb{G}(e)$ und $d \in \text{id}(V)$ folgt $c = e$.
 
   Sei nun $(u_i)_{i \in I} \in (S^E)^I$ sowie $w \in S^E$ und $e \in E$.
   Dann ist
@@ -3449,15 +3455,15 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   eine $\mathcal{S}$-Algebra.
 \end{theorem}
 \begin{proof}
-  $\mathcal{S}[\mathbb{G}]$ ist ein Summoid
-  und daher $(\mathcal{S}[\mathbb{G}]_\text{Sum}, \mathcal{S}, \text{scal})$ ein Summoid-Modul.
+  $(\mathcal{S}[\mathbb{G}]_\text{Sum}, \mathcal{S}, \text{scal})$ entspricht $\text{Mod}(\mathcal{S}, E)$,
+  was laut Satz \ref{Theorem_ModSNSummoidModul} ein Summoid-Modul ist.
 
   Sei nun $s \in S$, $u, w \in S^E$ sowie $e \in E$.
   Dann ist
   \begin{align*}
     (s \cdot (u \circledast w))(e)
     &= s \ast (u \circledast w)(e) \\
-    &= s \ast \sum_{c \star d = e} (u(c) \ast w(d)) \\
+    &= s \ast \sum_{c \star d = e} u(c) \ast w(d) \\
     &= \sum_{c \star d = e} (s \ast u(c)) \ast w(d) = ((s \cdot u) \circledast w)(e) \\
     &= \sum_{c \star d = e} u(c) \ast (s \ast w(d)) = (u \circledast (s \cdot w))(e).
   \end{align*}
@@ -3469,7 +3475,9 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   $\mathfrak{A} = (\mathcal{A}, \mathcal{S}, \text{scal})$ mit
   $\mathcal{A} = (A, \Sigmacirc, \algebra, a)$ eine $\mathcal{S}$-Algebra.
   Dann induziert jeder Homomorphismus $\kappa$ von $\mathbb{M}$ auf $\mathcal{A}_\text{Mult}$
-  durch $f_\kappa$ einen Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)]$ nach $\mathcal{A}$.
+  durch $f_\kappa$ einen Homomorphismus
+  von $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)] = (S^M, \bar\Sigma, \circledast, I)$
+  nach $\mathcal{A}$.
 \end{theorem}
 \begin{proof}
   Sei $(v_i)_{i \in I} \in (S^M)^I$.
@@ -3497,6 +3505,14 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
     &= \sumcirc_{c \in M} u(c) \cdot \kappa(c) \algebra \sumcirc_{d \in M}w(d) \cdot \kappa(d) \\
     &= (u \odot \kappa) \algebra (w \odot\kappa).
   \end{align*}
+
+  Schließlich ist
+  \begin{equation*}
+    f_\kappa(I)
+    = \sumcirc_{m \in M} I(m) \cdot \kappa(m)
+    = \kappa(0)
+    = a.
+  \end{equation*}
 \end{proof}
 
 \newpage
@@ -3504,65 +3520,81 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \begin{example}
   Sei $\mathbb{M} = \mathbb{N}_\text{add} = (\mathbb{N}, +, 0)$,
   $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid
-  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal}_\mathcal{S})$
-  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra).
-  Darüber hinaus sei $\text{Mod}(\mathcal{S}, \mathbb{N}) = ((\mathcal{S}_\text{Sum})^\mathbb{N}, \mathcal{S}, \text{scal}_{S^\mathbb{N}})$
-  mit $(\mathcal{S}_\text{Sum})^\mathbb{N} = (S^\mathbb{N}, \Sigmacirc)$ gegeben.
-  Damit ist $\text{scal}_\mathcal{S} \colon S \to \text{End}_{\mathcal{S}_\text{Sum}}$ mit 
-  $\text{scal}(s): S \to S, s' \mapsto s \ast s'$,
-  wordurch die Operation $\cdot_\mathcal{S} \colon S^2 \to S, (s,x) \mapsto s \ast x$ definiert ist.
+  und $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal})$
+  mit $\text{scal}(s): S \to S, s' \mapsto s \ast s'$,
+  eine $\mathcal{S}$-Algebra ($\mathcal{S}$ als $\mathcal{S}$-Algebra)
+  sowie $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)] = (S^\mathbb{N}, \Sigmacirc, \circledast, \delta^\mathbb{N}_0)$
+  gegeben.
+  
+  Wir setzen $x = \delta^N_1$ und damit
+  \begin{equation*}
+    x^n = \underbrace{x \circledast ... \circledast x}_{\text{n mal}} = \delta^N_n
+  \end{equation*}
+  und interpretieren ein Element $u \in S^\mathbb{N}$
+  als formale Potenzreihe mit Koeffizienten aus $S$.
+  Die Summe der Potenzreihen ergibt sich aus der punktweisen Summe der Faktoren durch $\Sigmacirc$.
+  Die Multiplikation entspricht der Faltung $\circledast$.
 
   Für jedes $r \in S$ ist $\kappa_r \colon \mathbb{N} \to S, n \mapsto r^n$
   ein Monoid-Homomorphismus von $\mathbb{M}$ nach $\mathcal{S}_\text{Mult}$.
-
-  Wir definieren weiterhin $x \coloneqq \delta^\mathbb{N}_1$ und $x^n \coloneqq \underbrace{x \circledast ... \circledast x}_{n-fach}$,
-  wobei $\circledast$ die Faltung aus $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ ist.
-  Also ist $x^n = \delta^\mathbb{N}_n$ und
+  Wie soeben gezeigt ist dann
   \begin{equation*}
-    f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot_\mathcal{S} \kappa_r(n)
+    f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}} u(n) \ast \kappa_r(n)
   \end{equation*}
-  ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathcal{S}$.
-  Das heißt folgendes: Für $u \in S^\mathbb{N}$, welches als Polynom
-  \begin{equation*}
-    u[x] \coloneqq u = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} \delta^\mathbb{N}_n = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} x^n
-  \end{equation*}
-  aufgefasst wird, wobei $\cdot_{S^\mathbb{N}}$ die Skalarmultiplikation aus 
-  $\text{Mod}(\mathcal{S}, \mathbb{N})$ sei, ist
-  \begin{equation*}
-    f_{\kappa_r}(u) = \sum_{n \in \mathbb{N}} u(n) \cdot_\mathcal{S} r^n.
-  \end{equation*}
-  Die Abbildung $f_{\kappa_r}$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
+  ein Homomorphismus, welcher als Einsetzungshomomorphismus aufgefasst werden kann.
+  Es gilt also
+  \begin{itemize}
+    \item $f_{\kappa_r}(\sumcirc_{i \in I} u_i) = \sum_{i \in I} f_{\kappa_r}(u_i)$
+    \item $f_{\kappa_r}(u \circledast w) = f_{\kappa_r}(u) \ast f_{\kappa_r}(w)$ und
+    \item $f_{\kappa_r}(\delta^N_0) = \varepsilon$.
+  \end{itemize}
+  %Wir definieren weiterhin $x \coloneqq \delta^\mathbb{N}_1$ und $x^n \coloneqq \underbrace{x \circledast ... \circledast x}_{n-fach}$,
+  %wobei $\circledast$ die Faltung aus  ist.
+  %Also ist $x^n = \delta^\mathbb{N}_n$ und
+  %\begin{equation*}
+  %  f_{\kappa_r} \colon S^\mathbb{N} \to S, u \mapsto \sum_{n \in \mathbb{N}}u(n) \cdot_\mathcal{S} \kappa_r(n)
+  %\end{equation*}
+  %ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}(\mathbb{N}_\text{add}, \bot)]$ nach $\mathcal{S}$.
+  %Das heißt folgendes: Für $u \in S^\mathbb{N}$, welches als Polynom
+  %\begin{equation*}
+  %  u[x] \coloneqq u = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} \delta^\mathbb{N}_n = \sumcirc_{n \in \mathbb{N}} u(n) \cdot_{S^\mathbb{N}} x^n
+  %\end{equation*}
+  %aufgefasst wird, wobei $\cdot_{S^\mathbb{N}}$ die Skalarmultiplikation aus 
+  %$\text{Mod}(\mathcal{S}, \mathbb{N})$ sei, ist
+  %\begin{equation*}
+  %  f_{\kappa_r}(u) = \sum_{n \in \mathbb{N}} u(n) \cdot_\mathcal{S} r^n.
+  %\end{equation*}
+  %Die Abbildung $f_{\kappa_r}$ heißt deshalb Einsetzungs-Homomorphismus von $r$ für jede formale Potenzreihe $u[x]$.
 \end{example}
 
 \begin{example}
-  Sei $\Omega$ eine endliche Menge
-  und $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein Summoid.
-  Weiterhin sei $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega$ ein kommutatives Monoid.
-  Beachte: Hier werden $\text{Mod}(\mathcal{S}, \mathbb{N}^\Omega) = ((\mathcal{S}_\text{Sum})^{\mathbb{N}^\Omega}, \mathcal{S}, \text{scal}_{S^{\mathbb{N}^\Omega}})$
-  mit $(\mathcal{S}_\text{Sum})^{\mathbb{N}^\Omega} = (S^{\mathbb{N}^\Omega}, \Sigmacirc)$ 
-  und außerdem die Faltung $\circledast$
-  aus $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ betrachtet.
+  Sei $\Omega$ eine endliche Menge,
+  $\mathbb{M} = (\mathbb{N}_\text{add})^\Omega = (\mathbb{N}^\Omega, \bar+, \bar0)$ ein Monoid,
+  $\mathcal{S} = (S, \Sigma, \ast, \varepsilon)$ ein kommutatives Summoid,
+  $\mathfrak{A} = (\mathcal{S}, \mathcal{S}, \text{scal})$ erneut $\mathcal{S}$ als $\mathcal{S}$-Algebra
+  sowie $\mathcal{S}[\mathbb{G}(\mathbb{M}, \bot)] = (S^{\mathbb{N}^\Omega}, \Sigmacirc, \circledast, \delta^{\mathbb{N}^\Omega}_{\bar0})$.
   
+  Wir setzen $x_i = \delta^{\mathbb{N}^\Omega}_{\delta^\Omega_i}$
+  und für $\alpha \in \mathbb{N}^\Omega$
+  \begin{equation*}
+    x^\alpha = \prod^\circledast_{i \in \Omega}x_i^{\alpha(i)} = \delta^{\mathbb{N}^\Omega}_\alpha.
+  \end{equation*}
+  Dann interpretieren wir ein Element $u \in S^{\mathbb{N}^\Omega}$ mit
+  \begin{equation*}
+    u = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot \delta^{\mathbb{N}^\Omega}_\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot x^\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot \prod^\circledast_{i \in \Omega} x_i^{\alpha(i)}
+  \end{equation*}
+  als formale Potenzreihe mit mehreren Unbestimmten aus $\Omega$ mit Koeffizienten aus $S$.
+
   Für $r \in S^\Omega$ ist 
   \begin{equation*}
     \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod^\ast_{i \in \Omega}r_i^{\alpha_i}
   \end{equation*}
-  ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$.
-  Für $i \in \Omega$ setze $x_i = \delta^{\mathbb{N}^\Omega}_{\delta^\Omega_i}$
-  und für $\alpha \in \mathbb{N}^\Omega$ sei $x^\alpha = \delta^{\mathbb{N}^\Omega}_\alpha$.
-  Dann ist
-  \begin{equation*}
-    x^\alpha = \prod^\circledast_{i \in \Omega}x_i^{\alpha(i)}.
-  \end{equation*}
-  Interpretiere $u \in \mathcal{S}^{\mathbb{N}^\Omega}$ wie folgt:
-  \begin{equation*}
-    u = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} \delta^{\mathbb{N}^\Omega}_\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} x^\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot_{S^{\mathbb{N}^\Omega}} \prod^\circledast_{i \in \Omega}x_i^{\alpha(i)}
-  \end{equation*}
-  Dann ist $f_{\kappa_r}$ ein Summoid-Homomorphismus von $\mathcal{S}[\mathbb{G}((\mathbb{N}_\text{add})^\Omega, \bot)]$ nach $\mathcal{S}$ und für $u \in \mathcal{S}^{\mathbb{N}^\Omega}$ ist
+  ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$
+  und $f_{\kappa_r}$ mit 
   \begin{equation*}
     f_{\kappa_r}(u) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot_\mathcal{S} \kappa_r(\alpha) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot_\mathcal{S} \prod^\ast_{i \in \Omega}r_i^{\alpha(i)}
   \end{equation*}
-  das Einsetzen von $r$ in jede multivariable formale Potenzreihe.
+  der Einsetzungshomomorphismus für multivariable formale Potenzreihen.
 \end{example}
 
 \subsection{Automaten}
@@ -3583,8 +3615,8 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   sowie $\text{Mat}_P(\mathcal{B})$ das Summoid der $(P \times P)$-Matrix über $\mathcal{B}$.
   Dann wird ein Homomorphismus $\kappa$ von $\mathbb{M}$ nach $(\text{Mat}_P(\mathcal{B}))_\text{Mult}$ Präautomat genannt.
 
-  Der Homomorphismus $\kappa$ ordnet jedem Wort ein Element aus $\mathbbm{2}^{P \times P}$ zu
-  und kann deshalb als Übergangsmatrix aufgefasst werden.
+  Der Homomorphismus $\kappa$ ordnet jedem Wort ein Element aus $\mathbbm{2}^{P \times P}$ zu,
+  welches deshalb als Übergangsmatrix aufgefasst werden.
 \end{definition}
 
 \begin{remark}
@@ -3621,7 +3653,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
 \end{definition}
 
 \begin{remark}
-  Ist $B$ ein Alphabet und $G = (G, \bot) = (\{\bot\}, B, \varrho)$
+  Ist $B$ ein Alphabet und $G = G(B, \bot) = (\{\bot\}, B, \varrho)$
   das Kleeblattnetzwerk zu $(B, \bot)$.
   Dann ist
   \begin{equation*}
@@ -3681,7 +3713,7 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   wobei $p$ den Startzustand und $q$ den Endzustand darstellen.
 
   Ein Wort $w \in B^{\langle \ast \rangle}$ wird durch $\mathbb{D}$ erkannnt,
-  falls $\delta^P_p \otimes \kappa(w) = \delta^P_q$ ???,
+  falls $\delta^P_p \otimes \kappa(w) = \delta^P_q$,
   d.h. $(\kappa(w))(p, q) = 1$.
 \end{definition}
 
