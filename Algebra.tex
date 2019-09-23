@@ -3583,16 +3583,17 @@ Für $(p, q) \in R$ schreibe auch $p \mathrel{R} q$.
   \begin{equation*}
     u = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot \delta^{\mathbb{N}^\Omega}_\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot x^\alpha = \sumcirc_{\alpha \in \mathbb{N}^\Omega} u(\alpha) \cdot \prod^\circledast_{i \in \Omega} x_i^{\alpha(i)}
   \end{equation*}
-  als formale Potenzreihe mit mehreren Unbestimmten aus $\Omega$ mit Koeffizienten aus $S$.
+  als formale Potenzreihe mit mehreren Unbestimmten aus $\Omega$ mit Koeffizienten aus $S$,
+  wobei $\cdot$ das Scaling bzgl. $\text{Mod}(\mathcal{S}, \mathbb{N}^\Omega)$ ist.
 
   Für $r \in S^\Omega$ ist 
   \begin{equation*}
-    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod^\ast_{i \in \Omega}r_i^{\alpha_i}
+    \kappa_r \colon \mathbb{N}^\Omega \to S, \alpha \mapsto \prod^\ast_{i \in \Omega}r_i^{\alpha(i)}
   \end{equation*}
   ein Monoid-Homomorphismus zwischen $(\mathbb{N}_\text{add})^\Omega$ und $\mathcal{S}_\text{Mult}$
   und $f_{\kappa_r}$ mit 
   \begin{equation*}
-    f_{\kappa_r}(u) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \cdot_\mathcal{S} \kappa_r(\alpha) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha)\cdot_\mathcal{S} \prod^\ast_{i \in \Omega}r_i^{\alpha(i)}
+    f_{\kappa_r}(u) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \ast \kappa_r(\alpha) = \sum_{\alpha \in \mathbb{N}^\Omega}u(\alpha) \ast \prod^\ast_{i \in \Omega}r_i^{\alpha(i)}
   \end{equation*}
   der Einsetzungshomomorphismus für multivariable formale Potenzreihen.
 \end{example}
